@@ -30,7 +30,7 @@ import {
               return
         }    
         e.preventDefault()
-        await axios.get('https://el-buen-sabor.herokuapp.com/login', data)
+        await axios.post('https://el-buen-sabor.herokuapp.com/login', data)
           alert('Ha entrado exitosamente')
           navigate("/inicio", { replace: true });
     }
