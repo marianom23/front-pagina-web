@@ -6,6 +6,7 @@ import {
   MDBRow,
 } from 'mdb-react-ui-kit';
 
+
 export const Footer = () => {
   return (
     <MDBFooter bgColor='primary' className='text-white text-center text-lg-left'>
@@ -26,8 +27,8 @@ export const Footer = () => {
 
             <ul className='list-unstyled mb-0'>
               <li>
-                <a href='#!' className='text-white'>
-                  Link 1
+                <a href='/contacto' className='text-white'>
+                  Contactanos
                 </a>
               </li>
               <li>

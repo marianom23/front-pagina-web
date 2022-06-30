@@ -6,6 +6,7 @@ import axios from 'axios';
 import { LoginGoogle } from './LoginGoogle';
 import { LogoutGoogle } from './LogoutGoogle';
 import {gapi} from 'gapi-script';
+
 import {
   MDBInput,
   MDBCol,
@@ -81,6 +82,10 @@ import {
               </MDBBtn>    */}
 
               <LoginGoogle/>
+              <br />
+              <p>Salir de la cuenta actual:</p>
+
+              <LogoutGoogle/>
           </div>
         </form>
     </div>
