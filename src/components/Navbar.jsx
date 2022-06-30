@@ -14,11 +14,10 @@ import {
 export const Navbar = () => {
   const [showNavColor, setShowNavColor] = useState(false);
 
-  return (
-    <>
+  return (   
     <MDBNavbar expand='lg' dark bgColor='primary'>
       <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>Navbar</MDBNavbarBrand>
+        <MDBNavbarBrand href='#'>El Buen Sabor</MDBNavbarBrand>
         <MDBNavbarToggler
           type='button'
           data-target='#navbarColor02'
@@ -32,23 +31,14 @@ export const Navbar = () => {
         <MDBCollapse show={showNavColor} navbar>
           <MDBNavbarNav className='me-auto mb-2 mb-lg-0'>
             <MDBNavbarItem className='active'>
-              <MDBNavbarLink aria-current='page' href='#'>
-                Home
-              </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='/'>Inicio</MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href='#'>Pricing</MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href='#'>About</MDBNavbarLink>
+              <MDBNavbarLink href='/login'>Login</MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>
-    </>
+
   );
 }

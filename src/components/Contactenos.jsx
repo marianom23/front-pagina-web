@@ -7,9 +7,10 @@ import {
   MDBBtn,
   MDBContainer
 } from 'mdb-react-ui-kit';
+import { useNavigate } from 'react-router-dom';
 
 export const Contactenos = () => {
-
+  let navigate = useNavigate();
     const form = useRef();
 
     const sendEmail = (e) => {
@@ -22,7 +23,9 @@ export const Contactenos = () => {
             console.log(error.text);
         });
     };
-
+    const handleReturn = () => {
+      navigate(-1, { replace: true})
+    }
   return (
     <div className="container">
         <br />
@@ -34,7 +37,7 @@ export const Contactenos = () => {
         <MDBBtn type='submit' className='mb-4' block>
             Enviar mensaje
         </MDBBtn>
-        <MDBBtn hreftype='button' href='/inicio' className='mb-4' block>
+        <MDBBtn hreftype='button' onClick={handleReturn} className='mb-4' block>
             Volver
         </MDBBtn>
         </form>

@@ -1,0 +1,53 @@
+/* 
+.Carousel{
+    width:70%;
+    margin: 0 auto;
+    margin-top: 50 px;
+} */
+
+.slick-slide > div {
+    margin: 0 10px;
+}
+
+.slick-list {
+    margin: 0 -10px;
+}
+
+/* .card{
+    border-top: 1px solid #fff;
+    background: black;
+    border-radius: 8px;
+    overflow: hidden;
+
+    height: 500px;
+    color: #fff;
+} */
+
+/* .card-top h1{
+    font-size: 1rem;
+    margin:10px 20px;
+} */
+/* 
+.card-top > img{
+    width: 500px;
+    height: 500;
+    object-fit: cover;
+} */
+
+/* .card-bottom{
+    margin: 10px 20px;
+}
+
+.category{
+    position: relative;
+} */
+
+/* .category::before{
+    content:'';
+    background:red;
+    position: absolute;
+    top:calc(100% + 10 px);
+    left: 0;
+    right: 0;
+    height:2px;
+} */

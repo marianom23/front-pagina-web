@@ -29,11 +29,11 @@ export const Register = () => {
         e.preventDefault()
         await axios.post('https://el-buen-sabor.herokuapp.com/login/register', data)
           alert('Usuario creado exitosamente')
-          navigate("/inicio", { replace: true });
+          navigate("/login", { replace: true });
     }
   
     const handleReturn = () => {
-      navigate("/inicio", { replace: true})
+      navigate(-1, { replace: true})
     }
 
 
