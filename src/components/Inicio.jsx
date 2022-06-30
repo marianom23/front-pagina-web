@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { LoginGoogle } from './LoginGoogle';
+import { LogoutGoogle } from './LogoutGoogle';
+import {gapi} from 'gapi-script';
 import {
   MDBInput,
   MDBCol,
@@ -14,7 +17,7 @@ import {
 } from 'mdb-react-ui-kit';
 
   export const Inicio = () => {
-
+    const clientId="664754626894-llp569b8q2er9gq0b11ib1j50529evju.apps.googleusercontent.com"
     const [data, setData] = useState({email:"",hash:""})
     let navigate = useNavigate();
     const handleChange = ({target})=> {
@@ -34,11 +37,16 @@ import {
           alert('Ha entrado exitosamente')
           navigate("/inicio", { replace: true });
     }
-  
-    const handleReturn = () => {
-      navigate("/inicio", { replace: true})
-    }
 
+    useEffect(() => {
+      function start() {
+        gapi.client.init({
+          clientId: clientId,
+          scope: ""
+        })
+      }
+      gapi.load('client:auth2', start)
+    })
 
   return (
     <MDBContainer fluid>
@@ -68,21 +76,11 @@ import {
               </p>
               <p>o entra con:</p>
 
-              <MDBBtn floating className='mx-1'>
-                <MDBIcon fab icon='facebook-f' />
-              </MDBBtn>
-
-              <MDBBtn floating className='mx-1'>
+              {/* <MDBBtn floating className='mx-1'>
                 <MDBIcon fab icon='google' />
-              </MDBBtn>
+              </MDBBtn>    */}
 
-              <MDBBtn floating className='mx-1'>
-                <MDBIcon fab icon='twitter' />
-              </MDBBtn>
-
-              <MDBBtn floating className='mx-1'>
-                <MDBIcon fab icon='github' />
-              </MDBBtn>
+              <LoginGoogle/>
           </div>
         </form>
     </div>
