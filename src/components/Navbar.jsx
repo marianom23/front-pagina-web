@@ -17,7 +17,7 @@ export const Navbar = () => {
   return (   
     <MDBNavbar expand='lg' dark bgColor='primary'>
       <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>El Buen Sabor</MDBNavbarBrand>
+        <MDBNavbarBrand href='/'>El Buen Sabor</MDBNavbarBrand>
         <MDBNavbarToggler
           type='button'
           data-target='#navbarColor02'
@@ -33,7 +33,7 @@ export const Navbar = () => {
             <MDBNavbarItem className='active'>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='/login'>Login</MDBNavbarLink>
+              <MDBNavbarLink href='/login'>Ingresar</MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
         </MDBCollapse>

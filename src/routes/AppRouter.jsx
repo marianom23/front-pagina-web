@@ -10,10 +10,12 @@ export const AppRouter = () => {
   return (
     <>
         <Routes>
-            <Route path="/" element={<Login/>}/>
+            <Route path="/" element={<Inicio/>}/>
+            {/* <Route path="/" render={()=>{
+              return user ? <Redirect to='/'/> : <Login />
+              }}/> */}
             <Route path="/login" element={<Login/>}/>
             <Route path="/register" element={<Register/>}/>
-            <Route path="/inicio" element={<Inicio/>}/>
             <Route path="/contacto" element={<Contactenos/>}/>
         </Routes>
     </>

@@ -33,7 +33,7 @@ export const Register = () => {
     }
   
     const handleReturn = () => {
-      navigate(-1, { replace: true})
+      navigate("/login", { replace: true})
     }
 
 

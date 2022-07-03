@@ -47,7 +47,7 @@ const settings = {
     <div className="carousel">
         <Slider {...settings}>
             {data.map((item) =>(
-                <MDBCard style={{ maxWidth: '22rem' }}>
+                <MDBCard style={{ maxWidth: '22rem' }} key={item.id}>
                 <MDBCardImage src={item.img} position='top' alt={item.titulo} />
                 <MDBCardBody>
                     <MDBCardTitle>{item.titulo}</MDBCardTitle>

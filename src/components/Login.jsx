@@ -16,6 +16,7 @@ import {
   MDBIcon,
   MDBContainer
 } from 'mdb-react-ui-kit';
+import { Inicio } from './Inicio';
 
   export const Login = () => {
     const clientId="664754626894-llp569b8q2er9gq0b11ib1j50529evju.apps.googleusercontent.com"
@@ -36,7 +37,8 @@ import {
         e.preventDefault()
         await axios.post('https://el-buen-sabor.herokuapp.com/login', data)
           alert('Ha entrado exitosamente')
-          navigate("/inicio", { replace: true });
+         
+          navigate("/", { replace: true });
     }
 
     useEffect(() => {
@@ -56,7 +58,7 @@ import {
     <div className="container">
           <form onSubmit={handleSubmit}>
           <MDBInput value={data.email} onChange={handleChange} name="email" className='mb-4' type='text' id='email' label='Email' />
-            <MDBInput value={data.hash} onChange={handleChange} name="hash" className='mb-4' type='text' id='hash' label='Contraseña' />
+            <MDBInput value={data.hash} onChange={handleChange} name="hash" className='mb-4' type='password' id='hash' label='Contraseña' />
 
             <MDBRow className='mb-4'>
               <MDBCol className='d-flex justify-content-center'>

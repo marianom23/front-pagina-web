@@ -6,15 +6,12 @@ import { Navbar } from './Navbar'
 
 export const Inicio = () => {
 
-
-
-
   return (
     <>
       <Navbar/>
       <br />
       <h1>El Buen Sabor</h1>
-
+       <LogoutGoogle/> 
       <br />
       <Carousel/>
 
