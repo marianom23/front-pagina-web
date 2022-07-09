@@ -1,14 +1,12 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Carousel } from './Carousel'
 import { Footer } from './Footer'
-import { LogoutGoogle } from './LogoutGoogle'
 import { Navbar } from './Navbar'
+import { UserContext } from '../usuario/context/UserContext'
 
 export const Inicio = () => {
-
-
-
-
+  const {user} = useContext(UserContext);
+  console.log(user)
   return (
     <>
       <Navbar/>
