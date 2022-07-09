@@ -12,7 +12,7 @@ import {
 
 export const AgregarInsumo = () => {
 
-  const [data, setData] = useState({denominacion:"",precio_compra:"",precio_venta:"",stock_actual:"",stock_minimo:"",unidad_medida:"",es_insumo:""})
+  const [data, setData] = useState({denominacion:"",precio_compra:"",precio_venta:"",stock_actual:"",stock_minimo:"",unidad_medida:""})
   let navigate = useNavigate();
   const handleChange = ({target})=> {
       setData({
@@ -45,7 +45,7 @@ export const AgregarInsumo = () => {
           <MDBInput value={data.stock_actual} onChange={handleChange} name="stock_actual" className='mb-4' type='number' id='stock_actual' label='stock_actual' />
           <MDBInput value={data.stock_minimo} onChange={handleChange} name="stock_minimo" className='mb-4' type='number' id='stock_minimo' label='stock_minimo' />
           <MDBInput value={data.unidad_medida} onChange={handleChange} name="unidad_medida" className='mb-4' type='text' id='unidad_medida' label='unidad_medida' />
-          <MDBCheckbox value={data.es_insumo} onChange={handleChange} name='es_insumo' id='es_insumo' type='checkbox' label='Default checkbox' />
+          {/* <MDBCheckbox value={data.es_insumo} onChange={handleChange} name='es_insumo' id='es_insumo' type='checkbox' label='Default checkbox' /> */}
           <MDBBtn type='submit' className='mb-4' block>
             Agregar Insumo
           </MDBBtn>
