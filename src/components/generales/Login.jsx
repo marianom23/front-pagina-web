@@ -3,7 +3,7 @@ import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Cookies from 'universal-cookie'
+// import Cookies from 'universal-cookie'
 
 import {
   MDBInput,
@@ -13,12 +13,12 @@ import {
   MDBBtn,
   MDBContainer
 } from 'mdb-react-ui-kit';
-import { AppRouter } from '../../routes/AppRouter';
+
 
 
 
 export const Login = () => {
-  const clientId = "664754626894-llp569b8q2er9gq0b11ib1j50529evju.apps.googleusercontent.com"
+
 
   const [data, setData] = useState({ email: "", hash: "" })
 
@@ -44,21 +44,21 @@ export const Login = () => {
       console.log("user:", user)
       console.log("status:", res.status)
       // set cookies
-      const cookies = new Cookies();
-      cookies.set('id', user.id, { path: '/' });
-      cookies.set('email', user.email, { path: '/' });
-      cookies.set('rol', user.rol, { path: '/' });
-      cookies.set('nombre', user.nombre, { path: '/' });
+      // const cookies = new Cookies();
+      // cookies.set('id', user.id, { path: '/' });
+      // cookies.set('email', user.email, { path: '/' });
+      // cookies.set('rol', user.rol, { path: '/' });
+      // cookies.set('nombre', user.nombre, { path: '/' });
 
-      // set sessionStorage
-      // sessionStorage.setItem('id', user.id)
-      // sessionStorage.setItem('email', user.email)
-      // sessionStorage.setItem('rol', user.rol)
-      // sessionStorage.setItem('nombre', user.nombre)
-      localStorage.setItem('id', user.id)
-      localStorage.setItem('email', user.email)
-      localStorage.setItem('rol', user.rol)
-      localStorage.setItem('nombre', user.nombre)
+      // // set sessionStorage
+      // // sessionStorage.setItem('id', user.id)
+      // // sessionStorage.setItem('email', user.email)
+      // // sessionStorage.setItem('rol', user.rol)
+      // // sessionStorage.setItem('nombre', user.nombre)
+      // localStorage.setItem('id', user.id)
+      // localStorage.setItem('email', user.email)
+      // localStorage.setItem('rol', user.rol)
+      // localStorage.setItem('nombre', user.nombre)
 
     }
 
