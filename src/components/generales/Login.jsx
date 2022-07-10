@@ -22,9 +22,10 @@ import { AppRouter } from '../../routes/AppRouter';
   export const Login = () => {
     const clientId="664754626894-llp569b8q2er9gq0b11ib1j50529evju.apps.googleusercontent.com"
 
-    const logearUser = (user) => {
-        return <AppRouter user={user}/>
-    }
+    // const logearUser = (user) => {
+    //     console.log(user)
+    //     return <AppRouter user={user}/>
+    // }
 
     const [data, setData] = useState({email:"",hash:""})
   
@@ -43,9 +44,10 @@ import { AppRouter } from '../../routes/AppRouter';
               return
         }    
         e.preventDefault()
-          const res =await axios.post('https://el-buen-sabor.herokuapp.com/login', data)
-          // console.log(res.data)
-          logearUser(res.data)
+          const res =await axios.post('https://el-buen-sabor.herokuapp.com/login', data)        
+          console.log(res.data)
+          // logearUser(res.data)
+          return <AppRouter user={res.data}/>
           alert('Ha entrado exitosamente')
           // navigate("/inicio", { replace: true });
     }
