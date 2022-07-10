@@ -12,7 +12,7 @@ import {
 
 export const AgregarInsumo = () => {
 
-  const [data, setData] = useState({denominacion:"",precio_compra:"",precio_venta:"",stock_actual:"",stock_minimo:"",unidad_medida:"",es_insumo:""})
+  const [data, setData] = useState({denominacion:"",precio_compra:"",precio_venta:"",stock_actual:"",stock_minimo:"",unidad_medida:""})
   let navigate = useNavigate();
   const handleChange = ({target})=> {
       setData({
@@ -28,6 +28,7 @@ export const AgregarInsumo = () => {
       // }    
       e.preventDefault()
       await axios.post('https://el-buen-sabor.herokuapp.com/articulo-insumo', data)
+      navigate("/grilla", { replace: true });
   }
 
   const handleReturn = () => {
