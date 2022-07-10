@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { Carousel } from './Carousel'
 import { Footer } from './Footer'
 import { Navbar } from './Navbar'

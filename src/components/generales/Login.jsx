@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { useNavigate } from 'react-router-dom';
@@ -39,28 +39,28 @@ export const Login = () => {
     e.preventDefault()
     const res = await axios.post('https://el-buen-sabor.herokuapp.com/login', data)
 
-    if (res.status === 200) {
-      const user = res.data
-      console.log("user:", user)
-      console.log("status:", res.status)
-      // set cookies
-      // const cookies = new Cookies();
-      // cookies.set('id', user.id, { path: '/' });
-      // cookies.set('email', user.email, { path: '/' });
-      // cookies.set('rol', user.rol, { path: '/' });
-      // cookies.set('nombre', user.nombre, { path: '/' });
+    // if (res.status === 200) {
+    //   const user = res.data
+    //   console.log("user:", user)
+    //   console.log("status:", res.status)
+    //   // set cookies
+    //   // const cookies = new Cookies();
+    //   // cookies.set('id', user.id, { path: '/' });
+    //   // cookies.set('email', user.email, { path: '/' });
+    //   // cookies.set('rol', user.rol, { path: '/' });
+    //   // cookies.set('nombre', user.nombre, { path: '/' });
 
-      // // set sessionStorage
-      // // sessionStorage.setItem('id', user.id)
-      // // sessionStorage.setItem('email', user.email)
-      // // sessionStorage.setItem('rol', user.rol)
-      // // sessionStorage.setItem('nombre', user.nombre)
-      // localStorage.setItem('id', user.id)
-      // localStorage.setItem('email', user.email)
-      // localStorage.setItem('rol', user.rol)
-      // localStorage.setItem('nombre', user.nombre)
+    //   // // set sessionStorage
+    //   // // sessionStorage.setItem('id', user.id)
+    //   // // sessionStorage.setItem('email', user.email)
+    //   // // sessionStorage.setItem('rol', user.rol)
+    //   // // sessionStorage.setItem('nombre', user.nombre)
+    //   // localStorage.setItem('id', user.id)
+    //   // localStorage.setItem('email', user.email)
+    //   // localStorage.setItem('rol', user.rol)
+    //   // localStorage.setItem('nombre', user.nombre)
 
-    }
+    // }
 
 
     alert('Ha entrado exitosamente')

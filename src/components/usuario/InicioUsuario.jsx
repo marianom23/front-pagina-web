@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Carousel } from '../generales/Carousel'
 import { Footer } from '../generales/Footer'
 import { Navbar } from '../generales/Navbar'
