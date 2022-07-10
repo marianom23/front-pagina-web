@@ -3,7 +3,6 @@ import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { gapi } from 'gapi-script';
 import Cookies from 'universal-cookie'
 
 import {
@@ -67,16 +66,6 @@ export const Login = () => {
     alert('Ha entrado exitosamente')
     navigate("/inicio", { replace: true });
   }
-
-  useEffect(() => {
-    function start() {
-      gapi.client.init({
-        clientId: clientId,
-        scope: ""
-      })
-    }
-    gapi.load('client:auth2', start)
-  })
 
   return (
     <MDBContainer fluid>
