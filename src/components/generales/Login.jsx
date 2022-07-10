@@ -50,11 +50,6 @@ export const Login = () => {
       cookies.set('rol', user.rol, { path: '/' });
       cookies.set('nombre', user.nombre, { path: '/' });
 
-
-      sessionStorage.setItem('id', user.id)
-      sessionStorage.setItem('email', user.email)
-      sessionStorage.setItem('rol', user.rol)
-      sessionStorage.setItem('nombre', user.nombre)
       localStorage.setItem('id', user.id)
       localStorage.setItem('email', user.email)
       localStorage.setItem('rol', user.rol)
