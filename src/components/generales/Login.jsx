@@ -38,7 +38,7 @@ export const Login = () => {
     }
     e.preventDefault()
     const res = await axios.post('https://el-buen-sabor.herokuapp.com/login', data)
-
+    console.log(res)
     // if (res.status === 200) {
     //   const user = res.data
     //   console.log("user:", user)
@@ -63,7 +63,7 @@ export const Login = () => {
     // }
 
 
-    alert('Ha entrado exitosamente')
+    alert('Has entrado exitosamente')
     navigate("/inicio", { replace: true });
   }
 
