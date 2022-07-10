@@ -12,7 +12,11 @@ export const Inicio = () => {
       <Navbar/>
       <br />
       <h1>El Buen Sabor</h1>
-
+      <h3>local storage</h3>
+      <p>id {localStorage.getItem('id')}</p>
+      <p>email {localStorage.getItem('email')}</p>
+      <p>name {localStorage.getItem('name')}</p>
+      <p>rol {localStorage.getItem('rol')}</p>
       <br />
       <Carousel/>
 
