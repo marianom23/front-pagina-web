@@ -3,7 +3,7 @@ import { CartContext } from '../context/CartContext'
 import { ItemCart } from './ItemCart'
 // import styles from "./styles.module.scss";
 
-export const Carro = () => {
+export const Cart = () => {
 
     const [cartOpen, setCartOpen] = useState(false)
     const [productsLength, setProductsLength] = useState(0)

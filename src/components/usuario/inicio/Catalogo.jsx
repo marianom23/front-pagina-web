@@ -2,7 +2,10 @@ import React from 'react'
 import { Productos } from '../carrito/Productos'
 import { NavbarUsuario } from '../nav/NavbarUsuario'
 import { MDBDropdown, MDBDropdownMenu, MDBDropdownToggle, MDBDropdownItem, MDBDropdownLink } from 'mdb-react-ui-kit';
-import { Carro } from '../carrito/Carro';
+import { Cart } from '../carrito/Cart';
+
+
+
 
 export const Catalogo = () => {
 
@@ -12,7 +15,7 @@ export const Catalogo = () => {
             <NavbarUsuario/>
             <br />
 
-            <Carro/>
+            <Cart/>
 
             <br/>
 
