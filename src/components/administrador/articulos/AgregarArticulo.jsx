@@ -32,7 +32,6 @@ export const AgregarArticulo = () => {
             imagen: data.imagen,
         }
 
-        console.log(articuloManufacturado)
 
         const res = await axios.post('https://el-buen-sabor.herokuapp.com/articulo-manufacturado', articuloManufacturado)
         if (res.status === 200) {
@@ -50,7 +49,8 @@ export const AgregarArticulo = () => {
     }
 
     return (
-        <><NavbarAdministrador />
+        <>
+            <NavbarAdministrador />
             <div className="container">
                 <h2>Añadir articulo manufacturado</h2>
                 <br />

@@ -33,7 +33,7 @@ export const NavbarAdministrador = () => {
             <MDBNavbarItem className='active'>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='/agregarinsumo'>Agregar Insumos</MDBNavbarLink>
+              <MDBNavbarLink href='/agregar-insumo'>Agregar Insumos</MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink href='/agregar-articulo-manufacturado'>Agregar Articulo Manufacturado</MDBNavbarLink>
@@ -42,7 +42,10 @@ export const NavbarAdministrador = () => {
               <MDBNavbarLink href='/agregar-detalle-articulo'>Agregar Detalles del Articulo</MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='/'>Ver facturacion</MDBNavbarLink>
+              <MDBNavbarLink href='/agregar-detalle-articulo'>Agregar Detalles del Articulo</MDBNavbarLink>
+            </MDBNavbarItem>
+            <MDBNavbarItem>
+              <MDBNavbarLink href='/grilla-articulo'>Grilla Articulos</MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
         </MDBCollapse>
