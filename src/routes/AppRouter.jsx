@@ -10,7 +10,8 @@ import { Register } from '../components/generales/Login/Register'
 import { AgregarArticulo } from '../components/administrador/articulos/AgregarArticulo'
 import { AgregarDetalles } from '../components/administrador/detalles_articulos/AgregarDetalles'
 import { GrillaArticulos } from '../components/administrador/articulos/GrillaArticulos'
-import { Catalogo } from '../components/usuario/inicio/Catalogo'
+import { Conjunto } from '../components/usuario/inicio/Conjunto'
+
 export const AppRouter = ({user}) => {
 
   
@@ -28,8 +29,8 @@ export const AppRouter = ({user}) => {
         <Route path="/agregar-insumo" element={<AgregarInsumo/>}/>
         <Route path="/agregar-articulo-manufacturado" element={<AgregarArticulo/>}/>
         <Route path="/agregar-detalle-articulo" element={<AgregarDetalles/>}/>
-        <Route path="/grilla-articulo" element={<GrillaArticulos/>}/>
-        <Route path="/pedir" element={<Catalogo/>}/>
+        <Route path="/grilla-articulo" element={<GrillaArticulos/>}/>       
+        <Route path="/pedir" element={<Conjunto/>}/>
     </Routes>  
   )
 }

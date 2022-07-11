@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { MDBCard, MDBCardImage, MDBCardBody, MDBBtn, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
-
+import { CartContext } from '../context/CartContext'
 
 export const Productos = () => {
+
+    
+    const {addItemToCart} = useContext(CartContext) 
+
     const getData = async () => {
         const response = axios.get('https://el-buen-sabor.herokuapp.com/articulo-manufacturado/getAll')
         return response
@@ -36,7 +40,7 @@ export const Productos = () => {
                                             ${info.precio_venta} - Tiempo estimado: {info.tiempo_estimado_cocina} minutos
                                         </MDBCardText>
                                         </MDBCardBody>
-                                        <MDBBtn onClick={() => console.log(info)}>Añadir</MDBBtn>
+                                        <MDBBtn onClick={() => addItemToCart(info)}>Añadir al carrito</MDBBtn>
                                     </MDBCard>                                             
                         )
                     )    

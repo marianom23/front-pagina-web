@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import { Carousel } from '../../generales/Carousel/Carousel'
 import { Footer } from '../../generales/nav-foot/Footer'
-import { Navbar } from '../../generales/nav-foot/Navbar'
-
 import Cookies from 'universal-cookie'
 import { NavbarUsuario } from '../nav/NavbarUsuario'
 import { useNavigate } from 'react-router-dom'
