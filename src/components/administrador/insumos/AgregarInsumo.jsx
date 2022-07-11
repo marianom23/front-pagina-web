@@ -12,7 +12,7 @@ import {
 
 export const AgregarInsumo = () => {
 
-  const [data, setData] = useState({ denominacion: "", precio_compra: "", precio_venta: "", stock_actual: "", stock_minimo: "", unidad_medida: "" })
+  const [data, setData] = useState({ denominacion: "", precio_compra: "", precio_venta: "", stock_actual: "", stock_minimo: "", unidad_medida: "", es_insumo: false })
   let navigate = useNavigate();
   const handleChange = ({ target }) => {
     setData({
@@ -36,8 +36,9 @@ export const AgregarInsumo = () => {
       stock_actual: Number(data.stock_actual),
       stock_minimo: Number(data.stock_minimo),
       unidad_medida: data.unidad_medida,
+      es_insumo: Boolean(data.es_insumo)
     }
-
+    
     console.log(articuloInsumo)
 
     const res = await axios.post('https://el-buen-sabor.herokuapp.com/articulo-insumo', articuloInsumo)
@@ -65,7 +66,7 @@ export const AgregarInsumo = () => {
         <MDBInput value={data.stock_actual} onChange={handleChange} name="stock_actual" className='mb-4' type='number' id='stock_actual' label='stock_actual' />
         <MDBInput value={data.stock_minimo} onChange={handleChange} name="stock_minimo" className='mb-4' type='number' id='stock_minimo' label='stock_minimo' />
         <MDBInput value={data.unidad_medida} onChange={handleChange} name="unidad_medida" className='mb-4' type='text' id='unidad_medida' label='unidad_medida' />
-        {/* <input value={data.es_insumo} onChange={handleChange} name='es_insumo' id='es_insumo' type='checkbox' label='Default checkbox' /> */}
+        <MDBCheckbox value={data.es_insumo} onChange={handleChange} name='es_insumo' id='es_insumo' type='checkbox' label='Insumo' />
         <MDBBtn type='submit' className='mb-4' block>
           Agregar Insumo
         </MDBBtn>
