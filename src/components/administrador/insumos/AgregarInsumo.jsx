@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import { Navbar } from '../../generales/Navbar';
+import { Footer } from '../../generales/Footer';
 import {
   MDBInput,
   MDBCol,
@@ -57,7 +59,9 @@ export const AgregarInsumo = () => {
   }
 
   return (
+    <><Navbar />
     <div className="container">
+      <h2>Añadir insumo</h2>
       <br />
       <form onSubmit={handleSubmit}>
         <MDBInput value={data.denominacion} onChange={handleChange} type='text' className='mb-4' name="denominacion" id='denominacion' label='denominacion' />
@@ -75,6 +79,8 @@ export const AgregarInsumo = () => {
         </MDBBtn>
       </form>
     </div>
+    <Footer />
+    </>
   )
 }
 

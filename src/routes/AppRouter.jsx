@@ -8,7 +8,7 @@ import { InicioUsuario } from '../components/usuario/InicioUsuario'
 import { Login } from '../components/generales/Login'
 import { Register } from '../components/usuario/Register'
 import { UserContext } from '../components/usuario/context/UserContext'
-
+import { AgregarArticulo } from '../components/administrador/articulos/AgregarArticulo'
 
 export const AppRouter = ({user}) => {
   console.log(user,'App Router')
@@ -28,6 +28,7 @@ export const AppRouter = ({user}) => {
               <Route path="/contacto" element={<Contactenos/>}/>
               <Route path="/admininicio" element={<InicioAdministrador/>}/>
               <Route path="/agregarinsumo" element={<AgregarInsumo/>}/>
+              <Route path="/agregar-articulo-manufacturado" element={<AgregarArticulo/>}/>
           </Routes>  
     </UserContext.Provider> 
   )
