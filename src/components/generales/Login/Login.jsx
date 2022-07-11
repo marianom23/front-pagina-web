@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar } from './Navbar';
-import { Footer } from './Footer';
+import { Navbar } from '../nav-foot/Navbar';
+import { Footer } from '../nav-foot/Footer';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'universal-cookie'
@@ -50,10 +50,10 @@ export const Login = () => {
       cookies.set('rol', user.rol, { path: '/' });
       cookies.set('nombre', user.nombre, { path: '/' });
 
-      localStorage.setItem('id', user.id)
-      localStorage.setItem('email', user.email)
-      localStorage.setItem('rol', user.rol)
-      localStorage.setItem('nombre', user.nombre)
+      // localStorage.setItem('id', user.id)
+      // localStorage.setItem('email', user.email)
+      // localStorage.setItem('rol', user.rol)
+      // localStorage.setItem('nombre', user.nombre)
 
     }
 

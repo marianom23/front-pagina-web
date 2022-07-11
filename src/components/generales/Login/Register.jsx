@@ -62,21 +62,6 @@ export const Register = () => {
       <div className='text-center'>
         <p>O registrate con:</p>
 
-        <MDBBtn floating className='mx-1'>
-          <MDBIcon fab icon='facebook-f' />
-        </MDBBtn>
-
-        <MDBBtn floating className='mx-1'>
-          <MDBIcon fab icon='google' />
-        </MDBBtn>
-
-        <MDBBtn floating className='mx-1'>
-          <MDBIcon fab icon='twitter' />
-        </MDBBtn>
-
-        <MDBBtn floating className='mx-1'>
-          <MDBIcon fab icon='github' />
-        </MDBBtn>
       </div>
     </form>
     </div>

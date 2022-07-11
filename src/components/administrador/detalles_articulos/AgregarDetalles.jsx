@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { NavbarAdministrador } from '../NavbarAdministrador';
-import { Footer } from '../../generales/Footer';
+import { Footer } from '../../generales/nav-foot/Footer';
 import {
     MDBInput,
     MDBCol,

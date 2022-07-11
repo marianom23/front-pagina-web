@@ -2,14 +2,15 @@ import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { InicioAdministrador } from '../components/administrador/InicioAdministrador'
 import { AgregarInsumo } from '../components/administrador/insumos/AgregarInsumo'
-import { Contactenos } from '../components/generales/Contactenos'
-import { Inicio } from '../components/generales/Inicio'
-import { InicioUsuario } from '../components/usuario/InicioUsuario'
-import { Login } from '../components/generales/Login'
-import { Register } from '../components/usuario/Register'
+import { Contactenos } from '../components/generales/inicio/Contactenos'
+import { Inicio } from '../components/generales/inicio/Inicio'
+import { InicioUsuario } from '../components/usuario/inicio/InicioUsuario'
+import { Login } from '../components/generales/Login/Login'
+import { Register } from '../components/generales/Login/Register'
 import { AgregarArticulo } from '../components/administrador/articulos/AgregarArticulo'
 import { AgregarDetalles } from '../components/administrador/detalles_articulos/AgregarDetalles'
 import { GrillaArticulos } from '../components/administrador/articulos/GrillaArticulos'
+import { Catalogo } from '../components/usuario/inicio/Catalogo'
 export const AppRouter = ({user}) => {
 
   
@@ -28,6 +29,7 @@ export const AppRouter = ({user}) => {
         <Route path="/agregar-articulo-manufacturado" element={<AgregarArticulo/>}/>
         <Route path="/agregar-detalle-articulo" element={<AgregarDetalles/>}/>
         <Route path="/grilla-articulo" element={<GrillaArticulos/>}/>
+        <Route path="/pedir" element={<Catalogo/>}/>
     </Routes>  
   )
 }
