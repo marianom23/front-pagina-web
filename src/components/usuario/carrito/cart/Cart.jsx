@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../../context/CartContext'
 import { ItemCart } from '../itemCart/ItemCart'
-import styles from "./styles.module.scss";
+import styles from "./styles.css";
 
 export const Cart = () => {
 
