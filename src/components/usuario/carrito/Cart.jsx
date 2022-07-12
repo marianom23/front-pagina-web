@@ -17,9 +17,7 @@ export const Cart = () => {
     },[cartItems])
 
     const total = cartItems.reduce(
-        (previous, current) => previous + current.amount * current.price,
-        0
-    )
+        (previous, current) => previous + current.amount * current.precio_venta, 0);
 
     return (
         <div >

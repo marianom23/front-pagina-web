@@ -14,13 +14,14 @@ export const CartProvider = ({children}) => {
     })
 
     useEffect(() => {
-        localStorage.setItem('cart Products', JSON.stringify(cartItems))
+        localStorage.setItem('cartProducts', JSON.stringify(cartItems))
         console.log(cartItems)
     }, [cartItems])
     
     const addItemToCart = (product) =>{
         const inCart = cartItems.find(
             (productInCart) => productInCart.id === product.id)
+            
             if (inCart) {
                 setCartItems(
                     cartItems.map((productInCart)=>{
@@ -42,11 +43,12 @@ export const CartProvider = ({children}) => {
                     cartItems.filter(productInCart=>productInCart.id !== product.id)
                 )
             }else{
-                setCartItems((productInCart)=>{
+                setCartItems(
+                    cartItems.map((productInCart)=>{
                     if(productInCart.id === product.id){
-                        return {...inCart, amount: inCart.amount}
-                    }else return productInCart
-                })
+                        return {...inCart, amount: inCart.amount -1}
+                    }else return productInCart;
+                }))
             }
         }
 
