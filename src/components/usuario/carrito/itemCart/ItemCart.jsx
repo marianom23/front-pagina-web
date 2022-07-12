@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { CartContext } from '../context/CartContext'
-
+import { CartContext } from '../../context/CartContext'
+import styles from "./styles.module.scss";
 
 export const ItemCart = ({ item }) => {
   /* Traemos del context las funciones para agregar y sacar productos del carrito */
@@ -9,12 +9,12 @@ export const ItemCart = ({ item }) => {
   const { id } = item;
 
   return (
-    <div>
+    <div className={styles.cartItem}>
       <img src={item.imagen} alt={item.denominacion} />
-      <div>
-        <div>
+      <div className={styles.dataContainer}>
+        <div className={styles.left}>
           <p>{item.denominacion}</p>
-          <div>
+          <div className={styles.buttons}>
             <button onClick={() => addItemToCart(item)}>
               AGREGAR
             </button>
@@ -23,7 +23,7 @@ export const ItemCart = ({ item }) => {
             </button>
           </div>
         </div>
-        <div>
+        <div className={styles.right}>
           <div>{item.amount}</div>
           <p>Total: ${item.amount * item.precio_venta}</p>
         </div>

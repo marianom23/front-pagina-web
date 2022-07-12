@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { MDBCard, MDBCardImage, MDBCardBody, MDBBtn, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
-import { CartContext } from '../context/CartContext'
+import { CartContext } from '../../context/CartContext'
+import styles from "./styles.module.scss";
 
 export const Productos = () => {
 
@@ -24,11 +25,11 @@ export const Productos = () => {
 
 
   return (    
-            <MDBRow className='row-cols-1 row-cols-md-3 g-4'>{
+            <MDBRow className={styles.productsContainer}>{
                     data.map(
                 
                         (info)=>(                 
-                                    <MDBCard key={info.id} className='h-100'>
+                                    <MDBCard key={info.id} className={styles.product}>
                                         <MDBCardImage
                                         src={info.imagen}
                                         alt={info.denominacion}
