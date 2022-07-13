@@ -4,7 +4,7 @@ import { Footer } from '../nav-foot/Footer';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'universal-cookie'
-
+import { LoginGoogle } from '../google/LoginGoogle';
 import {
   MDBInput,
   MDBCol,
@@ -13,9 +13,6 @@ import {
   MDBBtn,
   MDBContainer
 } from 'mdb-react-ui-kit';
-
-
-
 
 export const Login = () => {
 
@@ -88,11 +85,9 @@ export const Login = () => {
             <p>
               No sos miembro? <a href='/register'>Registrate</a>
             </p>
-            <p>o entra con:</p>
+            <p>o</p>
 
-            {/* <MDBBtn floating className='mx-1'>
-                  <MDBIcon fab icon='google' />
-                </MDBBtn>    */}
+            <LoginGoogle/>
 
             <br />
             <p>Salir de la cuenta actual:</p>
