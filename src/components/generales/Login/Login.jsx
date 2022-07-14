@@ -87,7 +87,7 @@ export const Login = () => {
             </p>
             <p>o</p>
 
-            <LoginGoogle/>
+            {/* <LoginGoogle/> */}
 
             <br />
             <p>Salir de la cuenta actual:</p>

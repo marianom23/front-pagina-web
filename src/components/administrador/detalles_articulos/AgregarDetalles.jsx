@@ -3,6 +3,8 @@ import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { NavbarAdministrador } from '../NavbarAdministrador';
 import { Footer } from '../../generales/nav-foot/Footer';
+import swal from 'sweetalert';
+
 import {
     MDBInput,
     MDBCol,
@@ -83,18 +85,34 @@ export const AgregarDetalles = () => {
 
         const res = await axios.post('https://el-buen-sabor.herokuapp.com/articulo-manufacturado-detalle', detalles)
         if (res.status === 200) {
-            alert('Articulo insumo creado con éxito')
-            navigate("/agregar-detalle-articulo", { replace: true });
+            swal({
+                title: "Agregado",
+                text: `¿Deseas agregar otro insumo a este producto?`,
+                icon: "warning",
+                buttons: ["No","Sí"]
+            }).then(respuesta=>{
+                if(respuesta){
+                    swal({text: "Proceda",
+                icon: "success"})
+                }else{
+                    swal({text: "El insumo se guardo con exito",
+                    icon: "success"
+                })
+                navigate("/agregar-detalle-articulo", { replace: true });
+                }
+            })
         } else {
             alert('Error al intentar crear un articulo insumo')
             navigate("/agregar-detalle-articulo", { replace: true });
         }
-        console.log(res)
     }
+
 
     const handleReturn = () => {
         navigate("/login", { replace: true })
     }
+
+    // document.getElementById("cantidad").hidden = true;
 
     return (
         // :::  BUG :::: El formulario no toma los valores por defecto de los 'selects'.
@@ -103,29 +121,41 @@ export const AgregarDetalles = () => {
         // :: el primer valor de la lista debería ser vacío por defecto.
         <><NavbarAdministrador />
             <div className="container">
-                <h2>Añadir detalles del articulo</h2>
-                <br />
-                <form onSubmit={handleSubmit}>
-                    <MDBInput value={data.cantidad} onChange={handleChange} type='number' className='mb-4' name="cantidad" id='cantidad' label='cantidad' />
-                    <label><b>Unidad medida</b></label><select className="select-container" value={data.unidad_medida} onChange={handleChange} name="unidad_medida">
-                        {unidad_medida.map(obj =>
-                            <option key={obj.id} value={obj.value} >{obj.label}</option>
-                        )}
-                    </select>
-                    <br />
 
-                    <label><b>ID Articulo Manufacturado: </b></label><select className="select-container" value={articulos.denominacion} onChange={handleChange} name="id_articulo_manufacturado">
+                <h2>Añadir detalles del articulo</h2>
+
+                <br />
+
+                <form onSubmit={handleSubmit}>
+
+                    <label><b>Articulo Manufacturado: </b></label>
+                    <select className="select-container" value={articulos.denominacion} onChange={handleChange} name="id_articulo_manufacturado">
                         {articulos.map(obj =>
                             <option key={obj.id} value={obj.id} >{obj.denominacion}</option>
                         )}
                     </select>
-                    <br />
+
+                    <hr/>
 
                     <label><b>Insumos: </b></label><select className="select-container" value={insumos.denominacion} onChange={handleChange} name="id_articulo_insumo">
                         {insumos.map(obj =>
                             <option key={obj.id} value={obj.id} >{obj.denominacion}</option>
                         )}
                     </select>
+                    
+                    <hr />
+
+                    <label><b>Unidad medida</b></label>
+                    <select className="select-container" value={data.unidad_medida} onChange={handleChange} name="unidad_medida">
+                        {unidad_medida.map(obj =>
+                            <option key={obj.id} value={obj.value} >{obj.label}</option>
+                        )}
+                    </select>
+
+                    <br />
+                    <br />
+
+                    <MDBInput value={data.cantidad} onChange={handleChange} type='number' className='mb-4' name="cantidad" id='cantidad' label='cantidad' />
 
                     <MDBBtn type='submit' className='mb-4' block>
                         Agregar detalles
