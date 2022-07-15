@@ -27,7 +27,7 @@ export const Register = () => {
               return
         }    
         e.preventDefault()
-        await axios.post('https://el-buen-sabor.herokuapp.com/login/register', data)
+        await axios.post('https://el-buen-sabor.herokuapp.com/register', data)
           alert('Usuario creado exitosamente')
           navigate("/login", { replace: true });
     }
