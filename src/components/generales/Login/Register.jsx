@@ -51,7 +51,7 @@ export const Register = () => {
       </MDBRow>
       <MDBInput value={data.email} onChange={handleChange} name="email" className='mb-4' type='text' id='email' label='Email' />
       <MDBInput value={data.usuario} onChange={handleChange} name="usuario" className='mb-4' type='text' id='usuario' label='Nombre de usuario' />
-      <MDBInput value={data.hash} onChange={handleChange} name="hash" className='mb-4' type='text' id='hash' label='Contraseña' />
+      <MDBInput value={data.hash} onChange={handleChange} name="hash" className='mb-4' type='password' id='hash' label='Contraseña' />
 
       <MDBBtn type='submit' className='mb-4' block>
         Registrarse
