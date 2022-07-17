@@ -3,6 +3,8 @@ import axios from 'axios'
 import { MDBCard, MDBCardImage, MDBCardBody, MDBBtn, MDBCardTitle, MDBCardText, MDBRow } from 'mdb-react-ui-kit';
 import { CartContext } from '../../context/CartContext'
 import styles from "./styles.module.scss";
+const sass = require('sass');
+const result = sass.compile(scssFilename);
 
 export const Productos = () => {
 
