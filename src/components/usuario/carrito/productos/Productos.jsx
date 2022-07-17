@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { MDBCard, MDBCardImage, MDBCardBody, MDBBtn, MDBCardTitle, MDBCardText, MDBRow } from 'mdb-react-ui-kit';
 import { CartContext } from '../../context/CartContext'
-import styles from "./styles.module.scss";
+import "./styles.module.scss";
 
 
 export const Productos = () => {
