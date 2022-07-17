@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { MDBCard, MDBCardImage, MDBCardBody, MDBBtn, MDBCardTitle, MDBCardText, MDBRow } from 'mdb-react-ui-kit';
 import { CartContext } from '../../context/CartContext'
-import "./styles.module.scss";
+import styles from "./styles.module.scss";
 
 
 export const Productos = () => {
@@ -23,10 +23,10 @@ export const Productos = () => {
     },[])
 
   return (    
-            <MDBRow className={productsContainer}>{
+            <MDBRow className={styles.productsContainer}>{
                     data.map(      
                         (info)=>(                 
-                            <MDBCard key={info.id} className={product}>
+                            <MDBCard key={info.id} className={styles.product}>
                                 <MDBCardImage
                                 src={info.imagen}
                                 alt={info.denominacion}

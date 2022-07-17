@@ -3,7 +3,7 @@ import { CartContext } from '../../context/CartContext'
 import { ItemCart } from '../itemCart/ItemCart'
 
 
-import "./styles.module.scss";
+import styles from "./styles.module.scss";
 
 export const Cart = () => {
 
@@ -95,14 +95,14 @@ export const Cart = () => {
         (previous, current) => previous + current.amount * current.precio_venta, 0);
 
     return (
-        <div className={cartContainer} id="cartContainer">
+        <div className={styles.cartContainer} id="cartContainer">
             <div onClick={() => setCartOpen(!cartOpen)}
                 className={styles.buttonCartContainer}
             >
-                <div className={buttonCart}>
+                <div className={styles.buttonCart}>
                     {!cartOpen ? (
                         <svg
-                            className={open}
+                            className={styles.open}
                             width={"31px"}
                             viewBox="0 0 30 27"
                             fill="none"
@@ -137,25 +137,25 @@ export const Cart = () => {
                     )}
                 </div>
                 {!cartOpen && (
-                    <div className={productsNumber}>{productsLength}</div>
+                    <div className={styles.productsNumber}>{productsLength}</div>
                 )}
             </div>
 
             {cartItems && cartOpen && (
-                <div className={cart}>
+                <div className={styles.cart}>
                     <h2>Tu carrito</h2>
 
                     {cartItems.length === 0 ? (
-                        <p className={cartVacio}>Tu carrito esta vacio</p>
+                        <p className={styles.cartVacio}>Tu carrito esta vacio</p>
                     ) : (
-                        <div className={productsContainer}>
+                        <div className={styles.productsContainer}>
                             {cartItems.map((item, i) => (
                                 <ItemCart key={i} item={item} />
                             ))}
                         </div>
                     )}
 
-                    <h2 className={total}>Total: ${total}</h2>
+                    <h2 className={styles.total}>Total: ${total}</h2>
                     <button onClick={pagar}>pagar</button>
                 </div>
             )}
