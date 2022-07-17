@@ -74,7 +74,7 @@
   -webkit-appearance: none;
 }
 ::-webkit-scrollbar:vertical {
-  width: 3px;
+  width: 15px;
 }
 ::-webkit-scrollbar-thumb {
   background-color: #797979;

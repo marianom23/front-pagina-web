@@ -47,15 +47,16 @@ export const GrillaArticulos = () => {
         //     alert('Todos los campos son obligatorios')
         //     return
         // }  
-        // console.log(dataModal.denominacion)
-        // e.preventDefault()
-        // const articuloManufacturado = {
-        //     tiempo_estimado_cocina: Number(dataModal.tiempo_estimado_cocina),
-        //     denominacion: dataModal.denominacion,
-        //     precio_venta: Number(dataModal.precio_venta),
-        //     imagen: dataModal.imagen,
-        // }
-        const res = await axios.put('https://el-buen-sabor.herokuapp.com/articulo-manufacturado', dataModal)
+        console.log(dataModal.denominacion)
+        e.preventDefault()
+        const articuloManufacturado = {
+            id: Number(dataModal.id),
+            tiempo_estimado_cocina: Number(dataModal.tiempo_estimado_cocina),
+            denominacion: dataModal.denominacion,
+            precio_venta: Number(dataModal.precio_venta),
+            imagen: dataModal.imagen
+        }
+        const res = await axios.put('https://el-buen-sabor.herokuapp.com/articulo-manufacturado', articuloManufacturado)
         if (res.status === 200) {
             alert('Articulo manufacturado editado con éxito')
         } else {
