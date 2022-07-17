@@ -1,5 +1,5 @@
 {
-  "name": "front-deploy",
+  "name": "front-deploy-yarn",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
