@@ -17,6 +17,8 @@ export const LoginGoogle = () => {
         document.getElementById("signInDiv").hidden = false;
     }
 
+    
+
     useEffect(() => {
         /* global google */
         google.accounts.id.initialize({

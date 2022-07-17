@@ -1,19 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import {data} from "./data"
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardText, MDBCardTitle } from 'mdb-react-ui-kit';
+import axios from 'axios'
 
 import './Carousel.css'
 
 export const Carousel = () => {
+
+const getData = async () => {
+    const response = axios.get('https://el-buen-sabor.herokuapp.com/articulo-manufacturado/getAll')
+    return response
+}  
+const [data, setData] = useState([])
+
+useEffect(() => {
+    getData().then((response) => {
+        setData(response.data)
+    })
+},[])
+
 const settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
+    autoplay: true,
+    autoplaySpeed: 2000,
     initialSlide: 0,
     responsive: [
         {
@@ -48,12 +63,9 @@ const settings = {
         <Slider {...settings}>
             {data.map((item) =>(
                 <MDBCard style={{ maxWidth: '22rem' }} key={item.id}>
-                <MDBCardImage src={item.img} position='top' alt={item.titulo} />
+                <MDBCardImage src={item.imagen} position='top' alt={item.denominacion} />
                 <MDBCardBody>
-                    <MDBCardTitle>{item.titulo}</MDBCardTitle>
-                    <MDBCardText>
-                    $ {item.precio}
-                    </MDBCardText>
+                    <MDBCardTitle>{item.denominacion}</MDBCardTitle>
                 </MDBCardBody>
                 </MDBCard>
             ))}
