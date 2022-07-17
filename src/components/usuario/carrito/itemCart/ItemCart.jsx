@@ -9,12 +9,12 @@ export const ItemCart = ({ item }) => {
   const { id } = item;
 
   return (
-    <div className={styles.cartItem}>
+    <div className={cartItem}>
       <img src={item.imagen} alt={item.denominacion} />
-      <div className={styles.dataContainer}>
-        <div className={styles.left}>
-          <p>{item.denominacion}</p>
-          <div className={styles.buttons}>
+      <div className={dataContainer}>
+        <div className={left}>
+          <p>{denominacion}</p>
+          <div className={buttons}>
             <button onClick={() => addItemToCart(item)}>
               AGREGAR
             </button>
@@ -23,7 +23,7 @@ export const ItemCart = ({ item }) => {
             </button>
           </div>
         </div>
-        <div className={styles.right}>
+        <div className={right}>
           <div>{item.amount}</div>
           <p>Total: ${item.amount * item.precio_venta}</p>
         </div>

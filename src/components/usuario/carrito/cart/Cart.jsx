@@ -3,13 +3,12 @@ import { CartContext } from '../../context/CartContext'
 import { ItemCart } from '../itemCart/ItemCart'
 
 
-import styles from "./styles.module.scss";
+import "./styles.module.scss";
 
 export const Cart = () => {
 
     const [cartOpen, setCartOpen] = useState(false)
     const [productsLength, setProductsLength] = useState(0)
-
 
     const { cartItems } = useContext(CartContext)
 
@@ -96,14 +95,14 @@ export const Cart = () => {
         (previous, current) => previous + current.amount * current.precio_venta, 0);
 
     return (
-        <div className={styles.cartContainer} id="cartContainer">
+        <div className={cartContainer} id="cartContainer">
             <div onClick={() => setCartOpen(!cartOpen)}
                 className={styles.buttonCartContainer}
             >
-                <div className={styles.buttonCart}>
+                <div className={buttonCart}>
                     {!cartOpen ? (
                         <svg
-                            className={styles.open}
+                            className={open}
                             width={"31px"}
                             viewBox="0 0 30 27"
                             fill="none"
@@ -138,25 +137,25 @@ export const Cart = () => {
                     )}
                 </div>
                 {!cartOpen && (
-                    <div className={styles.productsNumber}>{productsLength}</div>
+                    <div className={productsNumber}>{productsLength}</div>
                 )}
             </div>
 
             {cartItems && cartOpen && (
-                <div className={styles.cart}>
+                <div className={cart}>
                     <h2>Tu carrito</h2>
 
                     {cartItems.length === 0 ? (
-                        <p className={styles.cartVacio}>Tu carrito esta vacio</p>
+                        <p className={cartVacio}>Tu carrito esta vacio</p>
                     ) : (
-                        <div className={styles.productsContainer}>
+                        <div className={productsContainer}>
                             {cartItems.map((item, i) => (
                                 <ItemCart key={i} item={item} />
                             ))}
                         </div>
                     )}
 
-                    <h2 className={styles.total}>Total: ${total}</h2>
+                    <h2 className={total}>Total: ${total}</h2>
                     <button onClick={pagar}>pagar</button>
                 </div>
             )}
