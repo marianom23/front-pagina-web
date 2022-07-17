@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'universal-cookie'
 import { LoginGoogle } from '../google/LoginGoogle';
-// import { gapi } from 'gapi-script';
+import { gapi } from 'gapi-script';
 
 import {
   MDBInput,
@@ -21,15 +21,15 @@ const clientId = "664754626894-llp569b8q2er9gq0b11ib1j50529evju.apps.googleuserc
 
 export const Login = () => {
 
-  // useEffect(()=>{
-  //   function start() {
-  //     gapi.client.init({
-  //       clientId: clientId,
-  //       scope: ""
-  //     })
-  //   }
-  //   gapi.load('client:auth2', start)
-  // });
+  useEffect(()=>{
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: ""
+      })
+    }
+    gapi.load('client:auth2', start)
+  });
 
 
   const [data, setData] = useState({ email: "", hash: "" })
