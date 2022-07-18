@@ -51,6 +51,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { CartContext } from '../../context/CartContext'
 import './productos.css'
+import { Card } from 'react-bootstrap'
 
 export const Productos = () => {
 
@@ -72,17 +73,16 @@ export const Productos = () => {
         <div className='wrapper'>
         {
             data.map(      
-                (info)=>(                 
-                    // </div>                   
+                (info)=>(                    
                     <div className="card">
-                    <img src={info.imagen} alt={info.denominacion} className="card__img" />
-                    <div className="card__body">
-                      <h2 className="card__title">{info.denominacion}</h2>
-                      <p className="card__description">{info.tiempo_estimado_cocina} minutos</p>
-                      <h3 className="card__price">{info.precio_venta}</h3>
-                      <button onClick={() => addItemToCart(info)} className="card__btn">Add to Cart</button>
-                    </div>
-                    </div>            
+                        <img src={info.imagen} alt={info.denominacion} className="card__img" />
+                        <div className="card__body">
+                        <h2 className="card__title">{info.denominacion}</h2>
+                        <p className="card__description">{info.tiempo_estimado_cocina} minutos</p>
+                        <h3 className="card__price">{info.precio_venta}</h3>
+                        <button onClick={() => addItemToCart(info)} className="card__btn">Add to Cart</button>
+                        </div>
+                    </div>          
                 )
             )
         }        

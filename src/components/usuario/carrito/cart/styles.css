@@ -1,18 +1,18 @@
-.cartContainer {
+/* .cartContainer {
   width: 100vw;
   height: 50px;
   display: flex;
   justify-content: flex-end;
   font-family: Roboto;
-}
-.cartContainer .buttonCartContainer {
+} */
+/* .cartContainer .buttonCartContainer {
   position: absolute;
   margin-top: 10px;
   margin-right: 20px;
   cursor: pointer;
   z-index: 2;
-}
-.cartContainer .buttonCartContainer svg {
+} */
+/* .cartContainer .buttonCartContainer svg {
   height: 25px;
   margin-right: 2px;
 }
@@ -79,4 +79,4 @@
 ::-webkit-scrollbar-thumb {
   background-color: #797979;
   border-radius: 20px;
-}
+} */

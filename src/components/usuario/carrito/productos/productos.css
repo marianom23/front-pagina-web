@@ -17,9 +17,10 @@ body {
 .wrapper {
   margin: 2rem;
   display: grid;
-  gap: 1rem;
+  gap: 3rem;
   grid-template-columns: 1fr;
   justify-content: center;
+  
 }
 
 .card {
@@ -27,6 +28,7 @@ body {
   border-radius: 0.2rem;
   min-width: 28rem;
   display: flex;
+  
 }
 .card__img {
   width: 14rem;

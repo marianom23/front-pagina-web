@@ -42,9 +42,6 @@ export const NavbarAdministrador = () => {
               <MDBNavbarLink href='/agregar-detalle-articulo'>Agregar Detalles del Articulo</MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='/agregar-detalle-articulo'>Agregar Detalles del Articulo</MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
               <MDBNavbarLink href='/grilla-articulo'>Grilla Articulos</MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>

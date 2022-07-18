@@ -23,8 +23,8 @@ export const Cart = () => {
                 number_identification: localStorage.getItem("number_identification"),
             }
             const dataSendMP = {
-                usuario: user,
                 producto_mercado_pago: cartItems,
+                usuario: user,
             }
             console.log(dataSendMP)
             try {

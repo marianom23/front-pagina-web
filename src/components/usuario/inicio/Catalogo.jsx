@@ -1,8 +1,8 @@
 import React from 'react'
 import { Productos } from '../carrito/productos/Productos'
 import { NavbarUsuario } from '../nav/NavbarUsuario'
-import { MDBContainer } from 'mdb-react-ui-kit';
 import { Cart } from '../carrito/cart/Cart';
+import { Carousel } from 'react-bootstrap';
 
 
 
@@ -13,6 +13,8 @@ export const Catalogo = () => {
   return (
         <>
             <NavbarUsuario/>
+            <br />
+
             <br />
 
             <Cart/>
