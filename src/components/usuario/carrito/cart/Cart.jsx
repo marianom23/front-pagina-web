@@ -3,7 +3,7 @@ import { CartContext } from '../../context/CartContext'
 import { ItemCart } from '../itemCart/ItemCart'
 
 
-import "./styles.css";
+import "./cart.css";
 
 export const Cart = () => {
 

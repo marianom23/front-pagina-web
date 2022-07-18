@@ -71,12 +71,14 @@ export const GrillaInsumo = () => {
         
         (info)=>{
             return(
-                <tr key={info.precio_compra}>
+                <tr key={info.id}>
+                    <td>{info.denominacion}</td>
+                    <td>{info.precio_compra}</td>
                     <td>{info.precio_venta}</td>
                     <td>{info.stock_actual}</td>
                     <td>{info.stock_minimo}</td>
                     <td>{info.unidad_medida}</td>
-                    <td>{info.es_insumo}</td>
+                    <td>{info.es_insumo ? "si" : "no"} </td>
                     <td>
                         <div className="mb-3">
                             <button onClick={()=>handleDelete(info.id)} className="btn btn-danger">Delete</button>
@@ -98,6 +100,7 @@ export const GrillaInsumo = () => {
         <table className="table table-striped">
         <thead>
             <tr>
+                <th>Nombre</th>
                 <th>precio_compra</th>
                 <th>precio_venta</th>
                 <th>stock_actual</th>
