@@ -1,6 +1,6 @@
 .cartItem {
   height: 80px;
-  background-color: #3a3a3a;
+  background-color: #3329fce9;
   margin-top: 20px;
   display: flex;
   align-items: center;
@@ -39,7 +39,7 @@
   padding: 3px 5px;
   border-radius: 5px;
   font-weight: bold;
-  color: #222;
+  color: rgb(226, 11, 11);
 }
 .cartItem .dataContainer .right {
   display: flex;
@@ -48,7 +48,7 @@
   align-items: flex-end;
 }
 .cartItem .dataContainer .right div {
-  background-color: #fb3939;
+  background-color: #db1717;
   width: 20px;
   height: 20px;
   border-radius: 999px;
@@ -60,4 +60,8 @@
 }
 .cartItem .dataContainer .right p {
   font-weight: bold;
+}
+
+.text {
+  color: rgb(255, 255, 255);
 }

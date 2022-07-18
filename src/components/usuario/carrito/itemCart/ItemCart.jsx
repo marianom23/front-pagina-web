@@ -13,7 +13,7 @@ export const ItemCart = ({ item }) => {
       <img src={item.imagen} alt={item.denominacion} />
       <div className='dataContainer'>
         <div className='left'>
-          <p>{item.denominacion}</p>
+          <p className="text">{item.denominacion}</p>
           <div className='buttons'>
             <button onClick={() => addItemToCart(item)}>
               AGREGAR
@@ -25,7 +25,7 @@ export const ItemCart = ({ item }) => {
         </div>
         <div className='right'>
           <div>{item.amount}</div>
-          <p>Total: ${item.amount * item.precio_venta}</p>
+          <p className="text">Total: ${item.amount * item.precio_venta}</p>
         </div>
       </div>
     </div>
