@@ -50,7 +50,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { CartContext } from '../../context/CartContext'
-import './productos.scss'
+import './productos.css'
 
 export const Productos = () => {
 
@@ -73,19 +73,6 @@ export const Productos = () => {
         {
             data.map(      
                 (info)=>(                 
-                    // <div className='card'>
-                    //     <img className='card__img' 
-                    //     src={info.imagen}
-                    //     alt={info.denominacion}
-                    //     />
-                    //     <div className='card__body'>
-                    //         <h2 className='card__title'>{info.denominacion}</h2>
-                    //         <p className='card__description'></p>
-                    //         <h3 className='card__price'>{info.precio_venta}</h3>
-                    //         <button onClick={() => addItemToCart(info)} className='card__btn'>
-                    //             Añadir al carrito
-                    //         </button>
-                    //     </div>
                     // </div>                   
                     <div className="card">
                     <img src={info.imagen} alt={info.denominacion} className="card__img" />
