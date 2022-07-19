@@ -1,19 +1,96 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../../context/CartContext'
 import { ItemCart } from '../itemCart/ItemCart'
-
-
+import Swal from 'sweetalert2'
+import axios from 'axios'
 import "./cart.css";
+import { Form, Modal } from 'react-bootstrap';
+import Select from 'react-select';
 
 export const Cart = () => {
 
     const [cartOpen, setCartOpen] = useState(false)
     const [productsLength, setProductsLength] = useState(0)
-
-
     const { cartItems } = useContext(CartContext)
 
+    const [showModal, setShowModal] = useState(false)
+    const [dataModal, setDataModal] = useState({})
+
+    const handleCloseModal = () => {setShowModal(false)}
+    const handleOpenModal = () => {setShowModal(true)}
+
+    const options = [
+        { value: true, label: 'Envio a domicilio' },
+        { value: false, label: 'Retiro en el local' },
+      ]
+    const options2 = [
+        { value: 'efectivo', label: 'Efectivo' },
+        { value: 'mercadopago', label: 'Mercado Pago' },
+      ]
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const pedido = {
+            domicilio_envio: (dataModal.tiempo_estimado_cocina),
+            detalle_envio: (cartItems),
+            delivery: Number(dataModal.precio_venta),
+            metodo_pago: (dataModal.imagen)
+        }
+        const res = await axios.post('https://el-buen-sabor.herokuapp.com/pedido', pedido)
+        if (res.status === 200) {
+            alert('Articulo manufacturado editado con éxito')
+        } else {
+            alert('Error al intentar editar un articulo manufacturado')
+        }
+    }
+
+    const handleChange = ({target}) => {
+        setDataModal({
+            ...dataModal,
+            [target.name]: target.value
+        })
+    }
+
+    // const pago = () =>{
+    //     handleOpenModal()
+    // }
+
+    const pago = () =>{
+        Swal.fire({
+            title: "10% de descuento pagando en efectivo",
+            text: `¿Como deseas obtener tu pedido?`,
+            icon: "warning",
+            showDenyButton: true,
+            denyButtonText: 'Retiro en el local (Efectivo o Mercado Pago)',
+            confirmButtonText: 'Envio a domicilio (Solo Mercado Pago)',
+        }).then(result => {
+            if (result.isConfirmed) {
+                Swal.fire('Proceda a rellenar sus datos').then(
+                    pagar()     
+                )
+            } else if(result.isDenied){
+                Swal.fire({
+                    title: "10% de descuento pagando en efectivo",
+                    text: `¿Como deseas pagar tu pedido?`,
+                    icon: "warning",
+                    showDenyButton: true,
+                    denyButtonText: 'Mercado Pago',
+                    confirmButtonText: 'Efectivo',
+                }).then(result => {
+                    if (result.isConfirmed){
+                        Swal.fire('Lo esperamos')
+                    } else if (result.isDenied){
+                        Swal.fire('Proceda a pagar').then(
+                            pagar()
+                        )
+                    }
+                })
+            }
+        })
+    }
+
     async function pagar() {
+
         if (cartItems.length > 0) {
             const user = {
                 id: Number(localStorage.getItem("id")),
@@ -96,6 +173,8 @@ export const Cart = () => {
         (previous, current) => previous + current.amount * current.precio_venta, 0);
 
     return (
+
+        <>
         <div className='cartContainer' id="cartContainer">
             <div onClick={() => setCartOpen(!cartOpen)}
                 className='buttonCartContainer'
@@ -157,14 +236,45 @@ export const Cart = () => {
                     )}
 
                     <h2 className='total'>Total: ${total}</h2>
-                    <button onClick={pagar}>pagar</button>
+                    <button onClick={pago}>pagar</button>
                 </div>
             )}
-
-
-
         </div>
 
+        <Modal show={showModal} onHide={handleCloseModal}>
+                <Modal.Title>Ingresar datos de su pedido</Modal.Title>
+                <Form>
+                    <Modal.Body>
+                        <div className="mb-3">
+                            <label htmlFor="domicilio_envio" className="form-label">Ingrese el domicilio de su envío</label>
+                            <input value={dataModal.domicilio_envio} name="domicilio_envio" onChange={handleChange} type="text" id="domicilio_envio" className="form-control"/>
+                        </div>
 
+                        <Select
+                            defaultValue={{label: 'Seleccione como desea obtener su pedido', value: 'empty'}}
+                            options = {options}
+                        />
+                        
+                        <br/>
+
+                        <Select
+                            defaultValue={{label: 'Metodo de pago', value: 'empty'}}
+                            options = {options2}
+                        />
+
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button className="btn btn-secondary" onClick={handleCloseModal}>
+                            Cerrar
+                        </button>
+                        <button className="btn btn-succes" type="submit" onClick={handleSubmit}>
+                            Guardar 
+                        </button>
+                    </Modal.Footer>
+                </Form>
+        </Modal>
+
+
+        </>
     )
 }

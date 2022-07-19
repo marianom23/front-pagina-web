@@ -1,52 +1,3 @@
-// import React, { useContext, useEffect, useState } from 'react'
-// import axios from 'axios'
-// import { MDBCard, MDBCardImage, MDBCardBody, MDBBtn, MDBCardTitle, MDBCardText, MDBRow } from 'mdb-react-ui-kit';
-// import { CartContext } from '../../context/CartContext'
-// import "./styles.css";
-
-// export const Productos = () => {
-
-    
-//     const {addItemToCart} = useContext(CartContext) 
-
-//     const getData = async () => {
-//         const response = axios.get('https://el-buen-sabor.herokuapp.com/articulo-manufacturado/getAll')
-//         return response
-//     }  
-//     const [data, setData] = useState([])
-
-//     useEffect(() => {
-//       getData().then((response) => {
-//           setData(response.data)
-//       })
-//     },[])
-
-//   return (    
-//             <MDBRow className="productsContainer">{
-//                     data.map(      
-//                         (info)=>(                 
-//                             <MDBCard key={info.id} className="product">
-//                                 <MDBCardImage
-//                                 src={info.imagen}
-//                                 alt={info.denominacion}
-//                                 position='top'
-//                                 />
-//                                 <MDBCardBody>
-//                                 <MDBCardTitle>{info.denominacion}</MDBCardTitle>
-//                                 <MDBCardText>
-//                                     ${info.precio_venta} - Tiempo estimado: {info.tiempo_estimado_cocina} minutos
-//                                 </MDBCardText>
-//                                 </MDBCardBody>
-//                                 <MDBBtn onClick={() => addItemToCart(info)}>Añadir al carrito</MDBBtn>
-//                             </MDBCard>                                             
-//                         )
-//                     )    
-//                 }
-//             </MDBRow>     
-//   )
-
-// }
-
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { CartContext } from '../../context/CartContext'
@@ -59,7 +10,7 @@ export const Productos = () => {
 
 
     const getData = async () => {
-    const response = axios.get('https://el-buen-sabor.herokuapp.com/articulo-manufacturado/getAll')
+    const response = await axios.get('https://el-buen-sabor.herokuapp.com/articulo-manufacturado/getAll')
     return response
     }   
     const [data, setData] = useState([])
@@ -75,7 +26,7 @@ export const Productos = () => {
         {
             data.map(      
                 (info)=>(                    
-                    <div className="card">
+                    <div className="card" key={info.id}>
                         <img src={info.imagen} alt={info.denominacion} className="card__img" />
                         <div className="card__body">
                         <h2 className="card__title">{info.denominacion}</h2>
@@ -86,6 +37,29 @@ export const Productos = () => {
                     </div>          
                 )
             )
+            // Object.values(data).map(
+            //     (info) => (
+            //         info.map(
+            //             (item)=>(
+            //                 <div className="card" key={item.id}>
+            //                     <div>{console.log(item)}</div>
+            //                     <img src={info.imagen} alt={item.articulo_manufacturado} className="card__img" />
+            //                     <div className="card__body">
+            //                     <h2 className="card__title">{item.articulo_manufacturado}</h2>
+            //                     <p className="card__description">{item.tiempo_estimado_cocina} minutos</p>
+            //                     <h3 className="card__price">{item.precio_venta}</h3>
+            //                     <button onClick={() => addItemToCart(item)} className="card__btn">Add to Cart</button>
+            //                     </div>
+            //                 </div>  
+            //             )
+            //         )                                  
+            //     )
+            // )
+            // Object.values(data).map(
+            //     (info) => (
+            //         <div>{info}</div>                               
+            //     )
+            // )
         }        
         </div>
     )
