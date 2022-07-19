@@ -19,14 +19,18 @@ export const AgregarDetalles = () => {
     const [articulos, setArticulos] = useState([])
     const [insumos, setInsumos] = useState([])
 
+    const insumostrue =  insumos.filter(insumos => insumos.es_insumo === true);
+
+
     const getArticulos = async () => {
         const data = await axios.get("https://el-buen-sabor.herokuapp.com/articulo-manufacturado/getAll")
         return data
     }
 
+
     const getInsumos = async () => {
         const data = await axios.get("https://el-buen-sabor.herokuapp.com/articulo-insumo/getAll")
-        return data
+        return data;
     }
 
     React.useEffect(() => {
@@ -51,8 +55,8 @@ export const AgregarDetalles = () => {
         },
         {
             id: 3,
-            label: "Kilogramos",
-            value: "kilogramos",
+            label: "Unidades",
+            value: "unidades",
         },
     ];
 
@@ -138,7 +142,7 @@ export const AgregarDetalles = () => {
                     <hr/>
 
                     <label><b>Insumos: </b></label><select className="select-container" value={insumos.denominacion} onChange={handleChange} name="id_articulo_insumo">
-                        {insumos.map(obj =>
+                        {insumostrue.map(obj =>
                             <option key={obj.id} value={obj.id} >{obj.denominacion}</option>
                         )}
                     </select>
