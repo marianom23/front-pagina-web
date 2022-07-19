@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react'
-
+import Swal from 'sweetalert2'
 
 export const CartContext = createContext()
 
@@ -19,6 +19,28 @@ export const CartProvider = ({children}) => {
     }, [cartItems])
     
     const addItemToCart = (product) =>{
+         
+        let timerInterval
+        Swal.fire({
+        title: 'Agregando al carro',
+        timer: 200,
+        didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+            }, 100)
+        },
+        willClose: () => {
+            clearInterval(timerInterval)
+        }
+        }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+            console.log('I was closed by the timer')
+        }
+        })
+
         const inCart = cartItems.find(
             (productInCart) => productInCart.id === product.id)
             

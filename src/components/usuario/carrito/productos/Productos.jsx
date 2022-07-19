@@ -57,6 +57,7 @@ export const Productos = () => {
 
     const {addItemToCart} = useContext(CartContext) 
 
+
     const getData = async () => {
     const response = axios.get('https://el-buen-sabor.herokuapp.com/articulo-manufacturado/getAll')
     return response

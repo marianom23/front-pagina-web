@@ -3,19 +3,17 @@ import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { NavbarAdministrador } from '../NavbarAdministrador';
 import { Footer } from '../../generales/nav-foot/Footer';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2'
+import Select from 'react-select';
 
 import {
     MDBInput,
-    MDBCol,
-    MDBRow,
-    MDBCheckbox,
     MDBBtn,
-    MDBIcon
 } from 'mdb-react-ui-kit';
 
 export const AgregarDetalles = () => {
 
+    const [isActive, setIsActive] = useState(false)
     const [articulos, setArticulos] = useState([])
     const [insumos, setInsumos] = useState([])
 
@@ -60,6 +58,10 @@ export const AgregarDetalles = () => {
         },
     ];
 
+    const recargar = () =>{
+        navigate("/agregar-articulo-manufacturado", { replace: true });
+    }
+
 
     const [data, setData] = useState({ cantidad: "", unidad_medida: "", id_articulo_manufacturado: "", id_articulo_insumo: "" })
     let navigate = useNavigate();
@@ -89,28 +91,31 @@ export const AgregarDetalles = () => {
 
         const res = await axios.post('https://el-buen-sabor.herokuapp.com/articulo-manufacturado-detalle', detalles)
         if (res.status === 200) {
-            swal({
+            Swal.fire({
                 title: "Agregado",
                 text: `¿Deseas agregar otro insumo a este producto?`,
                 icon: "warning",
-                buttons: ["No","Sí"]
-            }).then(respuesta=>{
-                if(respuesta){
-                    swal({text: "Proceda",
-                icon: "success"})
-                }else{
-                    swal({text: "El insumo se guardo con exito",
-                    icon: "success"
-                })
-                navigate("/agregar-detalle-articulo", { replace: true });
+                showDenyButton: true,
+                denyButtonText: 'No',
+                confirmButtonText: 'Si',
+            }).then(result => {
+                if (result.isConfirmed) {
+                    Swal.fire('Proceda');
+                } else if(result.isDenied){
+                    Swal.fire('Limpiando pantalla').then(
+                        function(){
+                            // navigate("/agregar-detalle-articulo", { replace: true })
+                            window.location.href = "/agregar-detalle-articulo";
+                        }
+                    )
                 }
             })
-        } else {
-            alert('Error al intentar crear un articulo insumo')
-            navigate("/agregar-detalle-articulo", { replace: true });
-        }
+        } 
     }
 
+    const handleSelectChange = ({value}) =>{
+        console.log(value)
+    }
 
     const handleReturn = () => {
         navigate("/login", { replace: true })
@@ -132,32 +137,30 @@ export const AgregarDetalles = () => {
 
                 <form onSubmit={handleSubmit}>
 
-                    <label><b>Articulo Manufacturado: </b></label>
-                    <select className="select-container" value={articulos.denominacion} onChange={handleChange} name="id_articulo_manufacturado">
-                        {articulos.map(obj =>
-                            <option key={obj.id} value={obj.id} >{obj.denominacion}</option>
-                        )}
-                    </select>
+
+                    <Select
+                        defaultValue={{label: 'Selecciona un articulo', value: 'empty'}}
+                        options = {articulos.map(obj =>({label: obj.denominacion, value: obj.id}))}
+                        onChange = {handleSelectChange}
+                    />
 
                     <hr/>
 
-                    <label><b>Insumos: </b></label><select className="select-container" value={insumos.denominacion} onChange={handleChange} name="id_articulo_insumo">
-                        {insumostrue.map(obj =>
-                            <option key={obj.id} value={obj.id} >{obj.denominacion}</option>
-                        )}
-                    </select>
+                    <Select
+                        defaultValue={{label: 'Selecciona un insumo', value: 'empty'}}
+                        options = {insumostrue.map(obj =>({label: obj.denominacion, value: obj.id}))}
+                        onChange = {handleSelectChange}
+                    />
                     
                     <hr />
 
-                    <label><b>Unidad medida</b></label>
-                    <select className="select-container" value={data.unidad_medida} onChange={handleChange} name="unidad_medida">
-                        {unidad_medida.map(obj =>
-                            <option key={obj.id} value={obj.value} >{obj.label}</option>
-                        )}
-                    </select>
+                    <Select
+                        defaultValue={{label: 'Selecciona una unidad de medida', value: 'empty'}}
+                        options = {unidad_medida.map(obj =>({label: obj.label, value: obj.value}))}
+                        onChange = {handleSelectChange}
+                    />
 
-                    <br />
-                    <br />
+                    <hr />
 
                     <MDBInput value={data.cantidad} onChange={handleChange} type='number' className='mb-4' name="cantidad" id='cantidad' label='cantidad' />
 

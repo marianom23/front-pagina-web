@@ -22,6 +22,7 @@ export const AgregarArticulo = () => {
     }
 
     const handleSubmit = async (e) => {
+
         // Completar los condicionales para no ingresar campos vacíos (a elección)
         e.preventDefault()
         console.log(data)
@@ -35,8 +36,8 @@ export const AgregarArticulo = () => {
 
         const res = await axios.post('https://el-buen-sabor.herokuapp.com/articulo-manufacturado', articuloManufacturado)
         if (res.status === 200) {
-            alert('Articulo manufacturado creado con éxito')
-            navigate("/agregar-articulo-manufacturado", { replace: true });
+            alert('Articulo man            navigate("/agregar-articulo-manufacturado", { replace: true });ufacturado creado con éxito')
+
         } else {
             alert('Error al intentar crear un articulo manufacturado')
             navigate("/agregar-articulo-manufacturado", { replace: true });
