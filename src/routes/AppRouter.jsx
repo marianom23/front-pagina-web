@@ -12,6 +12,7 @@ import { AgregarDetalles } from '../components/administrador/detalles_articulos/
 import { GrillaArticulos } from '../components/administrador/articulos/GrillaArticulos'
 import { Conjunto } from '../components/usuario/inicio/Conjunto'
 import { GrillaInsumo } from '../components/administrador/insumos/GrillaInsumo'
+import { PedidosPendientes } from '../components/cajero/PedidosPendientes'
 
 export const AppRouter = ({user}) => {
 
@@ -33,6 +34,7 @@ export const AppRouter = ({user}) => {
         <Route path="/grilla-articulo" element={<GrillaArticulos/>}/>
         <Route path="/grilla-insumo" element={<GrillaInsumo/>}/>              
         <Route path="/pedir" element={<Conjunto/>}/>
+        <Route path="/pedidos-pendientes" element={<PedidosPendientes/>}/>
     </Routes>  
   )
 }

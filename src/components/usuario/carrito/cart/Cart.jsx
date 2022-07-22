@@ -27,9 +27,52 @@ export const Cart = () => {
         { value: 'efectivo', label: 'Efectivo' },
         { value: 'mercadopago', label: 'Mercado Pago' },
       ]
+      
+    let date = new Date()
+
+    const detallesPruebas = JSON.parse(localStorage.getItem("cartProducts"));
+
+    const detallesPruebas2 = [
+        detallesPruebas.map(
+            (info) => (
+                {
+                    cantidad: info.amount,
+                    subtotal: info.precio_venta,
+                    id_articulo_manufacturado: info.id,
+                    id_articulo_insumo: info.id      
+                }
+            )
+        )
+    ]
+
+    console.log(detallesPruebas2)
+    
+    ////////////////////////////////////////////////////
+    // detalle: [
+    //     {
+    //         id: null,
+    //         cantidad: null,
+    //         subtotal: null,
+    //         id_articulo_manufacturado: null,
+    //         id_articulo_insumo: null
+    //     }
+    // ]   
+
+    // const detalle_pedido = cartItems.map(
+    //     (info) => (
+    //         {
+    //             cantidad: info.amount,
+    //             subtotal: info.precio_venta,          
+    //         }
+    //     )
+    // )
+    
+    // console.log(detalle_pedido)
+
+    ///////////////////////////////////////////////////
 
     const handleSubmit = async (e) => {
-        handleCloseModal()
+    handleCloseModal()
         pagar()
         e.preventDefault()
         const pedido = {
@@ -43,20 +86,20 @@ export const Cart = () => {
             },
             detalle_pedido: [
                 {
-                    id: 1,
-                    cantidad: 1,
-                    subtotal: 1,
-                    id_articulo_manufacturado: 54,
-                    id_articulo_insumo: 4
+                    id: null,
+                    cantidad: null,
+                    subtotal: null,
+                    id_articulo_manufacturado: null,
+                    id_articulo_insumo: null
                 },
                 {
-                    id: 1,
-                    cantidad: 1,
-                    subtotal: 1,
-                    id_articulo_manufacturado: 54,
-                    id_articulo_insumo: 14
+                    id: null,
+                    cantidad: null,
+                    subtotal: null,
+                    id_articulo_manufacturado: null,
+                    id_articulo_insumo: null
                 }
-            ]
+            ]       
         }
 
         const res = await axios.put('https://el-buen-sabor.herokuapp.com/generar-pedido', pedido)
