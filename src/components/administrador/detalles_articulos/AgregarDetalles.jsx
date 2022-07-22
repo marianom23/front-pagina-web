@@ -136,7 +136,7 @@ export const AgregarDetalles = () => {
                 <form onSubmit={handleSubmit}>
 
 
-                    <div class="select">
+                    <div className="select">
                     <select value={articulos.denominacion} onChange={handleChange} name="id_articulo_manufacturado">
                         <option selected disabled>Selecciona un articulo</option>
                         {articulos.map(obj =>
@@ -147,7 +147,7 @@ export const AgregarDetalles = () => {
 
                     <hr/>
 
-                    <div class="select">
+                    <div className="select">
                     <select value={insumos.denominacion} onChange={handleChange} name="id_articulo_insumo">
                         <option selected disabled>Selecciona un insumo</option>
                         {insumostrue.map(obj =>
@@ -158,7 +158,7 @@ export const AgregarDetalles = () => {
                     
                     <hr />
 
-                    <div class="select">
+                    <div className="select">
                     <select value={data.unidad_medida} onChange={handleChange} name="unidad_medida">
                         <option selected disabled>Selecciona una unidad de medida</option>
                         {unidad_medida.map(obj =>
