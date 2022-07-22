@@ -49,6 +49,9 @@ export const NavbarUsuario = () => {
             <MDBNavbarItem>
               <MDBNavbarLink href='/pedir'>Hacer mi pedido</MDBNavbarLink>
             </MDBNavbarItem>
+            <MDBNavbarItem>
+              <MDBNavbarLink href=''>Mis pedidos</MDBNavbarLink>
+            </MDBNavbarItem>
           </MDBNavbarNav>
           
         </MDBCollapse>

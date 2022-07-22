@@ -6,15 +6,26 @@ import axios from 'axios'
 import "./cart.css";
 import { Form, Modal } from 'react-bootstrap';
 import Select from 'react-select';
+import './select.css'
 
 export const Cart = () => {
 
     const [cartOpen, setCartOpen] = useState(false)
     const [productsLength, setProductsLength] = useState(0)
     const { cartItems } = useContext(CartContext)
-
+    let horario = new Date()
     const [showModal, setShowModal] = useState(false)
     const [dataModal, setDataModal] = useState({})
+
+
+    const [dataPedido, setDataPedido] = useState({ estado: "", hora_estimada_fin: "", detalle_envio: "", tipo_envio: "", id_domicilio: "", id_cliente:"" })
+
+    const handleChangeDataPedido = ({ target }) => {
+        setDataPedido({
+            ...dataPedido,
+            [target.name]: target.value
+        })
+    }
 
     const handleCloseModal = () => {setShowModal(false)}
     const handleOpenModal = () => {setShowModal(true)}
@@ -32,7 +43,6 @@ export const Cart = () => {
 
     const detallesPruebas = JSON.parse(localStorage.getItem("cartProducts"));
 
-
     const detalle_pedido = [
         detallesPruebas.map(
             (info) => (
@@ -46,16 +56,6 @@ export const Cart = () => {
         )
     ]
 
-    // const detalleEnvio = [
-    //     {
-    //         estado: 1,
-    //         hora_estimada_fin: "2021-02-18T21:54:42.123Z",
-    //         detalle_envio: "delivery",
-    //         tipo_envio: 1,
-    //         id_domicilio: 1,
-    //         id_cliente: 1
-    //     }
-    // ]
     console.log(detalle_pedido)
 
     const handleSubmit = async (e) => {
@@ -77,7 +77,7 @@ export const Cart = () => {
 
         const res = await axios.put('https://el-buen-sabor.herokuapp.com/generar-pedido', pedido)
         if (res.status === 200) {
-            alert('Articulo manufacturado editado con éxito')
+            alert('Articulo pedido con exito')
         } else {
             alert('Error al intentar editar un articulo manufacturado')
         }
@@ -283,17 +283,28 @@ export const Cart = () => {
                                 <input value={dataModal.domicilio_envio} name="domicilio_envio" onChange={handleChange} type="text" id="domicilio_envio" className="form-control"/>
                             </div>
 
-                            <Select
-                                defaultValue={{label: 'Seleccione como desea obtener su pedido', value: 'empty'}}
-                                options = {options}
-                            />
                             
+                            <div className="select">
+                                <select onChange={handleChange} name="tipo_envio">
+                                    <option selected disabled>Forma de envío</option>
+                                    {options.map(obj =>
+                                        <option key={obj.id} value={obj.id} >{obj.label}</option>
+                                    )}
+                                </select>
+                            </div>
+
                             <br/>
 
-                            <Select
-                                defaultValue={{label: 'Metodo de pago', value: 'empty'}}
-                                options = {options2}
-                            />
+                            <div className="select">
+                                <select onChange={handleChange} name="tipo_envio">
+                                    <option selected disabled>Metodo de pago</option>
+                                    {options2.map(obj =>
+                                        <option key={obj.id} value={obj.id} >{obj.label}</option>
+                                    )}
+                                </select>
+                            </div>
+
+                        
 
                         </Modal.Body>
                         <Modal.Footer>

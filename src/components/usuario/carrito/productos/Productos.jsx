@@ -36,6 +36,7 @@ export const Productos = () => {
     return (
         <div className='wrapper'>
         <h1>Comidas:</h1>
+        
         {         
             data.map(      
                 (info)=>(          
@@ -78,7 +79,8 @@ export const Productos = () => {
             //     )
             // )
         }     
-        <h1>Bebidas:</h1>   
+        <h1>Bebidas:</h1>
+  
         {
             data.map(      
                 (info)=>(          

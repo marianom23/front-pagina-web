@@ -137,34 +137,34 @@ export const AgregarDetalles = () => {
 
 
                     <div className="select">
-                    <select value={articulos.denominacion} onChange={handleChange} name="id_articulo_manufacturado">
-                        <option selected disabled>Selecciona un articulo</option>
-                        {articulos.map(obj =>
-                            <option key={obj.id} value={obj.id} >{obj.denominacion}</option>
-                        )}
-                    </select>
+                        <select value={articulos.denominacion} onChange={handleChange} name="id_articulo_manufacturado">
+                            <option selected disabled>Selecciona un articulo</option>
+                            {articulos.map(obj =>
+                                <option key={obj.id} value={obj.id} >{obj.denominacion}</option>
+                            )}
+                        </select>
                     </div>
 
                     <hr/>
 
                     <div className="select">
-                    <select value={insumos.denominacion} onChange={handleChange} name="id_articulo_insumo">
-                        <option selected disabled>Selecciona un insumo</option>
-                        {insumostrue.map(obj =>
-                            <option key={obj.id} value={obj.id} >{obj.denominacion}</option>
-                        )}
-                    </select>
+                        <select value={insumos.denominacion} onChange={handleChange} name="id_articulo_insumo">
+                            <option selected disabled>Selecciona un insumo</option>
+                            {insumostrue.map(obj =>
+                                <option key={obj.id} value={obj.id} >{obj.denominacion}</option>
+                            )}
+                        </select>
                     </div>
                     
                     <hr />
 
                     <div className="select">
-                    <select value={data.unidad_medida} onChange={handleChange} name="unidad_medida">
-                        <option selected disabled>Selecciona una unidad de medida</option>
-                        {unidad_medida.map(obj =>
-                            <option key={obj.id} value={obj.value}>{obj.label}</option>
-                        )}
-                    </select>
+                        <select value={data.unidad_medida} onChange={handleChange} name="unidad_medida">
+                            <option selected disabled>Selecciona una unidad de medida</option>
+                            {unidad_medida.map(obj =>
+                                <option key={obj.id} value={obj.value}>{obj.label}</option>
+                            )}
+                        </select>
                     </div>
 
                     <hr />
