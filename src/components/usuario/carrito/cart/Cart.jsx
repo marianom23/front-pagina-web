@@ -32,46 +32,34 @@ export const Cart = () => {
 
     const detallesPruebas = JSON.parse(localStorage.getItem("cartProducts"));
 
-    const detallesPruebas2 = [
+
+    const detalle_pedido = [
         detallesPruebas.map(
             (info) => (
                 {
                     cantidad: info.amount,
                     subtotal: info.precio_venta,
-                    id_articulo_manufacturado: info.id,
-                    id_articulo_insumo: info.id      
+                    id: info.id,
+                    es_bebida: info.es_bebida 
                 }
             )
         )
     ]
 
-    console.log(detallesPruebas2)
-    
-    ////////////////////////////////////////////////////
-    // detalle: [
+    // const detalleEnvio = [
     //     {
-    //         id: null,
-    //         cantidad: null,
-    //         subtotal: null,
-    //         id_articulo_manufacturado: null,
-    //         id_articulo_insumo: null
+    //         estado: 1,
+    //         hora_estimada_fin: "2021-02-18T21:54:42.123Z",
+    //         detalle_envio: "delivery",
+    //         tipo_envio: 1,
+    //         id_domicilio: 1,
+    //         id_cliente: 1
     //     }
-    // ]   
-
-    // const detalle_pedido = cartItems.map(
-    //     (info) => (
-    //         {
-    //             cantidad: info.amount,
-    //             subtotal: info.precio_venta,          
-    //         }
-    //     )
-    // )
-    
-    // console.log(detalle_pedido)
-
-    ///////////////////////////////////////////////////
+    // ]
+    console.log(detalle_pedido)
 
     const handleSubmit = async (e) => {
+
     handleCloseModal()
         pagar()
         e.preventDefault()
@@ -84,22 +72,7 @@ export const Cart = () => {
                 id_domicilio: 1,
                 id_cliente: 1
             },
-            detalle_pedido: [
-                {
-                    id: null,
-                    cantidad: null,
-                    subtotal: null,
-                    id_articulo_manufacturado: null,
-                    id_articulo_insumo: null
-                },
-                {
-                    id: null,
-                    cantidad: null,
-                    subtotal: null,
-                    id_articulo_manufacturado: null,
-                    id_articulo_insumo: null
-                }
-            ]       
+            detalle_pedido
         }
 
         const res = await axios.put('https://el-buen-sabor.herokuapp.com/generar-pedido', pedido)

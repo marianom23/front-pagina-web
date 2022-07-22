@@ -8,17 +8,18 @@ export const Productos = () => {
 
     const {addItemToCart} = useContext(CartContext) 
     const [data, setData] = useState([])
-    const [data2, setData2] = useState([])
+    // const [data2, setData2] = useState([])
 
     const getData = async () => {
-    const response = await axios.get('https://el-buen-sabor.herokuapp.com/articulo-manufacturado/getAll')
+    const response = await axios.get('https://el-buen-sabor.herokuapp.com/carrito-completo-getAll')
+    console.log(response)
     return response
     }   
 
-    const getData2 = async () => {
-    const response = await axios.get('https://el-buen-sabor.herokuapp.com/articulo-insumo/getAll')
-    return response
-    }   
+    // const getData2 = async () => {
+    // const response = await axios.get('https://el-buen-sabor.herokuapp.com/articulo-insumo/getAll')
+    // return response
+    // }   
     
     useEffect(() => {
     getData().then((response) => {
@@ -26,18 +27,21 @@ export const Productos = () => {
     })
     },[])
 
-    useEffect(() => {
-    getData2().then((response) => {
-        setData2(response.data)
-    })
-    },[])
+    // useEffect(() => {
+    // getData2().then((response) => {
+    //     setData2(response.data)
+    // })
+    // },[])
 
     return (
         <div className='wrapper'>
         <h1>Comidas:</h1>
         {         
             data.map(      
-                (info)=>(                    
+                (info)=>(          
+                    (info.es_bebida ? 
+                        ""
+                    :
                     <div className="card" key={info.id}>
                         <img src={info.imagen} alt={info.denominacion} className="card__img" />
                         <div className="card__body">
@@ -46,7 +50,8 @@ export const Productos = () => {
                         <h3 className="card__price">{info.precio_venta}</h3>
                         <button onClick={() => addItemToCart(info)} className="card__btn">Add to Cart</button>
                         </div>
-                    </div>          
+                    </div>   
+                    )
                 )
             )
             // Object.values(data).map(
@@ -75,11 +80,9 @@ export const Productos = () => {
         }     
         <h1>Bebidas:</h1>   
         {
-            data2.map(      
+            data.map(      
                 (info)=>(          
-                    (info.es_insumo ? 
-                        ""
-                    :
+                    (info.es_bebida ? 
                     <div className="card" key={info.id}>
                         <img src={info.imagen} alt={info.denominacion} className="card__img" />
                         <div className="card__body">
@@ -89,6 +92,8 @@ export const Productos = () => {
                         <button onClick={() => addItemToCart(info)} className="card__btn">Add to Cart</button>
                         </div>
                     </div>   
+                    :
+                        " "
                     )
                 )
             )
