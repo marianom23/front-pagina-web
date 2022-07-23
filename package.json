@@ -23,7 +23,8 @@
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.4.23",
     "universal-cookie": "^4.0.4",
-    "web-vitals": "^2.1.0"
+    "web-vitals": "^2.1.0",
+    "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "react-scripts start",
