@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Carousel } from '../../generales/Carousel/Carousel'
 import { Footer } from '../../generales/nav-foot/Footer'
 import Cookies from 'universal-cookie'
@@ -16,8 +16,6 @@ export const InicioUsuario = () => {
   //     navigate("/")
   //   }
   // }, [])
-  
-
   return (
     <>
       <NavbarUsuario/>
@@ -29,7 +27,6 @@ export const InicioUsuario = () => {
       <h3>Email: {cookies.get('email')}</h3>
       <h3>Rol: {cookies.get('rol')}</h3> */}
       <br />
-
       <Carousel/>
 
 
