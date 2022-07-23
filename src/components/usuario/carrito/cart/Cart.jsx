@@ -56,7 +56,7 @@ export const Cart = () => {
     
 
     const pedido = {  
-        estado: 1,
+        estado: 3,
         hora_estimada_fin: "2021-02-18T21:54:42.123Z",
         detalle_envio: "delivery",
         tipo_envio: 1,

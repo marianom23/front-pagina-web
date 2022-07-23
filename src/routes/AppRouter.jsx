@@ -13,6 +13,7 @@ import { GrillaArticulos } from '../components/administrador/articulos/GrillaArt
 import { Conjunto } from '../components/usuario/inicio/Conjunto'
 import { GrillaInsumo } from '../components/administrador/insumos/GrillaInsumo'
 import { PedidosPendientes } from '../components/cajero/PedidosPendientes'
+import { RankingComidasMasVendidas } from '../components/usuario/RankingComidasMasVendidas'
 
 export const AppRouter = ({user}) => {
 
@@ -35,6 +36,7 @@ export const AppRouter = ({user}) => {
         <Route path="/grilla-insumo" element={<GrillaInsumo/>}/>              
         <Route path="/pedir" element={<Conjunto/>}/>
         <Route path="/pedidos-pendientes" element={<PedidosPendientes/>}/>
+        <Route path="/ranking-comidas" element={<RankingComidasMasVendidas/>}/>
     </Routes>  
   )
 }
