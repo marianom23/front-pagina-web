@@ -7,18 +7,18 @@ import "./cart.css";
 import { Form, Modal } from 'react-bootstrap';
 import Select from 'react-select';
 import './select.css'
+import Cookies from 'universal-cookie'
 
 export const Cart = () => {
-
+    const cookies = new Cookies();
     const [cartOpen, setCartOpen] = useState(false)
     const [productsLength, setProductsLength] = useState(0)
     const { cartItems } = useContext(CartContext)
     let horario = new Date()
     const [showModal, setShowModal] = useState(false)
     const [dataModal, setDataModal] = useState({})
-
-
-    const [dataPedido, setDataPedido] = useState({ estado: "", hora_estimada_fin: "", detalle_envio: "", tipo_envio: "", id_domicilio: "", id_cliente:"" })
+    const idUsuario = cookies.get('id')
+    const [dataPedido, setDataPedido] = useState({ estado: "", hora_estimada_fin: "", detalle_envio: "", tipo_envio: "", id_domicilio: "", id_cliente:{idUsuario}})
 
     const handleChangeDataPedido = ({ target }) => {
         setDataPedido({
@@ -39,12 +39,11 @@ export const Cart = () => {
         { value: 'mercadopago', label: 'Mercado Pago' },
       ]
       
-    let date = new Date()
+
 
     const detallesPruebas = JSON.parse(localStorage.getItem("cartProducts"));
 
-    const detalle_pedido = [
-        detallesPruebas.map(
+    const detalle_pedido = detallesPruebas.map(
             (info) => (
                 {
                     cantidad: info.amount,
@@ -54,33 +53,42 @@ export const Cart = () => {
                 }
             )
         )
-    ]
+    
+
+    const pedido = {  
+        estado: 1,
+        hora_estimada_fin: "2021-02-18T21:54:42.123Z",
+        detalle_envio: "delivery",
+        tipo_envio: 1,
+        id_domicilio: 1,
+        id_cliente: {idUsuario}
+        
+    }
 
     console.log(detalle_pedido)
 
     const handleSubmit = async (e) => {
 
     handleCloseModal()
-        pagar()
-        e.preventDefault()
-        const pedido = {
-            pedido: {
-                estado: 1,
-                hora_estimada_fin: "2021-02-18T21:54:42.123Z",
-                detalle_envio: "delivery",
-                tipo_envio: 1,
-                id_domicilio: 1,
-                id_cliente: 1
-            },
-            detalle_pedido
-        }
-
-        const res = await axios.put('https://el-buen-sabor.herokuapp.com/generar-pedido', pedido)
-        if (res.status === 200) {
-            alert('Articulo pedido con exito')
-        } else {
-            alert('Error al intentar editar un articulo manufacturado')
-        }
+    pagar()
+    e.preventDefault()
+    const pedido = {
+        pedido: {
+            estado: 1,
+            hora_estimada_fin: "2021-02-18T21:54:42.123Z",
+            detalle_envio: "delivery",
+            tipo_envio: 1,
+            id_domicilio: 1,
+            id_cliente: 1
+        },
+        detalle_pedido
+    }
+    const res = await axios.put('https://el-buen-sabor.herokuapp.com/generar-pedido', pedido)
+    if (res.status === 200) {
+        alert('Articulo pedido con exito')
+    } else {
+        alert('Error al intentar editar un articulo manufacturado')
+    }
     }
 
     const handleChange = ({target}) => {
@@ -113,7 +121,10 @@ export const Cart = () => {
                     confirmButtonText: 'Efectivo',
                 }).then(result => {
                     if (result.isConfirmed){
-                        Swal.fire('Lo esperamos')
+                        Swal.fire('Lo esperamos').then(
+                            handleSubmit()
+                        )
+
                     } else if (result.isDenied){
                         Swal.fire('Proceda a pagar').then(
                             handleSubmit()
