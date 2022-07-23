@@ -12,8 +12,7 @@ export const RankingComidasMasVendidas = () => {
 
 
   const getData = async () => {
-    //const resp = await axios.get('https://el-buen-sabor.herokuapp.com/pedido/getAll')
-    const resp = await axios.get('http://localhost:8080/ranking-comidas')
+    const resp = await axios.get('https://el-buen-sabor.herokuapp.com/ranking-comidas')
     const data = await resp.data;
     console.log("data:", data)
     setRankingComidasMasVendidas(data)
