@@ -2,13 +2,22 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { CartContext } from '../../context/CartContext'
 import './productos.css'
+import './button.css'
 import { Card } from 'react-bootstrap'
+import { MDBBadge, MDBIcon, MDBNavbarItem, MDBNavbarLink } from 'mdb-react-ui-kit'
 
 export const Productos = () => {
 
+    const { cartItems } = useContext(CartContext)  
     const {addItemToCart} = useContext(CartContext) 
     const [data, setData] = useState([])
     // const [data2, setData2] = useState([])
+    const [productsLength, setProductsLength] = useState(0)
+    useEffect(() => {
+        setProductsLength(
+            cartItems.reduce((previous, current) => previous + current.amount, 0)
+        );
+    }, [cartItems])
 
     const getData = async () => {
     const response = await axios.get('https://el-buen-sabor.herokuapp.com/carrito-completo-getAll')
@@ -34,6 +43,13 @@ export const Productos = () => {
     // },[])
 
     return (
+        <>
+            <MDBNavbarLink href='/carritos' className='btn-flotante'>
+                <MDBBadge pill color='danger'>{productsLength}</MDBBadge>
+                <span>
+                <MDBIcon fas icon='shopping-cart'></MDBIcon>
+                </span>
+            </MDBNavbarLink>
         <div className='wrapper'>
         <h1>Comidas:</h1>
         
@@ -103,6 +119,7 @@ export const Productos = () => {
         }
 
         </div>
+    </>
     )
 }
 
