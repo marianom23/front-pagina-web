@@ -94,7 +94,8 @@ export const PedidosPendientes = () => {
                 data.map(      
                     (info)=>(          
                         (info.estado === 3 ? 
-                            (info.detalle_envio === "delivery" ?
+                            //cambio
+                            (info.tipo_envio === 2 ?
                              <div className="card" key={info.id}>
                                 <img src="assets/pedidoAceptado.jpg" alt={info.denominacion} className="card__img" />
                                 <div className="card__body">

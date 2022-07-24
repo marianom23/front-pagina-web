@@ -17,13 +17,34 @@ export const Carrito = () => {
     const [productsLength, setProductsLength] = useState(0)
     const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false)
-    const [dataModal, setDataModal] = useState({})
+    const [showDomicilio, setShowDomicilio] = useState(false)
+    const [first, setfirst] = useState()
     const handleCloseModal = () => {setShowModal(false)}
     const handleOpenModal = () => {setShowModal(true)}
+    const [dataPedido, SetDataPedido] = useState({ 
+        estado: 1,
+        hora_estimada_fin: "",
+        detalle_envio: "",
+        tipo_envio: "",
+        id_domicilio: "",
+        id_cliente: ""})
+
+    const handleChange = ({target}) => {
+        if (target.value === "2") {
+            setShowDomicilio(true)
+        }else{
+            setShowDomicilio(false)
+        }
+        SetDataPedido({
+            ...dataPedido,
+            [target.name]: target.value,
+        })
+    }
+    
 
     const options = [
-        { value: true, label: 'Envio a domicilio' },
-        { value: false, label: 'Retiro en el local' },
+        { value: 2, label: 'Envio a domicilio' },
+        { value: 1, label: 'Retiro en el local' },
       ]
     const options2 = [
         { value: 'efectivo', label: 'Efectivo' },
@@ -117,6 +138,7 @@ export const Carrito = () => {
 }
 
     const detallesPruebas = JSON.parse(localStorage.getItem("cartProducts"));
+
     const detalle_pedido = detallesPruebas.map(
         (info) => (
             {
@@ -128,22 +150,30 @@ export const Carrito = () => {
         )
     )
 
+
+    let metodoPago=null;
+    const modoPago = (valor) => {
+        metodoPago = valor;
+    } 
+
     const handleSubmit = async (e) => {
-        handleCloseModal()
-        mercadopago()
+        // handleCloseModal()
         e.preventDefault()
-        const pedido = {
+        mercadopago()
+
+    
+        const pedidos = {
             pedido: {
                 estado: 1,
-                hora_estimada_fin: "2021-02-18T21:54:42.123Z",
-                detalle_envio: "efectivo",
+                hora_estimada_fin: "",
+                detalle_envio: dataPedido.detalle_envio,
                 tipo_envio: 1,
                 id_domicilio: 1,
                 id_cliente: 1
             },
             detalle_pedido
         }
-        const res = await axios.put('https://el-buen-sabor.herokuapp.com/generar-pedido', pedido)
+        const res = await axios.put('https://el-buen-sabor.herokuapp.com/generar-pedido', pedidos)
         if (res.status === 200) {
             alert('Articulo pedido con exito')
         } else {
@@ -151,48 +181,43 @@ export const Carrito = () => {
         }
     }
 
-    const handleChange = ({target}) => {
-        setDataModal({
-            ...dataModal,
-            [target.name]: target.value
-        })
-    }
 
     const pago = () =>{
-        Swal.fire({
-            title: "10% de descuento pagando en efectivo",
-            text: `¿Como deseas obtener tu pedido?`,
-            icon: "warning",
-            showDenyButton: true,
-            denyButtonText: 'Retiro en el local (Efectivo o Mercado Pago)',
-            confirmButtonText: 'Envio a domicilio (Solo Mercado Pago)',
-        }).then(result => {
-            if (result.isConfirmed) {
-                Swal.fire('Proceda a rellenar sus datos').then(
-                    handleOpenModal(),
-                )
-            } else if(result.isDenied){
-                Swal.fire({
-                    title: "10% de descuento pagando en efectivo",
-                    text: `¿Como deseas pagar tu pedido?`,
-                    icon: "warning",
-                    showDenyButton: true,
-                    denyButtonText: 'Mercado Pago',
-                    confirmButtonText: 'Efectivo',
-                }).then(result => {
-                    if (result.isConfirmed){
-                        Swal.fire('Lo esperamos').then(
-                            handleSubmit()
-                        )
-
-                    } else if (result.isDenied){
-                        Swal.fire('Proceda a pagar').then(
-                            handleSubmit()
-                        )
-                    }
-                })
-            }
-        })
+        // Swal.fire({
+        //     title: "10% de descuento pagando en efectivo",
+        //     text: `¿Como deseas obtener tu pedido?`,
+        //     icon: "warning",
+        //     showDenyButton: true,
+        //     denyButtonText: 'Retiro en el local (Efectivo o Mercado Pago)',
+        //     confirmButtonText: 'Envio a domicilio (Solo Mercado Pago)',
+        // }).then(result => {
+        //     if (result.isConfirmed) {
+        //         Swal.fire('Proceda a rellenar sus datos').then(
+        //             handleOpenModal(),
+        //             handleSubmit()
+        //         )
+        //     } else if(result.isDenied){
+        //         Swal.fire({
+        //             title: "10% de descuento pagando en efectivo",
+        //             text: `¿Como deseas pagar tu pedido?`,
+        //             icon: "warning",
+        //             showDenyButton: true,
+        //             denyButtonText: 'Mercado Pago',
+        //             confirmButtonText: 'Efectivo',
+        //         }).then(result => {
+        //             if (result.isConfirmed){
+        //                 Swal.fire('Lo esperamos').then(
+        //                     handleSubmit(false)
+        //                 )
+        //             } else if (result.isDenied){
+        //                 Swal.fire('Proceda a pagar').then(
+        //                     handleSubmit()
+        //                 )
+        //             }
+        //         })
+        //     }
+        // })
+        handleOpenModal()
     }
     
     return (
@@ -218,16 +243,16 @@ export const Carrito = () => {
             <ItemCart key={i} item={item} />
             ))}
 
-
+            
         <div class="totals">
-            <div class="totals-item">
+            {/* <div class="totals-item">
             <label>Subtotal</label>
             <div class="totals-value" id="cart-subtotal">71.97</div>
             </div>
             <div class="totals-item">
-            <label>Descuento (5%)</label>
+            <label>Descuento (10%)</label>
             <div class="totals-value" id="cart-tax">3.60</div>
-            </div>
+            </div> */}
             {/* <div class="totals-item">
             <label>Shipping</label>
             <div class="totals-value" id="cart-shipping">15.00</div>
@@ -248,30 +273,51 @@ export const Carrito = () => {
                 <Modal.Title>Ingresar datos de su pedido</Modal.Title>
                 <Form>
                     <Modal.Body>
-                        <div className="mb-3">
-                            <label htmlFor="domicilio_envio" className="form-label">Ingrese el domicilio de su envío</label>
-                            <input value={dataModal.domicilio_envio} name="domicilio_envio" onChange={handleChange} type="text" id="domicilio_envio" className="form-control"/>
-                        </div>
                         
+                        <p>Pago con efectivo 10% de descuento</p>
+                        <div className="select">
+                            <select onChange={handleChange} name="detalle_envio">
+                                <option selected disabled>Metodo de pago</option>
+                                {options2.map(obj =>
+                                    <option key={obj.id} value={obj.value} >{obj.label}</option>
+                                )}
+                            </select>
+                        </div>
+
+                        <br/>
+                        
+                        <p>Envios a domicilio solo se acepta mercado pago</p>
                         <div className="select">
                             <select onChange={handleChange} name="tipo_envio">
                                 <option selected disabled>Forma de envío</option>
                                 {options.map(obj =>
-                                    <option key={obj.id} value={obj.id} >{obj.label}</option>
+                                    <option key={obj.id} value={obj.value} >{obj.label}</option>
                                 )}
                             </select>
                         </div>
 
                         <br/>
 
-                        <div className="select">
-                            <select onChange={handleChange} name="tipo_envio">
-                                <option selected disabled>Metodo de pago</option>
-                                {options2.map(obj =>
-                                    <option key={obj.id} value={obj.id} >{obj.label}</option>
-                                )}
-                            </select>
-                        </div>
+                        {
+                            (showDomicilio ?
+                            <>
+                                <p>Elija su domicilio</p>
+                                <div className="select">
+                                    <select onChange={handleChange} name="tipo_envio">
+                                        <option selected disabled>Elegir domicilio</option>
+                                        {options.map(obj =>
+                                            <option key={obj.id} value={obj.value} >{obj.label}</option>
+                                        )}
+                                    </select>
+                                </div>
+                            </>    
+                            :
+                            ""
+                            )
+                        }
+                        
+
+
 
                     </Modal.Body>
                     <Modal.Footer>

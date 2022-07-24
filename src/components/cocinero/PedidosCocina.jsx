@@ -33,8 +33,6 @@ export const PedidosCocina = () => {
 
     }
 
-
-
   return (
     <div className='wrapper'>
         {         
