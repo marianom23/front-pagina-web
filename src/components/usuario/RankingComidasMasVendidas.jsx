@@ -12,15 +12,50 @@ export const RankingComidasMasVendidas = () => {
   const [fechaInicial, setFechaInicial] = useState(null)
   const [fechaFinal, setFechaFinal] = useState(null)
 
-  console.log(fechaInicial)
-  console.log(fechaFinal)
+  console.log("F:", fechaInicial)
+  console.log("f final:", fechaFinal)
 
   const getData = async () => {
-    const resp = await axios.get(`https://el-buen-sabor.herokuapp.com/ranking-comidas?desde=${fechaInicial}&?hasta=${fechaFinal}`)
-    const data = await resp.data;
-    console.log("data:", data)
-    setRankingComidasMasVendidas(data)
-    return data
+      const resp = await axios.get(`https://el-buen-sabor.herokuapp.com/ranking-comidas?desde=2020-01-01&hasta=2023-01-01`)
+      const data = await resp.data;
+      console.log("data:", data)
+      setRankingComidasMasVendidas(data)
+      return data
+  }
+
+  const getDataWithDate = async ( desde, hasta ) => {
+    if (fechaInicial !== null && fechaFinal !== null) {
+      const url = `https://el-buen-sabor.herokuapp.com/ranking-comidas?desde=${desde}&hasta=${hasta}`
+      console.log("URL:",url)
+      const resp = await axios.get(url)
+      const data = await resp.data;
+      console.log("data:", data)
+      setRankingComidasMasVendidas(data)
+      return data
+    } else {
+      console.log("F:", fechaInicial)
+    }
+  }
+
+  const buscarRankingEntreDosFechas = async () => {
+    const desde = setFechaInicialString()
+    const hasta = setFechaFinalString()
+    await getDataWithDate(desde, hasta);
+  }
+
+  const setFechaFinalString = () => {
+    const month = fechaFinal.getUTCMonth() + 1; //months from 1-12
+    const day = fechaFinal.getUTCDate();
+    const year = fechaFinal.getUTCFullYear();
+    const fechaFinalQuery = year + "-" + month + "-" + day;
+    return fechaFinalQuery
+  }
+  const setFechaInicialString = () => {
+    const month = fechaInicial.getUTCMonth() + 1; //months from 1-12
+    const day = fechaInicial.getUTCDate();
+    const year = fechaInicial.getUTCFullYear();
+    const fechaInicialQuery = year + "-" + month + "-" + day;
+    return fechaInicialQuery
   }
 
   useEffect(() => {
@@ -30,7 +65,6 @@ export const RankingComidasMasVendidas = () => {
   const handleOnExport = () => {
     console.log("handleOnExport", rankingComidasMasVendidas)
     const ws = XLSX.utils.json_to_sheet(rankingComidasMasVendidas);
-    console.log("22222", ws)
     const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
     XLSX.writeFile(wb, 'ranking-comidas.xlsx')
   }
@@ -39,11 +73,10 @@ export const RankingComidasMasVendidas = () => {
 
     (info) => {
       return (
-        <tr key={info.id_pedido}>
-          <td>{info.id_pedido}</td>
+        <tr key={info.denominacion}>
+          <td>{info.veces_pedida}</td>
           <td>{info.denominacion}</td>
           <td>{info.id_articulo_manufacturado}</td>
-          <td>{info.veces_pedida}</td>
         </tr>
       )
     }
@@ -51,43 +84,41 @@ export const RankingComidasMasVendidas = () => {
 
   return (
     <>
-      <NavbarUsuario/>
+      <NavbarUsuario />
       <br />
       <h1>Ranking 5 de comidas mas vendidas</h1>
 
       <h3>Desde:</h3>
 
       <DatePicker
-       selected={fechaInicial}
-       onChange={date => setFechaInicial(date)}
-       dateFormat='yyyy/MM/dd'
-       />
+        selected={fechaInicial}
+        onChange={date => setFechaInicial(date)}
+        dateFormat='yyyy/MM/dd'
 
-      {/* <input type="date" onChange={e=setFechaInicial(e.target.value)} /> */}
-
-       <br /> 
-       <br />
-
-       <h3>Hasta:</h3>
+      />
+      <br />
+      <br />
+      <h3>Hasta:</h3>
       <DatePicker
-       selected={fechaFinal}
-       onChange={date => setFechaFinal(date)}
-       dateFormat='yyyy/MM/dd'
-       />
-
-      <br /> 
+        selected={fechaFinal}
+        onChange={date => setFechaFinal(date)}
+        dateFormat='yyyy/MM/dd'
+      />
+      <br />
       <br />
       {/* <button onClick={handleOnExport}>Ranking Comidas --- Export Excel</button> */}
+      <div className="mb-3">
+        <button onClick={buscarRankingEntreDosFechas} className="btn btn-primary"><b>Buscar Ranking</b></button>
+      </div>
       <div className="mb-3">
         <button onClick={handleOnExport} className="btn btn-success"><b>Ranking Comidas - Exportar Excel</b></button>
       </div>
       <table className="table table-striped">
         <thead>
           <tr>
-            <th><b>ID PEDIDO</b></th>
             <th><b>CANTIDAD DE VECES PEDIDA</b></th>
-            <th><b>ID ARTICULO MANUFACTURADO</b></th>
             <th><b>DENOMINACION</b></th>
+            <th><b>ID ARTICULO MANUFACTURADO</b></th>
           </tr>
         </thead>
         <tbody>
