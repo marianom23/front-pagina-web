@@ -16,6 +16,7 @@ import { PedidosPendientes } from '../components/cajero/PedidosPendientes'
 import { PedidosCocina } from '../components/cocinero/PedidosCocina'
 import { PedidosDelivery } from '../components/delivery/PedidosDelivery'
 import { DetallePedido } from '../components/detalle-pedido/DetallePedido'
+import { Domicilio } from '../components/usuario/domicilio/Domicilio'
 
 
 
@@ -26,9 +27,6 @@ export const AppRouter = ({user}) => {
     <Routes>
         <Route path="/" element={<Inicio/>}/>
         <Route path="/inicio" element={<InicioUsuario/>}/>
-        {/* <Route path="/" render={()=>{
-          return user ? <Redirect to='/'/> : <Login />
-          }}/> */}
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/contacto" element={<Contactenos/>}/>
@@ -43,6 +41,7 @@ export const AppRouter = ({user}) => {
         <Route path="/pedidos-cocina" element={<PedidosCocina/>}/>
         <Route path="/pedidos-delivery" element={<PedidosDelivery/>}/>
         <Route path="/detalle-pedido/:pedidoID" element={<DetallePedido/>}/>
+        <Route path="/domicilio" element={<Domicilio/>}/>
     </Routes>  
   )
 }

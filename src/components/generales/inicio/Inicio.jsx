@@ -11,7 +11,7 @@ export const Inicio = () => {
       <Navbar/>
       <br />
       <h1><img
-        src="assets/cocinero.jpg"
+        src="assets/pedidoCocinero.jpg"
         alt='cocinero'
         width="180"
         height="180"
