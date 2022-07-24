@@ -22,9 +22,14 @@ export const ItemCart = ({ item }) => {
         <div class="product-quantity">
         <input type="number" value={item.amount} min="1"/>
         </div>
+        <div>
+        <button onClick={() => addItemToCart(item)} class="add-product">
+            Agregar
+        </button>
+        </div>
         <div class="product-removal">
         <button onClick={() => deleteItemToCart(item)} class="remove-product">
-            Remove
+            Quitar
         </button>
         </div>
         <div class="product-line-price">{item.amount * item.precio_venta}</div>
