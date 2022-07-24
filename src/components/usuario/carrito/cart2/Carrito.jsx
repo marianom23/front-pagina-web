@@ -3,6 +3,7 @@ import { CartContext } from '../../context/CartContext'
 import { useNavigate } from 'react-router-dom';
 import { NavbarUsuario } from '../../nav/NavbarUsuario'
 import { ItemCart } from '../itemCart/ItemCart'
+import './select.css'
 import { Form, Modal } from 'react-bootstrap';
 import axios from 'axios'
 import Swal from 'sweetalert2'
