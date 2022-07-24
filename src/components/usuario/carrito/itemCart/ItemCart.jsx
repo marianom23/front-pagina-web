@@ -9,24 +9,25 @@ export const ItemCart = ({ item }) => {
   const { id } = item;
 
   return (
-    <div className='cartItem'>
-      <img src={item.imagen} alt={item.denominacion} />
-      <div className='dataContainer'>
-        <div className='left'>
-          <p className="text">{item.denominacion}</p>
-          <div className='buttons'>
-            <button onClick={() => addItemToCart(item)}>
-              AGREGAR
-            </button>
-            <button onClick={() => deleteItemToCart(item)}>
-              SACAR
-            </button>
-          </div>
+    <div class="product">
+      <div>
+        <div class="product-image">
+        <img src={item.imagen}/>
         </div>
-        <div className='right'>
-          <div>{item.amount}</div>
-          <p className="text">Total: ${item.amount * item.precio_venta}</p>
+        <div class="product-details">
+        <div class="product-title">{item.denominacion}</div>
+        <p class="product-description">Productos de calidad</p>
         </div>
+        <div class="product-price">{item.precio_venta}</div>
+        <div class="product-quantity">
+        <input type="number" value={item.amount} min="1"/>
+        </div>
+        <div class="product-removal">
+        <button onClick={() => deleteItemToCart(item)} class="remove-product">
+            Remove
+        </button>
+        </div>
+        <div class="product-line-price">{item.amount * item.precio_venta}</div>
       </div>
     </div>
   );

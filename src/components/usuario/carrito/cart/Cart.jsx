@@ -8,6 +8,7 @@ import { Form, Modal } from 'react-bootstrap';
 import Select from 'react-select';
 import './select.css'
 import Cookies from 'universal-cookie'
+import { mercadopago } from '../mercadopago/mercadopago'
 
 export const Cart = () => {
     const cookies = new Cookies();

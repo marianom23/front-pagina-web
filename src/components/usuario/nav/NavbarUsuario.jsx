@@ -8,7 +8,8 @@ import {
   MDBNavbarLink,
   MDBNavbarToggler,
   MDBNavbarBrand,
-  MDBCollapse
+  MDBCollapse,
+  MDBBadge
 } from 'mdb-react-ui-kit';
 
 import Cookies from 'universal-cookie'
@@ -54,6 +55,9 @@ export const NavbarUsuario = () => {
             </MDBNavbarItem>
             <MDBNavbarItem>
               <MDBNavbarLink href='/domicilio'>Domicilio</MDBNavbarLink>
+            </MDBNavbarItem>
+            <MDBNavbarItem>
+              <MDBNavbarLink href='/carritos'>Carrito</MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
           

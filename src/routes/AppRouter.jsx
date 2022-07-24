@@ -17,6 +17,9 @@ import { PedidosCocina } from '../components/cocinero/PedidosCocina'
 import { PedidosDelivery } from '../components/delivery/PedidosDelivery'
 import { DetallePedido } from '../components/detalle-pedido/DetallePedido'
 import { Domicilio } from '../components/usuario/domicilio/Domicilio'
+import { Carrito } from '../components/usuario/carrito/cart2/Carrito'
+import { Cart } from '../components/usuario/carrito/cart/Cart'
+import { CarritoContainer } from '../components/usuario/inicio/CarritoContainer'
 
 
 
@@ -42,6 +45,9 @@ export const AppRouter = ({user}) => {
         <Route path="/pedidos-delivery" element={<PedidosDelivery/>}/>
         <Route path="/detalle-pedido/:pedidoID" element={<DetallePedido/>}/>
         <Route path="/domicilio" element={<Domicilio/>}/>
+        <Route path="/carrito" element={<Carrito/>}/>
+        <Route path="/cart" element={<Cart/>}/>
+        <Route path="/carritos" element={<CarritoContainer/>}/>
     </Routes>  
   )
 }
