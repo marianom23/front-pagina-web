@@ -16,17 +16,17 @@ export const RankingComidasMasVendidas = () => {
   console.log("f final:", fechaFinal)
 
   const getData = async () => {
-      const resp = await axios.get(`https://el-buen-sabor.herokuapp.com/ranking-comidas?desde=2020-01-01&hasta=2023-01-01`)
-      const data = await resp.data;
-      console.log("data:", data)
-      setRankingComidasMasVendidas(data)
-      return data
+    const resp = await axios.get(`https://el-buen-sabor.herokuapp.com/ranking-comidas?desde=2020-01-01&hasta=2023-01-01`)
+    const data = await resp.data;
+    console.log("data:", data)
+    setRankingComidasMasVendidas(data)
+    return data
   }
 
-  const getDataWithDate = async ( desde, hasta ) => {
+  const getDataWithDate = async (desde, hasta) => {
     if (fechaInicial !== null && fechaFinal !== null) {
       const url = `https://el-buen-sabor.herokuapp.com/ranking-comidas?desde=${desde}&hasta=${hasta}`
-      console.log("URL:",url)
+      console.log("URL:", url)
       const resp = await axios.get(url)
       const data = await resp.data;
       console.log("data:", data)
@@ -91,6 +91,7 @@ export const RankingComidasMasVendidas = () => {
       <h3>Desde:</h3>
 
       <DatePicker
+        placeholderText='ingrese fecha'
         selected={fechaInicial}
         onChange={date => setFechaInicial(date)}
         dateFormat='yyyy/MM/dd'
@@ -100,19 +101,19 @@ export const RankingComidasMasVendidas = () => {
       <br />
       <h3>Hasta:</h3>
       <DatePicker
+        placeholderText='ingrese fecha'
         selected={fechaFinal}
         onChange={date => setFechaFinal(date)}
         dateFormat='yyyy/MM/dd'
       />
       <br />
       <br />
-      {/* <button onClick={handleOnExport}>Ranking Comidas --- Export Excel</button> */}
+      {/* <div className='container'> */}
       <div className="mb-3">
         <button onClick={buscarRankingEntreDosFechas} className="btn btn-primary"><b>Buscar Ranking</b></button>
+        <button onClick={handleOnExport} className="btn btn-success"><b>Exportar en Excel</b></button>
       </div>
-      <div className="mb-3">
-        <button onClick={handleOnExport} className="btn btn-success"><b>Ranking Comidas - Exportar Excel</b></button>
-      </div>
+      {/* </div> */}
       <table className="table table-striped">
         <thead>
           <tr>
