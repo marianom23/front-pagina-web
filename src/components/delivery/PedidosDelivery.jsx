@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import './productos.css'
+import { Link } from 'react-router-dom'
 
 export const PedidosDelivery = () => {
 
@@ -27,9 +28,7 @@ export const PedidosDelivery = () => {
     })
     },[])
 
-    const verDetalle = (id) => {
 
-    }
   
 
   return (
@@ -44,7 +43,9 @@ export const PedidosDelivery = () => {
                             <h2 className="card__title">Pedido {info.id}</h2>
                             <p className="card__description">{info.tiempo_estimado_cocina} minutos</p>
                             <h3 className="card__price">{info.precio_venta}</h3>
-                            <button className="card__btn" onClick={() => verDetalle(info.id)}>Ver detalle</button>
+                            <Link className="card__btn" to={`/detalle-pedido/${info.id}`}>
+                                    Ver detalle    
+                            </Link>  
                             <button className="card__btn" onClick={() => cambiarEstado(5,info.id)}>Entregado</button>
                             </div>
                         </div>      
