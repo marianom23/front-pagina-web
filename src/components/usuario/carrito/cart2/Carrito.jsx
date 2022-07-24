@@ -8,7 +8,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import Cookies from 'universal-cookie'
 import { mercadopago } from '../mercadopago/mercadopago';
-import "./carrito.scss"
+import "./carrito.css"
 
 
 export const Carrito = () => { 
