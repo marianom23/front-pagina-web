@@ -15,6 +15,8 @@ import { GrillaInsumo } from '../components/administrador/insumos/GrillaInsumo'
 import { PedidosPendientes } from '../components/cajero/PedidosPendientes'
 import { RankingComidasMasVendidas } from '../components/usuario/RankingComidasMasVendidas'
 import { PedidosPorCliente } from '../components/usuario/PedidosPorCliente'
+import { Recaudaciones } from '../components/usuario/Recaudaciones'
+import { Ganancias } from '../components/usuario/Ganancias'
 
 export const AppRouter = ({ user }) => {
 
@@ -39,6 +41,8 @@ export const AppRouter = ({ user }) => {
       <Route path="/pedidos-pendientes" element={<PedidosPendientes />} />
       <Route path="/ranking-comidas" element={<RankingComidasMasVendidas />} />
       <Route path="/pedidos-por-cliente" element={<PedidosPorCliente />} />
+      <Route path="/recaudaciones" element={<Recaudaciones />} />
+      <Route path="/ganancias" element={<Ganancias />} />
     </Routes>
   )
 }
