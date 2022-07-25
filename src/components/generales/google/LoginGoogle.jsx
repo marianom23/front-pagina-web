@@ -1,15 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import jwt_decode from "jwt-decode"
+import useUser from '../../hooks/useUser'
+import './login.css'
 
 export const LoginGoogle = () => {
     const [user, setUser] = useState({})
+    console.log(user)
+    const {login} = useUser()
 
 
     const handleCallbackResponse = (response) =>{
         var userObject = jwt_decode(response.credential);
         console.log(userObject)
         setUser(userObject)
+
+        const usercreado = {
+                apellido: userObject.family_name,
+                email: userObject.email,
+                id: Number(userObject.sub),
+                nombre: userObject.given_name,
+                rol: 100,
+                usuario: userObject.email
+            }
+ 
+        window.sessionStorage.setItem('user',JSON.stringify(usercreado))
         document.getElementById("signInDiv").hidden = true;
+        login()
     } 
 
     const handleSignOut = (event) => {
@@ -36,8 +52,9 @@ export const LoginGoogle = () => {
 
 
   return (
-    <div className="container">
-        <div id="signInDiv"></div>
+    <div className='center'>
+
+        <button id="signInDiv"></button>
 
         { Object.keys(user).length != 0 &&
            <button onClick={(e) => handleSignOut(e)}> Sign Out </button>

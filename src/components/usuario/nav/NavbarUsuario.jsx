@@ -9,61 +9,61 @@ import {
   MDBNavbarToggler,
   MDBNavbarBrand,
   MDBCollapse,
-  MDBBadge
 } from 'mdb-react-ui-kit';
 
-import Cookies from 'universal-cookie'
+import { useNavigate } from 'react-router-dom';
+import useUser from '../../hooks/useUser';
+
 
 export const NavbarUsuario = () => {
   const [showNavColor, setShowNavColor] = useState(false);
-  const cookies = new Cookies();
-
-  const logout = (e) => {
-    console.log(e)
-    cookies.remove('nombre')
-    cookies.remove('id')
-    cookies.remove('email')
-    cookies.remove('rol')
-  }
+  const {usuario, logout} = useUser()
+  const navigate = useNavigate()
 
   return (   
-    <MDBNavbar expand='lg' dark bgColor='primary'>
-      <MDBContainer fluid>
-        <MDBNavbarBrand>Bienvenido {cookies.get('nombre')}</MDBNavbarBrand>
-        <MDBNavbarToggler
-          type='button'
-          data-target='#navbarColor02'
-          aria-controls='navbarColor02'
-          aria-expanded='false'
-          aria-label='Toggle navigation'
-          onClick={() => setShowNavColor(!showNavColor)}
-        >
-          <MDBIcon icon='bars' fas />
-        </MDBNavbarToggler>
-        <MDBCollapse show={showNavColor} navbar>
-          <MDBNavbarNav className='me-auto mb-2 mb-lg-0'>
-            <MDBNavbarItem className='active'>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href='/' onClick={logout()}>Logout</MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href='/pedir'>Hacer mi pedido</MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href=''>Mis pedidos</MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href='/domicilio'>Domicilio</MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href='/carritos'>Carrito</MDBNavbarLink>
-            </MDBNavbarItem>
-          </MDBNavbarNav>
-          
-        </MDBCollapse>
-      </MDBContainer>
-    </MDBNavbar>
-
+    <>
+      {(
+        usuario === null ?
+          <div>Sin logout</div>
+        :
+        <MDBNavbar expand='lg' dark bgColor='primary'>
+        <MDBContainer fluid>
+          <MDBNavbarBrand>Bienvenido {usuario.nombre}</MDBNavbarBrand>
+          <MDBNavbarToggler
+            type='button'
+            data-target='#navbarColor02'
+            aria-controls='navbarColor02'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
+            onClick={() => setShowNavColor(!showNavColor)}
+          >
+            <MDBIcon icon='bars' fas />
+          </MDBNavbarToggler>
+          <MDBCollapse show={showNavColor} navbar>
+            <MDBNavbarNav className='me-auto mb-2 mb-lg-0'>
+              <MDBNavbarItem className='active'>
+              </MDBNavbarItem>
+              <MDBNavbarItem>
+                <MDBNavbarLink href='/login' onClick={logout} >Logout</MDBNavbarLink>
+              </MDBNavbarItem>
+              <MDBNavbarItem>
+                <MDBNavbarLink href='/pedir'>Hacer mi pedido</MDBNavbarLink>
+              </MDBNavbarItem>
+              <MDBNavbarItem>
+                <MDBNavbarLink href='/domicilio'>Agregar domicilio</MDBNavbarLink>
+              </MDBNavbarItem>
+              <MDBNavbarItem>
+                  <MDBNavbarLink onClick={() => navigate(`/mis-pedidos/${usuario.id}`, { replace: true })}>Mis pedidos</MDBNavbarLink>
+              </MDBNavbarItem>
+              <MDBNavbarItem>
+                <MDBNavbarLink href='/carritos'>Carrito</MDBNavbarLink>
+              </MDBNavbarItem>
+            </MDBNavbarNav>
+            
+          </MDBCollapse>
+        </MDBContainer>
+      </MDBNavbar>
+      )}
+    </>
   );
 }

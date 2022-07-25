@@ -1,10 +1,28 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import './productos.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import useUser from '../hooks/useUser'
 
 
 export const PedidosPendientes = () => {
+
+    let navigate = useNavigate();
+    const {usuario} = useUser();
+  
+    useEffect(() => {
+        if (usuario !== null) {
+            if (usuario.rol === 200 || usuario.rol === 500) {
+                alert('Bienvenido')
+              }else{
+                alert('Tienes que logearte como cajero para acceder')
+                navigate("/login", { replace: true });
+              }   
+        }else{
+            alert('Tienes que logearte como cajero para acceder')
+            navigate("/login", { replace: true });
+        }
+    }, [])
 
     const [data, setData] = useState([])
 

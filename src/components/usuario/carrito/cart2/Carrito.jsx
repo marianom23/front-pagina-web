@@ -9,10 +9,13 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import Cookies from 'universal-cookie'
 import "./carrito.css"
+import useUser from '../../../hooks/useUser';
 
 
 export const Carrito = () => { 
 
+    const {usuario} = useUser()
+    const id = usuario.id
     const { cartItems } = useContext(CartContext)  
     const [productsLength, setProductsLength] = useState(0)
     const navigate = useNavigate()
@@ -27,7 +30,8 @@ export const Carrito = () => {
         detalle_envio: "",
         tipo_envio: "",
         id_domicilio: "",
-        id_cliente: ""})
+        id_cliente: {id}
+    })
 
     const handleChange = ({target}) => {
         if (target.value === "2") {
@@ -165,11 +169,11 @@ export const Carrito = () => {
         const pedidos = {
             pedido: {
                 estado: 1,
-                hora_estimada_fin: "",
+                hora_estimada_fin: "12",
                 detalle_envio: dataPedido.detalle_envio,
-                tipo_envio: 1,
+                tipo_envio: Number(dataPedido.tipo_envio),
                 id_domicilio: 1,
-                id_cliente: 1
+                id_cliente: id
             },
             detalle_pedido
         }

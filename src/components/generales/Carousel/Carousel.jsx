@@ -73,20 +73,3 @@ const settings = {
     </div>
   )
 }
-
-{/* <div className="carousel">
-<Slider {...settings}>
-    {data.map((item) =>(
-        <div className="card">
-            <div className="card-top">
-                <img src={item.img} alt={item.titulo} />
-                <h1>{item.titulo}</h1>
-            </div>
-            <div className="card-bottom">
-                <h3>{item.precio}</h3>
-                <span className="category">{item.categoria}</span>
-            </div>
-        </div>
-    ))}
-</Slider>
-</div> */}
