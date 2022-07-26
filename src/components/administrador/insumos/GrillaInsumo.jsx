@@ -95,7 +95,7 @@ export const GrillaInsumo = () => {
 
   return (
 
-    <Container>
+    <>
     <NavbarAdministrador/>
         <h1>Grilla de Insumos</h1>
         <table id="rwd-table-large">
@@ -156,7 +156,7 @@ export const GrillaInsumo = () => {
                 </Form>
         </Modal>
 
-    </Container>
+    </>
   )
 
 }

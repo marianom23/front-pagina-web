@@ -4,7 +4,7 @@ import './productos.css'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import useUser from '../../hooks/useUser'
 import { NavbarUsuario } from '../nav/NavbarUsuario'
-
+import './grillaPedido.css'
 
 export const PedidosCliente = () => {
 
@@ -30,7 +30,6 @@ export const PedidosCliente = () => {
 
     const {idCliente} = useParams();
     const [data, setData] = useState([])
-
     const getData = async () => {
         const response = await axios.get(`https://el-buen-sabor.herokuapp.com/pedido/byCliente/${idCliente}`)
         console.log(response)
@@ -39,7 +38,9 @@ export const PedidosCliente = () => {
 
     useEffect(() => {
     getData().then((response) => {
-        setData(response.data)
+        setData(response.data.map(function iterateItems(item) {
+            return item;
+          }).reverse())
     })
     },[])
 
@@ -49,7 +50,63 @@ export const PedidosCliente = () => {
 
             <br />
 
-            <h1>Pedidos en curso</h1>
+            <h1>Grilla de Articulos</h1>
+            <table id="rwd-table-large">
+            <thead>
+                <tr>
+                    <th>Pedido numero:</th>
+                    <th>Estado</th>
+                    <th>Hora estimada fin</th>
+                    <th>Fecha del pedido</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                data.map(
+    
+                    (info)=>{
+                        return(
+                            <tr key={info.id}>
+                                <td>{info.id}</td>
+                                {info.estado === 1 ? 
+                                    <td >En espera de aprobacion</td>
+                                 : info.estado === 2 ?
+                                    <td>Apronado</td>
+                                 : info.estado === 3 ?
+                                    <td>En cocina</td> 
+                                 : info.estado === 4 ?
+                                    <td>El delivery esta en camino</td>   
+                                 : info.estado === 5 ?
+                                    <td>El pedido esta terminado</td>
+                                 :  
+                                    <td>El pedido fue rechazado</td>   
+                                }
+                                {info.estado === 2 ?
+                                    <td>{info.hora_estimada_fin}</td>
+                                 : info.estado === 3 ?
+                                    <td>{info.hora_estimada_fin}</td> 
+                                 : info.estado === 4 ?
+                                    <td>{info.hora_estimada_fin}</td>   
+                                 : info.estado === 5 ?
+                                    <td>-----------------</td>
+                                 :  
+                                    <td>-----------------</td>   
+                                }
+                                <td>{info.imagen}</td>
+                                <td>
+                                <Link className="card__btn" to={`/detalle-pedido/${info.id}`}>
+                                    Ver detalle    
+                                </Link> 
+                                </td>
+                            </tr>
+                        )
+                    }
+                ) 
+                }                   
+            </tbody>
+            </table>
+
+            {/* <h1>Pedidos en curso</h1>
             
             <div className='wrapper'>
             {         
@@ -124,7 +181,7 @@ export const PedidosCliente = () => {
                     )
                 )
             }       
-            </div>
+            </div> */}
             
 
     </>

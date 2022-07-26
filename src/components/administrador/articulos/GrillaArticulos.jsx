@@ -90,7 +90,7 @@ export const GrillaArticulos = () => {
 
   return (
 
-    <Container>
+    <>
     <NavbarAdministrador/>
         <h1>Grilla de Articulos</h1>
         <table id="rwd-table-large">
@@ -140,7 +140,7 @@ export const GrillaArticulos = () => {
                 </Form>
         </Modal>
 
-    </Container>
+    </>
   )
 
 }
