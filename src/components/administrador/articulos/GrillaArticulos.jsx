@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Container, Form, Modal } from 'react-bootstrap'
 import { NavbarAdministrador } from '../NavbarAdministrador'
+import './grillaArticulo.css'
 
 export const GrillaArticulos = () => {
 
@@ -92,7 +93,7 @@ export const GrillaArticulos = () => {
     <Container>
     <NavbarAdministrador/>
         <h1>Grilla de Articulos</h1>
-        <table className="table table-striped">
+        <table id="rwd-table-large">
         <thead>
             <tr>
                 <th>Tiempo estimado</th>
