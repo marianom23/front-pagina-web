@@ -48,7 +48,7 @@ export const GrillaInsumo = () => {
         //     return
         // }  
         // console.log(dataModal.denominacion)
-        // e.preventDefault()
+        e.preventDefault()
         const insumo = {
             id: Number(dataModal.id),
             precio_compra: Number(dataModal.precio_compra),
