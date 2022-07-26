@@ -24,16 +24,16 @@ main {
   width: 100%;
 }
 
-a {
-  color: #222;
-  font-weight: bold;
-  text-decoration: none;
-  border-bottom: 2px solid #222;
+// a {
+//   color: #222;
+//   font-weight: bold;
+//   text-decoration: none;
+//   border-bottom: 2px solid #222;
   
-  &:hover {
-    color: $primary-color;
-  }
-}
+//   &:hover {
+//     color: $primary-color;
+//   }
+// }
 ///BASIC TABLE STYLING
 table {
 	border-collapse: collapse;
@@ -270,5 +270,5 @@ table {
 
 #rwd-table-large {
 	@extend %responive-tables-large;
-	@include responive-tables-large('Heading Col 1', 'Heading Col 2', 'Heading Col 3','Heading Col 4');
+	@include responive-tables-large('Denominacion', 'Precio compra', 'Precio venta','Stock actual', 'Stock minimo', 'Unidad de medida', 'Es insumo');
 }

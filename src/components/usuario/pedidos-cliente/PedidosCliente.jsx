@@ -3,6 +3,7 @@ import axios from 'axios'
 import './productos.css'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import useUser from '../../hooks/useUser'
+import { NavbarUsuario } from '../nav/NavbarUsuario'
 
 
 export const PedidosCliente = () => {
@@ -44,7 +45,12 @@ export const PedidosCliente = () => {
 
     return (
         <>
+            <NavbarUsuario/>
+
+            <br />
+
             <h1>Pedidos en curso</h1>
+            
             <div className='wrapper'>
             {         
                 data.map(      
@@ -120,7 +126,7 @@ export const PedidosCliente = () => {
             }       
             </div>
             
-            
+
     </>
     )
 }

@@ -9,16 +9,6 @@ main {
   width: 100%;
 }
 
-a {
-  color: #222;
-  font-weight: bold;
-  text-decoration: none;
-  border-bottom: 2px solid #222;
-}
-a:hover {
-  color: #008cba;
-}
-
 table {
   border-collapse: collapse;
   width: 100%;
