@@ -5,7 +5,7 @@ export const userContext = createContext({})
 export const UserContextProvider = ({children}) => {
 
   const [user, setUser] = useState(
-    () => window.sessionStorage.getItem('user')
+    () => window.localStorage.getItem('user')
   )
   // const [user, setUser] = useState(
   //   { apellido: null, email: null, id: null, rol: null, usuario:null}

@@ -44,7 +44,7 @@ export const Login = () => {
     const res = await axios.post('https://el-buen-sabor.herokuapp.com/login', data)
     if (res.status === 200) {
     console.log(res.data)
-    window.sessionStorage.setItem('user',JSON.stringify(res.data))
+    window.localStorage.setItem('user',JSON.stringify(res.data))
     alert('Has entrado exitosamente')
     login()
     }

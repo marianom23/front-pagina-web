@@ -12,7 +12,7 @@ export const Conjunto = () => {
 
 
   useEffect(() => {
-    if (usuario !== null) {
+    if (usuario !== null) { 
         if (usuario.rol === 100 || usuario.rol === 500) {
             alert('Bienvenido')
           }else{

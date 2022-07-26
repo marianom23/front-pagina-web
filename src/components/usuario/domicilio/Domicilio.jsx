@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { Footer } from '../../generales/nav-foot/Footer';
@@ -7,11 +7,31 @@ import {
     MDBInput,
     MDBBtn,
 } from 'mdb-react-ui-kit';
+import useUser from '../../hooks/useUser';
 
 export const Domicilio = () => {
 
-    const [data, setData] = useState({ calle: "", numero: "", localidad: ""})
     let navigate = useNavigate();
+    const {usuario} = useUser()
+    console.log(usuario)
+  
+  
+    useEffect(() => {
+      if (usuario !== null) {
+          if (usuario.rol === 100 || usuario.rol === 500) {
+              alert('Bienvenido')
+            }else{
+              alert('Tienes que logearte como usuario para acceder')
+              navigate("/login", { replace: true });
+            }   
+      }else{
+          alert('Tienes que logearte como usuario para acceder')
+          navigate("/login", { replace: true });
+      }
+    }, [])
+
+    const [data, setData] = useState({ calle: "", numero: "", localidad: ""})
+
     const handleChange = ({ target }) => {
         setData({
             ...data,

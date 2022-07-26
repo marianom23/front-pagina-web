@@ -124,9 +124,9 @@ export const Carrito = () => {
             // document.getElementById("cartContainer").innerHTML = `<button onclick="location.href='${script.src}'" type="button">
             // Pagar MercadoPago</button>`;
 
-            document.getElementById("cartContainer").innerHTML = "";
+            document.getElementById("checkout").innerHTML = "";
             
-            document.querySelector("#cartContainer").appendChild(script);
+            document.querySelector("#checkout").appendChild(script);
 
             console.log("Todo bien")
             console.log("Preference ID:", script.dataset.preferenceId)
@@ -161,7 +161,7 @@ export const Carrito = () => {
     } 
 
     const handleSubmit = async (e) => {
-        // handleCloseModal()
+        handleCloseModal()
         e.preventDefault()
         mercadopago()
 
@@ -169,7 +169,7 @@ export const Carrito = () => {
         const pedidos = {
             pedido: {
                 estado: 1,
-                hora_estimada_fin: "12",
+                hora_estimada_fin: "2021-02-18T21:54:42.123Z",
                 detalle_envio: dataPedido.detalle_envio,
                 tipo_envio: Number(dataPedido.tipo_envio),
                 id_domicilio: 1,
@@ -267,7 +267,7 @@ export const Carrito = () => {
             </div>
         </div>
             
-            <button onClick={pago} class="checkout">Checkout</button>
+            <button onClick={pago} id="checkout" class="checkout">Checkout</button>
         </div>
 
             <button onClick={handleReturn}>Regresar</button>

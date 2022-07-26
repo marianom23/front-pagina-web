@@ -1,15 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './productos.css'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import useUser from '../../hooks/useUser'
 
 
 export const PedidosCliente = () => {
+
+    let navigate = useNavigate();
+    const {usuario} = useUser()
+    console.log(usuario)
+  
+  
+    useEffect(() => {
+      if (usuario !== null) {
+          if (usuario.rol === 100 || usuario.rol === 500) {
+              alert('Bienvenido')
+            }else{
+              alert('Tienes que logearte como usuario para acceder')
+              navigate("/login", { replace: true });
+            }   
+      }else{
+          alert('Tienes que logearte como usuario para acceder')
+          navigate("/login", { replace: true });
+      }
+    }, [])
+
+
     const {idCliente} = useParams();
     const [data, setData] = useState([])
 
     const getData = async () => {
-        const response = await axios.get(`http://localhost:8080/pedido/byCliente/${idCliente}`)
+        const response = await axios.get(`https://el-buen-sabor.herokuapp.com/pedido/byCliente/${idCliente}`)
         console.log(response)
         return response
     }   

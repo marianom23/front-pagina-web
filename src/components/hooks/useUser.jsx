@@ -8,7 +8,7 @@ export default function useUser(){
     let usuario = JSON.parse(user)
 
     const login = () => {
-        setUser(window.sessionStorage.getItem('user'))
+        setUser(window.localStorage.getItem('user'))
         navigate("/redirect", { replace: true });
     }
 
