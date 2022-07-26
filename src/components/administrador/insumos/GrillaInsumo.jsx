@@ -58,7 +58,7 @@ export const GrillaInsumo = () => {
             unidad_medida: Number(dataModal.unidad_medida),
             es_insumo: Boolean(dataModal.es_insumo),
         }
-        const res = await axios.put('https://el-buen-sabor.herokuapp.com/articulo-insumo', dataModal)
+        const res = await axios.put('https://el-buen-sabor.herokuapp.com/articulo-insumo', insumo)
         if (res.status === 200) {
             alert('Insumo editado con éxito')
         } else {
