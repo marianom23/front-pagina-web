@@ -33,15 +33,16 @@ export const PedidosPendientes = () => {
     }   
 
     const cambiarEstado =  async (numero, id) => {
-        if (numero === 2) {
-            await axios.put(`https://el-buen-sabor.herokuapp.com/aceptar-pedido/${id}`)
-        }
         const pedido = {
             "id_pedido":id,
             "estado":numero
         }
-        const response = await axios.put('https://el-buen-sabor.herokuapp.com/pedido/update-estado', pedido)
-        console.log(response)
+        if (numero === 2) {
+            await axios.put(`https://el-buen-sabor.herokuapp.com/aceptar-pedido/${id}`)
+        }else{
+            const response = await axios.put('https://el-buen-sabor.herokuapp.com/pedido/update-estado', pedido)
+        }
+        
     }   
 
     useEffect(() => {
