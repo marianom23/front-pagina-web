@@ -73,7 +73,14 @@ export const PedidosPendientes = () => {
                                 <Link className="card__btn" to={`/detalle-pedido/${info.id}`}>
                                     Ver detalle    
                                 </Link> 
-                                <button className="card__btn" onClick={() => cambiarEstado(2, info.id)}>Aprobar</button>
+                                {
+                                    (info.detalle_envio === "mercadopago" ?
+                                        <button className="card__btn" onClick={() => cambiarEstado(7, info.id)}>Aprobar mercadopago</button> 
+                                        : 
+                                        <button className="card__btn" onClick={() => cambiarEstado(2, info.id)}>Aprobar efectivo</button>
+                                    ) 
+                                    
+                                }
                                 <button className="card__btn" onClick={() => cambiarEstado(6, info.id)}>No aprobar</button>
                                 </div>
                             </div>      
@@ -85,6 +92,31 @@ export const PedidosPendientes = () => {
                 )
             }
             </div>     
+            <h1>Pedidos en espera de pago</h1>
+            <div className='wrapper'>
+            {         
+                data.map(      
+                    (info)=>(          
+                        (info.estado === 7 ? 
+                            <div className="card" key={info.id}>
+                                <img src="assets/pedidoPendiente.png" alt={info.denominacion} className="card__img" />
+                                <div className="card__body">
+                                <h2 className="card__title">Pedido {info.id}</h2>
+                                <p className="card__description">{info.tiempo_estimado_cocina} minutos</p>
+                                <h3 className="card__price">{info.precio_venta}</h3>
+                                <Link className="card__btn" to={`/detalle-pedido/${info.id}`}>
+                                    Ver detalle    
+                                </Link> 
+                                </div>
+                            </div>      
+                        :
+                            ""
+                        )
+
+                    )
+                )
+            }
+            </div>
             <h1>Pedidos en Cocina</h1>
             <div className='wrapper'>
             {         

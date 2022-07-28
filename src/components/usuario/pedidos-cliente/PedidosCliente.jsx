@@ -44,6 +44,8 @@ export const PedidosCliente = () => {
     })
     },[])
 
+    
+
     return (
         <>
             <NavbarUsuario/>
@@ -58,6 +60,7 @@ export const PedidosCliente = () => {
                     <th>Estado</th>
                     <th>Hora estimada fin</th>
                     <th>Fecha del pedido</th>
+                    <th>Pago</th>
                 </tr>
             </thead>
             <tbody>
@@ -70,16 +73,20 @@ export const PedidosCliente = () => {
                                 <td>{info.id}</td>
                                 {info.estado === 1 ? 
                                     <td >En espera de aprobacion</td>
+                                 : info.estado === 7 ?
+                                    <td tyle={{ color: "rgb(158, 244, 5)"}}>Aprobado en falta de pago</td>
                                  : info.estado === 2 ?
-                                    <td>Apronado</td>
+                                    <td>Aprobado</td> 
                                  : info.estado === 3 ?
                                     <td>En cocina</td> 
                                  : info.estado === 4 ?
                                     <td>El delivery esta en camino</td>   
                                  : info.estado === 5 ?
                                     <td>El pedido esta terminado</td>
-                                 :  
-                                    <td>El pedido fue rechazado</td>   
+                                 :  info.estado === 6 ?
+                                    <td>El pedido fue rechazado</td>  
+                                 :
+                                 ""    
                                 }
                                 {info.estado === 2 ?
                                     <td>{info.hora_estimada_fin}</td>
@@ -93,11 +100,22 @@ export const PedidosCliente = () => {
                                     <td>-----------------</td>   
                                 }
                                 <td>{info.imagen}</td>
+                                {
+                                    info.estado === 7 ?
+                                    <button>Pagar</button>
+                                    : info.estado === 6 ?                              
+                                    <td>Pedido rechazado</td>
+                                    : info.estado === 1 ?
+                                    <td>Esperando aprobacion :</td>
+                                    :
+                                    <td>Aprobado</td>
+                                }
                                 <td>
                                 <Link className="card__btn" to={`/detalle-pedido/${info.id}`}>
                                     Ver detalle    
                                 </Link> 
                                 </td>
+                                
                             </tr>
                         )
                     }
