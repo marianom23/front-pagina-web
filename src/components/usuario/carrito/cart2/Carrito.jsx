@@ -21,6 +21,7 @@ export const Carrito = () => {
     const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false)
     const [showDomicilio, setShowDomicilio] = useState(false)
+    const [showMetodoPago, setShowMetodoPago] = useState(false)
     const [first, setfirst] = useState()
     const handleCloseModal = () => {setShowModal(false)}
     const handleOpenModal = () => {setShowModal(true)}
@@ -35,11 +36,15 @@ export const Carrito = () => {
     })
 
     const handleChange = ({target}) => {
-        if (target.value === "2" || target.value === "efectivo") {
-            setShowDomicilio(true)
-        }else{
+        if (target.value === "1") {
+            setShowMetodoPago(true)
             setShowDomicilio(false)
+        }else if (target.value === "2"){
+            setShowMetodoPago(false)
+            setShowDomicilio(true)
         }
+
+
         SetDataPedido({
             ...dataPedido,
             [target.name]: target.value,
@@ -292,23 +297,15 @@ export const Carrito = () => {
 
 
         <Modal show={showModal}>
-                <Modal.Title>Ingresar datos de su pedido</Modal.Title>
+                <Modal.Title>--------¿Como desea obtener su pedido?---------</Modal.Title>
                 <Form>
                     <Modal.Body>
                         
-                        <p>Pago con efectivo 10% de descuento</p>
-                        <div className="select">
-                            <select onChange={handleChange} name="detalle_envio">
-                                <option selected disabled>Metodo de pago</option>
-                                {options2.map(obj =>
-                                    <option key={obj.id} value={obj.value} >{obj.label}</option>
-                                )}
-                            </select>
-                        </div>
 
-                        <br/>
-                        
-                        <p>Envios a domicilio solo se acepta mercado pago</p>
+                                                
+                        <p>Envios a domicilio solo acepta mercado pago, pago con efectivo tiene 10% de descuento.</p>
+
+                        <p>Elegir forma de envío:</p>
                         <div className="select">
                             <select onChange={handleChange} name="tipo_envio">
                                 <option selected disabled>Forma de envío</option>
@@ -317,12 +314,41 @@ export const Carrito = () => {
                                 )}
                             </select>
                         </div>
+                      
+
+                        {
+                            
+                            (showMetodoPago ?
+                            <>
+                                <br/>
+                                <div className="select">
+                                    <select onChange={handleChange} name="detalle_envio">
+                                        <option selected disabled>Metodo de pago</option>
+                                        {options2.map(obj =>
+                                            <option key={obj.id} value={obj.value} >{obj.label}</option>
+                                        )}
+                                    </select>
+                                </div>
+                            </>
+                            :
+                            ""
+                            )
+                        }
 
                         <br/>
 
                         {
                             (showDomicilio ?
                             <>
+                                <p>Forma de pago</p>
+                                <div className="select">
+                                    <select onChange={handleChange} name="detalle_envio">
+                                        <option value="mercadopago" selected>Mercado Pago</option>
+                                    </select>
+                                </div>      
+
+                                <br/>  
+
                                 <p>Elija su domicilio</p>
                                 <div className="select">
                                     <select onChange={handleChange} name="id_domcilio">
