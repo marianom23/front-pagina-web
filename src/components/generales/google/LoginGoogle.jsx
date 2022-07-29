@@ -67,9 +67,9 @@ export const LoginGoogle = () => {
     //         </div>
     //     }
     // </div>
-    <div id='signInDiv'>
+    <button id='signInDiv'>
 
-    </div>
+    </button>
   )
 }
 
