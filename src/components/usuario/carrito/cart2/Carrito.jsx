@@ -143,6 +143,13 @@ export const Carrito = () => {
 
     const detallesPruebas = JSON.parse(localStorage.getItem("cartProducts"));
 
+    // let cantidadMinutos = 0;
+    // detallesPruebas.map(
+    //     (info) => (
+    //             cantidadMinutos += info.tiempo_estimado_cocina 
+    //     )
+    // )
+
     const detalle_pedido = detallesPruebas.map(
         (info) => (
             {

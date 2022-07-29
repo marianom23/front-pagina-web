@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { CartContext } from '../../context/CartContext'
 import './productos2.css'
+import './productos.css'
 import { Card } from 'react-bootstrap'
 import { MDBBadge, MDBIcon, MDBNavbarItem, MDBNavbarLink } from 'mdb-react-ui-kit'
 
@@ -109,6 +110,15 @@ export const Productos2 = () => {
                                                             </div>
                                                             </div>
                                                             </div> 
+                                                        {/* <div className="card" key={info.id}>
+                                                        <img src={info.imagen} alt={info.denominacion} className="card__img" />
+                                                        <div className="card__body">
+                                                        <h2 className="card__title">{info.denominacion}</h2>
+                                                        <p className="card__description">{info.tiempo_estimado_cocina} minutos</p>
+                                                        <h3 className="card__price">{info.precio_venta}</h3> */}
+                                                        {/* <button onClick={() => addItemToCart(info)} className="card__btn">Add to Cart</button> */}
+                                                        {/* </div> */}
+                                                        {/* </div>    */}
                                                         </div>
                                                     )
                                                 )
