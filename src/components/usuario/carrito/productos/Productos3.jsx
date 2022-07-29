@@ -43,60 +43,60 @@ export const Productos3 = () => {
         </MDBNavbarLink>
 
   
-        <div class = "main-container">
+        <div className = "main-container">
             <h2>Categorías</h2>
             {/* <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut, velit.</p> */}
-            <div class = "filter-container">
-                <div class = "category-head">
+            <div className = "filter-container">
+                <div className = "category-head">
                     <ul>
-                        <div class = "category-title active" id = "all">
+                        <div className = "category-title active" id = "all">
                             <li>All</li>
-                            <span><i class = "fas fa-border-all"></i></span>
+                            <span><i className = "fas fa-border-all"></i></span>
                         </div>
-                        <div class = "category-title" id = "culture">
+                        <div className = "category-title" id = "culture">
                             <li>Culture</li>
-                            <span><i class = "fas fa-theater-masks"></i></span>
+                            <span><i className = "fas fa-theater-masks"></i></span>
                         </div>
-                        <div class = "category-title" id = "politics">
+                        <div className = "category-title" id = "politics">
                             <li>Politics</li>
-                            <span><i class = "fas fa-landmark"></i></span>
+                            <span><i className = "fas fa-landmark"></i></span>
                         </div>
-                        <div class = "category-title" id = "finance">
+                        <div className = "category-title" id = "finance">
                             <li>Finance</li>
-                            <span><i class = "fas fa-chart-area"></i></span>
+                            <span><i className = "fas fa-chart-area"></i></span>
                         </div>
-                        <div class = "category-title" id = "business">
+                        <div className = "category-title" id = "business">
                             <li>Business</li>
-                            <span><i class = "fas fa-coins"></i></span>
+                            <span><i className = "fas fa-coins"></i></span>
                         </div>
-                        <div class = "category-title" id = "sports">
+                        <div className = "category-title" id = "sports">
                             <li>Sports</li>
-                            <span><i class = "fas fa-running"></i></span>
+                            <span><i className = "fas fa-running"></i></span>
                         </div>
                     </ul>
                 </div>
-                <div class = "posts-collect">
-                    <div class = "posts-main-container">
+                <div className = "posts-collect">
+                    <div className = "posts-main-container">
                         {data.map(
                             (info) => (
                                 (
-                                <div class = "all business">
-                                    <div class = "post-img">
+                                <div className = "all business">
+                                    <div className = "post-img">
                                         <img src = {info.imagen} alt = {info.denominacion}/>
-                                        <span class = "category-name">Comida</span>
+                                        <span className = "category-name">Comida</span>
                                     </div>
         
-                                    <div class = "post-content">
-                                        <div class = "post-content-top">
-                                            <span><i class = "fas fa"></i>$ {info.precio_venta}</span>
+                                    <div className = "post-content">
+                                        <div className = "post-content-top">
+                                            <span><i className = "fas fa"></i>$ {info.precio_venta}</span>
                                             <span>
-                                                <i class = "fas fa"></i>Tiempo: {info.tiempo_estimado_cocina}
+                                                <i className = "fas fa"></i>Tiempo: {info.tiempo_estimado_cocina}
                                             </span>
                                         </div>
                                         <h2>{info.denominacion}</h2>
                                         {/* <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus recusandae aspernatur possimus illum, repellat ad quasi earum, illo voluptatibus minima fugiat saepe magni corporis vero eius accusantium quidem, consectetur nesciunt!</p> */}
                                     </div>
-                                    <button type = "button" class = "read-btn" onClick={() => addItemToCart(info)}>Añadir al carro</button>
+                                    <button type = "button" className = "read-btn" onClick={() => addItemToCart(info)}>Añadir al carro</button>
                                 </div>                              
                                 )
                             )

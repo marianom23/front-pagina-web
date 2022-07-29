@@ -48,7 +48,8 @@ export const Domicilio = () => {
         const domicilio = {
             calle: data.calle,
             numero: Number(data.numero),
-            localidad: data.localidad
+            localidad: data.localidad,
+            id_usuario: Number(usuario.id)
         }
 
 
