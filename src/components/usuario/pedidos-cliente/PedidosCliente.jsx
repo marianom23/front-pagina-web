@@ -60,7 +60,6 @@ export const PedidosCliente = () => {
                     <th>Estado</th>
                     <th>Hora estimada fin</th>
                     <th>Fecha del pedido</th>
-                    <th>Pago</th>
                 </tr>
             </thead>
             <tbody>
@@ -100,20 +99,25 @@ export const PedidosCliente = () => {
                                     <td>-----------------</td>   
                                 }
                                 <td>{info.imagen}</td>
+                                <td>
                                 {
                                     info.estado === 7 ?
-                                    <button>Pagar</button>
-                                    : info.estado === 6 ?                              
-                                    <td>Pedido rechazado</td>
-                                    : info.estado === 1 ?
-                                    <td>Esperando aprobacion :</td>
+                                    <div className="mb-3">
+                                    <button onClick={()=>navigate(`/detalle-pedido-cliente/${info.id}`)} className="btn btn-warning">Ver detalle / Pagar</button>
+                                    </div>
+                                    : info.estado === 6 ?
+                                    <div className="mb-3">
+                                    <button onClick={()=>navigate(`/detalle-pedido-cliente/${info.id}`)} className="btn btn-danger">Ver detalle</button>
+                                    </div>
+                                    : info.estado === 5 ?
+                                    <div className="mb-3">
+                                    <button onClick={()=>navigate(`/detalle-pedido-cliente/${info.id}`)} className="btn btn-success">Ver detalle</button>
+                                    </div>
                                     :
-                                    <td>Aprobado</td>
-                                }
-                                <td>
-                                <Link className="card__btn" to={`/detalle-pedido/${info.id}`}>
-                                    Ver detalle    
-                                </Link> 
+                                    <div className="mb-3">
+                                    <button onClick={()=>navigate(`/detalle-pedido-cliente/${info.id}`)} className="btn btn-warning">Ver detalle</button>
+                                    </div>
+                                }   
                                 </td>
                                 
                             </tr>

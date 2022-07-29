@@ -29,7 +29,7 @@ export const Carrito = () => {
     const [dataPedido, SetDataPedido] = useState({ 
         estado: 1,
         hora_estimada_fin: "",
-        detalle_envio: "",
+        detalle_envio: "mercadopago",
         tipo_envio: "",
         id_domicilio: "",
         id_cliente: {id}
@@ -342,7 +342,7 @@ export const Carrito = () => {
                             <>
                                 <p>Forma de pago</p>
                                 <div className="select">
-                                    <select onChange={handleChange} name="detalle_envio">
+                                    <select value="mercadopago" onChange={handleChange} name="detalle_envio">
                                         <option value="mercadopago" selected>Mercado Pago</option>
                                     </select>
                                 </div>      
