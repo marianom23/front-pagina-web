@@ -52,20 +52,23 @@ export const LoginGoogle = () => {
 
 
   return (
-    <div className='center'>
+    // <div className='center'>
 
-        <div id="signInDiv"></div>
+    //     <div id="signInDiv"></div>
 
-        { Object.keys(user).length != 0 &&
-           <button onClick={(e) => handleSignOut(e)}> Sign Out </button>
-        }
+    //     { Object.keys(user).length != 0 &&
+    //        <button onClick={(e) => handleSignOut(e)}> Sign Out </button>
+    //     }
 
-        {user && 
-            <div> 
-                <img src={user.picture}/>
-                <h3>{user.name}</h3>
-            </div>
-        }
+    //     {user && 
+    //         <div> 
+    //             <img src={user.picture}/>
+    //             <h3>{user.name}</h3>
+    //         </div>
+    //     }
+    // </div>
+    <div id='signInDiv'>
+
     </div>
   )
 }
