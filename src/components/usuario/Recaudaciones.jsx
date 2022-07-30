@@ -9,19 +9,18 @@ export const Recaudaciones = () => {
 
     const [recaudacionDiaria, setRecaudacionDiaria] = useState([])
     const [recaudacionPeriodica, setRecaudacionPeriodica] = useState([])
-    const [totalRecaudacionPeriodica, setTotalRecaudacionPeriodica] = useState(0)
 
     const [fechaInicial, setFechaInicial] = useState(null)
     const [fechaFinal, setFechaFinal] = useState(null)
     const [fecha, setFecha] = useState(null)
 
-    console.log("fecha:", fecha)
-    //console.log("f final:", fechaFinal)
+    const [total, setTotal] = useState(0)
+
 
     const getDataByDay = async (fecha) => {
         if (fecha !== null) {
-            //const url = `http://el-buen-sabor.herokuapp.com/recaudaciones-diarias?fecha=${fecha}`
-            const url = `http://localhost:8080/recaudaciones-diarias?fecha=${fecha}`
+            // const url = `http://localhost:8080/recaudaciones-diarias?fecha=${fecha}`
+            const url = `http://el-buen-sabor.herokuapp.com/recaudaciones-diarias?fecha=${fecha}`
             console.log("URL:", url)
             const resp = await axios.get(url)
             console.log("resp:", resp)
@@ -30,8 +29,6 @@ export const Recaudaciones = () => {
             console.log("data:", data)
             setRecaudacionDiaria(data)
             return data
-        } else {
-            console.log("F:", fechaInicial)
         }
     }
 
@@ -39,7 +36,6 @@ export const Recaudaciones = () => {
         const fechaDiaria = setDia()
         console.log("fechaDiaria", fechaDiaria)
         console.log("fecha", fecha)
-        //const hasta = setFechaFinalString()
         await getDataByDay(fechaDiaria);
     }
 
@@ -90,8 +86,8 @@ export const Recaudaciones = () => {
 
     const getDataByTwoDates = async (desde, hasta) => {
         if (desde !== null && hasta !== null) {
-            //const url = `http://el-buen-sabor.herokuapp.com/recaudaciones-diarias?fecha=${fecha}`
             const url = `http://localhost:8080/recaudaciones-periodo-tiempo?desde=${desde}&hasta=${hasta}`
+            //const url = `http://el-buen-sabor.herokuapp.com/recaudaciones-periodo-tiempo?desde=${desde}&hasta=${hasta}`
             console.log("URL:", url)
             const resp = await axios.get(url)
             console.log("resp:", resp)
@@ -99,9 +95,13 @@ export const Recaudaciones = () => {
             const data = await resp.data;
             console.log("data:", data)
             setRecaudacionPeriodica(data)
+            let totalAux = 0
+            data.forEach(recaudacion => {
+                console.log("DDDDDD:", recaudacion)
+                totalAux += recaudacion.recaudaciones
+            })
+            setTotal(totalAux)
             return data
-        } else {
-            console.log("F:", fechaInicial)
         }
     }
 
@@ -209,7 +209,7 @@ export const Recaudaciones = () => {
             {
                 recaudacionPeriodica.length !== 0 ?
                     <div>
-                        <h3>Total: </h3>
+                        <h3><b>Total: ${total} </b></h3>
                         <table className="table table-striped">
 
                             <thead>

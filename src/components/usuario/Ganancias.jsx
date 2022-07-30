@@ -11,20 +11,18 @@ export const Ganancias = () => {
     const [fechaInicial, setFechaInicial] = useState(null)
     const [fechaFinal, setFechaFinal] = useState(null)
 
+
+
     const getData = async (desde, hasta) => {
         if (desde !== null && hasta !== null) {
-            //const url = `http://el-buen-sabor.herokuapp.com/recaudaciones-diarias?fecha=${fecha}`
-            const url = `http://localhost:8080/ganancias?desde=${desde}&hasta=${hasta}`
+            //const url = `http://localhost:8080/ganancias?desde=${desde}&hasta=${hasta}`
+            const url = `https://el-buen-sabor.herokuapp.com/ganancias?desde=${desde}&hasta=${hasta}`
             console.log("URL:", url)
             const resp = await axios.get(url)
-            console.log("resp:", resp)
-
             const data = await resp.data;
             console.log("data:", data)
             setGananciaPeriodica(data)
             return data
-        } else {
-            console.log("F:", fechaInicial)
         }
     }
 
@@ -34,7 +32,6 @@ export const Ganancias = () => {
         const hasta = setGananciaHasta()
         console.log("fechaInicial", desde)
         console.log("fechaFinal", hasta)
-        //const hasta = setFechaFinalString()
         await getData(desde, hasta);
     }
     const handleOnExportGanancias = () => {
@@ -79,6 +76,7 @@ export const Ganancias = () => {
             <h1> <b>Ganancias por períodos determinados de tiempo</b></h1>
             <h3>Desde:</h3>
             <DatePicker
+                required
                 placeholderText='ingrese fecha'
                 selected={fechaInicial}
                 onChange={date => setFechaInicial(date)}
@@ -87,6 +85,7 @@ export const Ganancias = () => {
             <br />
             <h3>Hasta:</h3>
             <DatePicker
+                required
                 placeholderText='ingrese fecha'
                 selected={fechaFinal}
                 onChange={date => setFechaFinal(date)}
@@ -102,7 +101,6 @@ export const Ganancias = () => {
             {
                 gananciaPeriodica !== null ?
                     <div>
-                        <h3>Total: </h3>
                         <table className="table table-striped">
 
                             <thead>
@@ -120,10 +118,7 @@ export const Ganancias = () => {
                     :
                     <h3>null</h3>
             }
-
-
             <br />
-
         </>
     )
 }

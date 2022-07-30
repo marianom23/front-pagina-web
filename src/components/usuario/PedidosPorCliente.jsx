@@ -14,8 +14,8 @@ export const PedidosPorCliente = () => {
 
     const getDataWithDate = async (desde, hasta) => {
         if (fechaInicial !== null && fechaFinal !== null) {
-            //const url = `https://el-buen-sabor.herokuapp.com/pedidos-por-cliente?desde=${desde}&hasta=${hasta}`
-            const url = `http://localhost:8080/pedidos-por-cliente?desde=${desde}&hasta=${hasta}`
+            //const url = `http://localhost:8080/pedidos-por-cliente?desde=${desde}&hasta=${hasta}`
+            const url = `https://el-buen-sabor.herokuapp.com/pedidos-por-cliente?desde=${desde}&hasta=${hasta}`
             console.log("URL:", url)
             const resp = await axios.get(url)
             const data = await resp.data;
