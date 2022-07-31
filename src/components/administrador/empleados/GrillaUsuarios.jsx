@@ -8,7 +8,7 @@ import './select.css'
 export const GrillaUsuarios = () => {
 
     const getData = async () => {
-        const response = axios.get('https://el-buen-sabor.herokuapp.com/usuarios/getAll')
+        const response = axios.get('https://el-buen-sabor.herokuapp.com/usuarios')
         return response
     }  
   
@@ -73,20 +73,13 @@ export const GrillaUsuarios = () => {
     }
     
     const handleSubmit = async (e) => {
-        // if (dataModal.denominacion === '' || dataModal.imagen === '' || dataModal.precio_venta <= 0 || dataModal.tiempo_estimado_cocina <= 0) {
-        //     alert('Todos los campos son obligatorios')
-        //     return
-        // }  
         console.log(dataModal.denominacion)
         e.preventDefault()
-        const articuloManufacturado = {
+        const cambio = {
             id: Number(dataModal.id),
-            tiempo_estimado_cocina: Number(dataModal.tiempo_estimado_cocina),
-            denominacion: dataModal.denominacion,
-            precio_venta: Number(dataModal.precio_venta),
-            imagen: dataModal.imagen
+            rol: Number(dataModal.rol)
         }
-        const res = await axios.put('https://el-buen-sabor.herokuapp.com/articulo-manufacturado', articuloManufacturado)
+        const res = await axios.put(`https://el-buen-sabor.herokuapp.com/usuarios`, cambio)
         if (res.status === 200) {
             alert('Articulo manufacturado editado con éxito')
         } else {
@@ -100,16 +93,16 @@ export const GrillaUsuarios = () => {
         (info)=>{
             return(
                 <tr key={info.id}>
-                    <td>{info.tiempo_estimado_cocina}</td>
-                    <td>{info.denominacion}</td>
-                    <td>{info.precio_venta}</td>
-                    <td>{info.imagen}</td>
+                    <td>{info.nombre}</td>
+                    <td>{info.apellido}</td>
+                    <td>{info.usuario}</td>
+                    <td>{info.rol}</td>
                     <td>
-                        <div className="mb-3">
+                        {/* <div className="mb-3">
                             <button onClick={()=>handleDelete(info.id)} className="btn btn-danger">Delete</button>
-                        </div>
+                        </div> */}
                         <div className="mb-3">
-                            <button onClick={()=>handleEdit(info)} className="btn btn-dark">Update</button>
+                            <button onClick={()=>handleEdit(info)} className="btn btn-success">Update rol</button>
                         </div>
                     </td>
                 </tr>
@@ -121,14 +114,14 @@ export const GrillaUsuarios = () => {
 
     <>
     <NavbarAdministrador/>
-        <h1>Grilla de Articulos</h1>
+        <h1>Grilla de usuarios</h1>
         <table id="rwd-table-large">
         <thead>
             <tr>
-                <th>Tiempo estimado</th>
-                <th>Denominacion</th>
-                <th>Precio venta</th>
-                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Usuario</th>
+                <th>rol</th>
             </tr>
         </thead>
         <tbody>
@@ -141,28 +134,12 @@ export const GrillaUsuarios = () => {
                 <Modal.Title>Actualizar datos</Modal.Title>
                 <Form>
                     <Modal.Body>
-                        <div className="mb-3">
-                            <label htmlFor="tiempo_estimado_cocina" className="form-label">tiempo_estimado_cocina</label>
-                            <input value={dataModal.tiempo_estimado_cocina} name="tiempo_estimado_cocina" onChange={handleChange} type="number" id="tiempo_estimado_cocina" className="form-control"/>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="denominacion" className="form-label">denominacion</label>
-                            <input value={dataModal.denominacion} name="denominacion" onChange={handleChange} type="text" id="denominacion" className="form-control"/>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="precio_venta" className="form-label">precio_venta</label>
-                            <input value={dataModal.precio_venta} name="precio_venta" onChange={handleChange} type="number" id="precio_venta" className="form-control"/>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="imagen" className="form-label">imagen</label>
-                            <input value={dataModal.imagen} name="imagen" onChange={handleChange} type="text" id="imagen" className="form-control"/>
-                        </div>
 
                         <div className="select">
-                        <select onChange={handleChange} name="id_articulo_insumo">
-                            <option selected disabled>Selecciona un insumo</option>
+                        <select onChange={handleChange} name="rol">
+                            <option selected disabled>Selecciona un rol</option>
                             {rol.map(obj =>
-                                <option key={obj.id} value={obj.id} >{obj.denominacion}</option>
+                                <option key={obj.id} value={obj.value}>{obj.label}</option>
                             )}
                         </select>
                         </div>
