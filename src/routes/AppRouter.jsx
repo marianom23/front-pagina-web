@@ -27,7 +27,7 @@ import { GrillaUsuarios } from '../components/administrador/empleados/GrillaUsua
 // import { Ganancias } from '../components/administrador/metricas/Ganancias'
 // import { PedidosPorCliente } from '../components/administrador/metricas/PedidosPorCliente'
 // import { RankingComidasMasVendidas } from '../components/administrador/metricas/RankingComidasMasVendidas'
-import { Recaudaciones } from '../components/administrador/metricas/Recaudaciones'
+// import { Recaudaciones } from '../components/administrador/metricas/Recaudaciones'
 
 
 
@@ -64,7 +64,7 @@ export const AppRouter = ({user}) => {
           {/* <Route path="/metricas-pedidos" element={<PedidosPorCliente/>}/>
           <Route path="/metricas-ranking" element={<RankingComidasMasVendidas/>}/>
           <Route path="/metricas-ganancias" element={<Ganancias/>}/> */}
-          <Route path="/metricas-recaudaciones" element={<Recaudaciones/>}/>
+          {/* <Route path="/metricas-recaudaciones" element={<Recaudaciones/>}/> */}
       </Routes>  
     </BrowserRouter>
   )
