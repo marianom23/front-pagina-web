@@ -32,13 +32,10 @@ data.forEach(info => {
 
 
 async function mercadopago() {
-    if (data.length > 0) {
         const user = {
             id: usuario.id,
             nombre: usuario.nombre,
             email: usuario.email,
-            type_identification: usuario.id,
-            number_identification: usuario.id,
         }
         const dataSendMP = {
             producto_mercado_pago: data,
@@ -95,10 +92,6 @@ async function mercadopago() {
         } catch {
             window.alert("Error al pagar. \nIntentelo nuevamente más tarde")
         }
-    } else {
-        window.alert("No se encontraron artículos en el carrito.")
-
-    }
 
 }
 
@@ -126,7 +119,7 @@ async function mercadopago() {
         </div>
         <h1>El total del pedido es de: {total}</h1>
         <button id="checkout" className='checkout' name="checkout" onClick={mercadopago()}>Pagar</button>
-        <button onClick={handleReturn}>Regresar</button>
+        <button onClick={handleReturn} className="btn btn-success">Regresar</button>
     </>
   )
 }

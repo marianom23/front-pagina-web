@@ -92,15 +92,10 @@ export const GrillaInsumo = () => {
         // console.log(dataModal.denominacion)
         e.preventDefault()
         const insumo = {
-            id: Number(dataModal2.id),
-            precio_compra: Number(dataModal2.precio_compra),
-            precio_venta: Number(dataModal2.precio_venta),
-            stock_actual: Number(dataModal2.stock_actual),
-            stock_minimo: Number(dataModal2.stock_minimo),
-            unidad_medida: Number(dataModal2.unidad_medida),
-            es_insumo: Boolean(dataModal2.es_insumo),
+            id_articulo_insumo: Number(dataModal2.id),
+            cantidad: Number(dataModal2.stock_actual)
         }
-        const res = await axios.put('https://el-buen-sabor.herokuapp.com/articulo-insumo', insumo)
+        const res = await axios.put('https://el-buen-sabor.herokuapp.com/articulo-insumo/agregar-stock-insumo', insumo)
         if (res.status === 200) {
             alert('Insumo agregado con éxito')
         } else {
@@ -205,7 +200,7 @@ export const GrillaInsumo = () => {
                 <Form>
                     <Modal.Body>
                         <div className="mb-3">
-                            <label htmlFor="stock_actual" className="form-label">¿Cuanto es su stock actual?</label>
+                            <label htmlFor="stock_actual" className="form-label">¿Cuanto quiere agregar?</label>
                             <input value={dataModal2.stock_actual} name="stock_actual" onChange={handleChange2} type="number" id="stock_actual" className="form-control"/>
                         </div>
                     </Modal.Body>

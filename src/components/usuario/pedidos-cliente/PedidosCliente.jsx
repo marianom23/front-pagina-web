@@ -103,7 +103,7 @@ export const PedidosCliente = () => {
                                 {
                                     info.estado === 7 ?
                                     <div className="mb-3">
-                                    <button onClick={()=>navigate(`/detalle-pedido-cliente/${info.id}`)} className="btn btn-warning">Ver detalle / Pagar</button>
+                                    <button onClick={()=>navigate(`/detalle-pedido-cliente-pago/${info.id}`)} className="btn btn-warning">Ver detalle / Pagar</button>
                                     </div>
                                     : info.estado === 6 ?
                                     <div className="mb-3">
