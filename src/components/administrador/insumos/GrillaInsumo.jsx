@@ -14,10 +14,14 @@ export const GrillaInsumo = () => {
     const [data, setData] = useState([])
     const [updateList, setUpdateList] = useState(false)
     const [showModal, setShowModal] = useState(false)
+    const [showModal2, setShowModal2] = useState(false)
     const [dataModal, setDataModal] = useState({})
-
+    const [dataModal2, setDataModal2] = useState({})
     const handleCloseModal = () => {setShowModal(false)}
     const handleOpenModal = () => {setShowModal(true)}
+    const handleCloseModal2 = () => {setShowModal2(false)}
+    const handleOpenModal2 = () => {setShowModal2(true)}
+    const [numero, setNumero] = useState()
 
     useEffect(() => {
       getData().then((response) => {
@@ -32,6 +36,15 @@ export const GrillaInsumo = () => {
             [target.name]: target.value
         })
     }
+    const handleChange2 = ({target}) => {
+        setDataModal2({
+            ...dataModal2,
+            [target.name]: target.value
+        })
+        setNumero(target.value)
+
+    }
+
 
     const handleDelete = async id => {
         await axios.delete(`https://el-buen-sabor.herokuapp.com/articulo-insumo/${id}`)
@@ -41,6 +54,10 @@ export const GrillaInsumo = () => {
     const handleEdit = async (info) => {
         setDataModal(info)
         handleOpenModal()
+    }
+    const handleEdit2 = async (info) => {
+        setDataModal2(info)
+        handleOpenModal2()
     }
     
     const handleSubmit = async (e) => {
@@ -67,6 +84,30 @@ export const GrillaInsumo = () => {
         }
     }
 
+    const handleAgregar = async (e) => {
+        // if (dataModal.denominacion === '' || dataModal.imagen === '' || dataModal.precio_venta <= 0 || dataModal.tiempo_estimado_cocina <= 0) {
+        //     alert('Todos los campos son obligatorios')
+        //     return
+        // }  
+        // console.log(dataModal.denominacion)
+        e.preventDefault()
+        const insumo = {
+            id: Number(dataModal2.id),
+            precio_compra: Number(dataModal2.precio_compra),
+            precio_venta: Number(dataModal2.precio_venta),
+            stock_actual: Number(dataModal2.stock_actual),
+            stock_minimo: Number(dataModal2.stock_minimo),
+            unidad_medida: Number(dataModal2.unidad_medida),
+            es_insumo: Boolean(dataModal2.es_insumo),
+        }
+        const res = await axios.put('https://el-buen-sabor.herokuapp.com/articulo-insumo', insumo)
+        if (res.status === 200) {
+            alert('Insumo agregado con éxito')
+        } else {
+            alert('Error al intentar editar un insumo')
+        }
+    }
+
 
     const DisplayData=data.map(
         
@@ -86,6 +127,9 @@ export const GrillaInsumo = () => {
                         </div>
                         <div className="mb-3">
                             <button onClick={()=>handleEdit(info)} className="btn btn-dark">Update</button>
+                        </div>
+                        <div className="mb-3">
+                            <button onClick={()=>handleEdit2(info)} className="btn btn-success">Agregar</button>
                         </div>
                     </td>
                 </tr>
@@ -150,6 +194,26 @@ export const GrillaInsumo = () => {
                             Cerrar
                         </button>
                         <button className="btn btn-succes" type="submit" onClick={handleSubmit}>
+                            Guardar 
+                        </button>
+                    </Modal.Footer>
+                </Form>
+        </Modal>
+
+        <Modal show={showModal2} onHide={handleCloseModal2}>
+                <Modal.Title>Actualizar datos</Modal.Title>
+                <Form>
+                    <Modal.Body>
+                        <div className="mb-3">
+                            <label htmlFor="stock_actual" className="form-label">¿Cuanto es su stock actual?</label>
+                            <input value={dataModal2.stock_actual} name="stock_actual" onChange={handleChange2} type="number" id="stock_actual" className="form-control"/>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <button className="btn btn-secondary" onClick={handleCloseModal2}>
+                            Cerrar
+                        </button>
+                        <button className="btn btn-succes" type="submit" onClick={handleAgregar}>
                             Guardar 
                         </button>
                     </Modal.Footer>
