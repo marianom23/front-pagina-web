@@ -8,7 +8,12 @@ import {
   MDBNavbarLink,
   MDBNavbarToggler,
   MDBNavbarBrand,
-  MDBCollapse
+  MDBCollapse,
+  MDBDropdownToggle,
+  MDBDropdown,
+  MDBDropdownItem,
+  MDBDropdownLink,
+  MDBDropdownMenu
 } from 'mdb-react-ui-kit';
 
 export const NavbarAdministrador = () => {
@@ -50,6 +55,30 @@ export const NavbarAdministrador = () => {
             <MDBNavbarItem>
               <MDBNavbarLink href='/grilla-usuario'>Grilla Usuarios</MDBNavbarLink>
             </MDBNavbarItem>
+
+            <MDBNavbarItem>
+              <MDBDropdown>
+                <MDBDropdownToggle tag='a' className='nav-link'>
+                  Ver metricas
+                </MDBDropdownToggle>
+                <MDBDropdownMenu>
+                  <MDBDropdownItem>
+                    <MDBDropdownLink href='/metricas-pedidos'>Pedidos</MDBDropdownLink>
+                  </MDBDropdownItem>
+                  <MDBDropdownItem>
+                    <MDBDropdownLink href='/metricas-ranking'>Ranking</MDBDropdownLink>
+                  </MDBDropdownItem>
+                  <MDBDropdownItem>
+                    <MDBDropdownLink href='metricas-ganancias'>Ganancias</MDBDropdownLink>
+                  </MDBDropdownItem>
+                  <MDBDropdownItem>
+                    <MDBDropdownLink href='metricas-recaudaciones'>Recaudaciones</MDBDropdownLink>
+                  </MDBDropdownItem>
+                </MDBDropdownMenu>
+              </MDBDropdown>
+            </MDBNavbarItem>
+
+
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBContainer>
