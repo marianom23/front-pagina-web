@@ -24,9 +24,9 @@ import { Productos2 } from '../components/usuario/carrito/productos/Productos2'
 import { Productos3 } from '../components/usuario/carrito/productos/Productos3'
 import { DetallePedidoCliente } from '../components/usuario/detalle-pedido-cliente/DetallePedidoCliente'
 import { GrillaUsuarios } from '../components/administrador/empleados/GrillaUsuarios'
-import { Ganancias } from '../components/administrador/metricas/Ganancias'
-import { PedidosPorCliente } from '../components/administrador/metricas/PedidosPorCliente'
-import { RankingComidasMasVendidas } from '../components/administrador/metricas/RankingComidasMasVendidas'
+// import { Ganancias } from '../components/administrador/metricas/Ganancias'
+// import { PedidosPorCliente } from '../components/administrador/metricas/PedidosPorCliente'
+// import { RankingComidasMasVendidas } from '../components/administrador/metricas/RankingComidasMasVendidas'
 import { Recaudaciones } from '../components/administrador/metricas/Recaudaciones'
 
 
@@ -61,9 +61,9 @@ export const AppRouter = ({user}) => {
           <Route path="/carritos" element={<CarritoContainer/>}/>
           <Route path="/mis-pedidos/:idCliente" element={<PedidosCliente/>}/>
           <Route path="/redirect" element={<Redireccion/>}/>
-          <Route path="/metricas-pedidos" element={<PedidosPorCliente/>}/>
+          {/* <Route path="/metricas-pedidos" element={<PedidosPorCliente/>}/>
           <Route path="/metricas-ranking" element={<RankingComidasMasVendidas/>}/>
-          <Route path="/metricas-ganancias" element={<Ganancias/>}/>
+          <Route path="/metricas-ganancias" element={<Ganancias/>}/> */}
           <Route path="/metricas-recaudaciones" element={<Recaudaciones/>}/>
       </Routes>  
     </BrowserRouter>
