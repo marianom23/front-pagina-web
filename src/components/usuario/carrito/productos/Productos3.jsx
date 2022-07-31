@@ -11,7 +11,9 @@ export const Productos3 = () => {
 
     const { cartItems } = useContext(CartContext)  
     const {addItemToCart} = useContext(CartContext) 
+    const {deleteItemToCart} = useContext(CartContext) 
     const [data, setData] = useState([])
+    const [amount, setAmount] = useState()
 
     const [productsLength, setProductsLength] = useState(0)
     useEffect(() => {
@@ -24,7 +26,7 @@ export const Productos3 = () => {
     const response = await axios.get('https://el-buen-sabor.herokuapp.com/carrito-completo-getAll')
     return response
     }   
-
+     
 
     useEffect(() => {
     getData().then((response) => {

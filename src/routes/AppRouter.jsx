@@ -23,6 +23,7 @@ import { Redireccion } from '../components/user-redirect/Redireccion'
 import { Productos2 } from '../components/usuario/carrito/productos/Productos2'
 import { Productos3 } from '../components/usuario/carrito/productos/Productos3'
 import { DetallePedidoCliente } from '../components/usuario/detalle-pedido-cliente/DetallePedidoCliente'
+import { GrillaUsuarios } from '../components/administrador/empleados/GrillaUsuarios'
 
 
 
@@ -42,7 +43,8 @@ export const AppRouter = ({user}) => {
           <Route path="/agregar-articulo-manufacturado" element={<AgregarArticulo/>}/>
           <Route path="/agregar-detalle-articulo" element={<AgregarDetalles/>}/>
           <Route path="/grilla-articulo" element={<GrillaArticulos/>}/>
-          <Route path="/grilla-insumo" element={<GrillaInsumo/>}/>              
+          <Route path="/grilla-insumo" element={<GrillaInsumo/>}/>    
+          <Route path="/grilla-usuario" element={<GrillaUsuarios/>}/>                 
           <Route path="/pedir" element={<Conjunto/>}/>
           <Route path="/pedir2" element={<Productos2/>}/>
           <Route path="/pedir3" element={<Productos3/>}/>

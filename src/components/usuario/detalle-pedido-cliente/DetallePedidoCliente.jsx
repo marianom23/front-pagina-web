@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios'
-
+import useUser from '../../hooks/useUser';
+import { NavbarUsuario } from '../nav/NavbarUsuario'
 export const DetallePedidoCliente = () => {
 
 const {pedidoID} = useParams();
+const {usuario} = useUser();
 const navigate = useNavigate()
 const [data, setData] = useState([])
 
@@ -30,13 +32,13 @@ data.forEach(info => {
 
 
 // async function mercadopago() {
-//     if (cartItems.length > 0) {
+//     if (data.length > 0) {
 //         const user = {
-//             id: Number(localStorage.getItem("id")),
-//             nombre: localStorage.getItem("nombre"),
-//             email: localStorage.getItem("email"),
-//             type_identification: localStorage.getItem("type_identification"),
-//             number_identification: localStorage.getItem("number_identification"),
+//             id: usuario.id,
+//             nombre: usuario.nombre,
+//             email: usuario.email,
+//             type_identification: usuario.id,
+//             number_identification: usuario.id,
 //         }
 //         const dataSendMP = {
 //             producto_mercado_pago: data,
@@ -98,12 +100,13 @@ data.forEach(info => {
 
 //     }
 
-
 // }
 
 
   return (
     <>
+        <NavbarUsuario/>
+
         <div className='wrapper'>
             {         
                 data.map(      
