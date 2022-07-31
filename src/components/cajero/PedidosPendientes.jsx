@@ -79,7 +79,6 @@ export const PedidosPendientes = () => {
                                         : 
                                         <button className="card__btn" onClick={() => cambiarEstado(2, info.id)}>Aprobar efectivo</button>
                                     ) 
-                                    
                                 }
                                 <button className="card__btn" onClick={() => cambiarEstado(6, info.id)}>No aprobar</button>
                                 </div>

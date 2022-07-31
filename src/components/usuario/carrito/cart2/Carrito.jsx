@@ -186,7 +186,7 @@ export const Carrito = () => {
     const handleSubmit = async (e) => {
         handleCloseModal()
         e.preventDefault()
-        mercadopago()
+        //mercadopago()
 
     
         const pedidos = {
