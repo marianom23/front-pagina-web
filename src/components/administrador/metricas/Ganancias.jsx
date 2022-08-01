@@ -34,17 +34,17 @@ export const Ganancias = () => {
     // }
 
     const setGananciaDesde = () => {
-        const month = fechaInicial
-        const day = fechaInicial
-        const year = fechaInicial
+        const month = fechaInicial.getMonth() + 1; //months from 1-12
+        const day = fechaInicial.getDate();
+        const year = fechaInicial.getFullYear();
         const desde = year + "-" + month + "-" + day;
         return desde
     }
 
     const setGananciaHasta = () => {
-        const month = fechaFinal
-        const day = fechaFinal
-        const year = fechaFinal
+        const month = fechaFinal.getMonth() + 1; //months from 1-12
+        const day = fechaFinal.getDate();
+        const year = fechaFinal.getFullYear();
         const hasta = year + "-" + month + "-" + day;
         return hasta
     }
@@ -52,8 +52,8 @@ export const Ganancias = () => {
     const DisplayGananciaPorPeriodoDeTiempo = gananciaPeriodica.map(
         (info) => {
             return (
-                <tr key = {info.id}> 
-                    <td>$ {info.ganancias}</td>
+                <tr>
+                    <td><b>$</b> {info.ganancias}</td>
                     <td> {info.desde}</td>
                     <td>{info.hasta}</td>
                 </tr>
@@ -65,7 +65,7 @@ export const Ganancias = () => {
         <>
             <NavbarAdministrador />
             <br /> <br />
-            <h1> Ganancias por períodos determinados de tiempo</h1>
+            <h1> <b>Ganancias por períodos determinados de tiempo</b></h1>
             <h3>Desde:</h3>
             <DatePicker
                 required
@@ -94,6 +94,7 @@ export const Ganancias = () => {
                 gananciaPeriodica !== null ?
                     <div>
                         <table className="table table-striped">
+
                             <thead>
                                 <tr>
                                     <th><b>GANANCIAS</b></th>
