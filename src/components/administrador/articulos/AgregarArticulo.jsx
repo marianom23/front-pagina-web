@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { NavbarAdministrador } from '../NavbarAdministrador';
@@ -8,10 +8,11 @@ import {
     MDBCheckbox,
     MDBBtn,
 } from 'mdb-react-ui-kit';
+import './select.css'
 
 export const AgregarArticulo = () => {
-
-    const [data, setData] = useState({ tiempo_estimado_cocina: "", denominacion: "", precio_venta: "", imagen: "" })
+    const [categorias, setCategorias] = useState([])
+    const [data, setData] = useState({ id_categoria:"",tiempo_estimado_cocina: "", denominacion: "", precio_venta: "", imagen: "" })
     let navigate = useNavigate();
     const handleChange = ({ target }) => {
         setData({
@@ -20,6 +21,16 @@ export const AgregarArticulo = () => {
         })
 
     }
+    const getCategorias = async () => {
+        const response = await axios.get('https://el-buen-sabor.herokuapp.com/categoria/getAll')
+        return response
+    }
+
+    useEffect(() => {
+    getCategorias().then((response) => {
+        setCategorias(response.data)
+    })
+    },[])  
 
     const handleSubmit = async (e) => {
 
@@ -27,6 +38,7 @@ export const AgregarArticulo = () => {
         e.preventDefault()
         console.log(data)
         const articuloManufacturado = {
+            id_categoria: Number(data.id_categoria),
             tiempo_estimado_cocina: Number(data.tiempo_estimado_cocina),
             denominacion: data.denominacion,
             precio_venta: Number(data.precio_venta),
@@ -56,6 +68,16 @@ export const AgregarArticulo = () => {
                 <h2>Añadir articulo manufacturado</h2>
                 <br />
                 <form onSubmit={handleSubmit}>
+                    <div className="select">
+                        <select onChange={handleChange} name="id_categoria">
+                            <option selected disabled>Selecciona una categoria</option>
+                            {categorias.map(obj =>
+                                <option key={obj.id} value={obj.id}>{obj.nombre}</option>
+                            )}
+                        </select>
+                    </div>
+
+                    <br />
                     <MDBInput value={data.tiempo_estimado_cocina} onChange={handleChange} type='number' className='mb-4' name="tiempo_estimado_cocina" id='tiempo_estimado_cocina' label='tiempo_estimado_cocina' />
                     <MDBInput value={data.denominacion} onChange={handleChange} type='text' className='mb-4' name="denominacion" id='denominacion' label='denominacion' />
                     <MDBInput value={data.precio_venta} onChange={handleChange} name="precio_venta" className='mb-4' type='number' id='precio_venta' label='precio_venta' />

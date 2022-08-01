@@ -13,7 +13,12 @@ export const Productos3 = () => {
     const {addItemToCart} = useContext(CartContext) 
     const {deleteItemToCart} = useContext(CartContext) 
     const [data, setData] = useState([])
-    const [amount, setAmount] = useState()
+    const [categorias, setCategorias] = useState([])
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState({id:"", nombre:""})
+   
+    const setearCategoria = (obj) => {
+        setCategoriaSeleccionada(obj)
+    }
 
     const [productsLength, setProductsLength] = useState(0)
     useEffect(() => {
@@ -27,10 +32,17 @@ export const Productos3 = () => {
     return response
     }   
      
+    const getCategorias = async () => {
+        const response = await axios.get('https://el-buen-sabor.herokuapp.com/categoria/getAll')
+        return response
+    }
 
     useEffect(() => {
     getData().then((response) => {
         setData(response.data)
+    })
+    getCategorias().then((response) => {
+        setCategorias(response.data)
     })
     },[])  
 
@@ -51,11 +63,21 @@ export const Productos3 = () => {
             <div className = "filter-container">
                 <div className = "category-head">
                     <ul>
-                        <div className = "category-title active" id = "all">
+                        <div onClick={() => setearCategoria("all")} className = "category-title active">
                             <li>All</li>
                             <span><i className = "fas fa-border-all"></i></span>
                         </div>
-                        <div className = "category-title" id = "culture">
+                        {
+                            categorias.map(
+                                (info) => (
+                                    <div onClick={() => setearCategoria(info.id)} key={info.id} className="category-title" id = "all">
+                                        <li>{info.nombre}</li>
+                                        <span><i className = "fas fa-border-all"></i></span>
+                                    </div>
+                                )
+                            )
+                        }
+                        {/* <div className = "category-title" id = "culture">
                             <li>Culture</li>
                             <span><i className = "fas fa-theater-masks"></i></span>
                         </div>
@@ -74,15 +96,16 @@ export const Productos3 = () => {
                         <div className = "category-title" id = "sports">
                             <li>Sports</li>
                             <span><i className = "fas fa-running"></i></span>
-                        </div>
+                        </div> */}
                     </ul>
                 </div>
+                
                 <div className = "posts-collect">
                     <div className = "posts-main-container">
                         {data.map(
                             (info) => (
-                                (
-                                <div className = "all business">
+                                ( info.id === categoriaSeleccionada.id ?
+                                    <div className = "all business">
                                     <div className = "post-img">
                                         <img src = {info.imagen} alt = {info.denominacion}/>
                                         <span className = "category-name">Comida</span>
@@ -99,12 +122,31 @@ export const Productos3 = () => {
                                         {/* <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus recusandae aspernatur possimus illum, repellat ad quasi earum, illo voluptatibus minima fugiat saepe magni corporis vero eius accusantium quidem, consectetur nesciunt!</p> */}
                                     </div>
                                     <button type = "button" className = "read-btn" onClick={() => addItemToCart(info)}>Añadir al carro</button>
-                                </div>                              
-                                )
+                                    </div>   
+                                :
+                                    <div className = "all business">
+                                    <div className = "post-img">
+                                        <img src = {info.imagen} alt = {info.denominacion}/>
+                                        <span className = "category-name">Comida</span>
+                                    </div>
+        
+                                    <div className = "post-content">
+                                        <div className = "post-content-top">
+                                            <span><i className = "fas fa"></i>$ {info.precio_venta}</span>
+                                            <span>
+                                                <i className = "fas fa"></i>Tiempo: {info.tiempo_estimado_cocina}
+                                            </span>
+                                        </div>
+                                        <h2>{info.denominacion}</h2>
+                                        {/* <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus recusandae aspernatur possimus illum, repellat ad quasi earum, illo voluptatibus minima fugiat saepe magni corporis vero eius accusantium quidem, consectetur nesciunt!</p> */}
+                                    </div>
+                                    <button type = "button" className = "read-btn" onClick={() => addItemToCart(info)}>Añadir al carro</button>
+                                    </div>                               )
                             )
                         )}  
                      </div>    
                 </div>
+
             </div>
         </div>
         

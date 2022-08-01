@@ -25,6 +25,7 @@ import { Productos3 } from '../components/usuario/carrito/productos/Productos3'
 import { DetallePedidoCliente } from '../components/usuario/detalle-pedido-cliente/DetallePedidoCliente'
 import { GrillaUsuarios } from '../components/administrador/empleados/GrillaUsuarios'
 import { DetallePedidoClientePago } from '../components/usuario/detalle-pedido-cliente/DetallePedidoClientePago'
+import { Categorias } from '../components/administrador/categorias/Categorias'
 
 
 
@@ -59,6 +60,7 @@ export const AppRouter = ({user}) => {
           <Route path="/carritos" element={<CarritoContainer/>}/>
           <Route path="/mis-pedidos/:idCliente" element={<PedidosCliente/>}/>
           <Route path="/redirect" element={<Redireccion/>}/>
+          <Route path="/agregar-categoria" element={<Categorias/>}/>
       </Routes>  
     </BrowserRouter>
   )
