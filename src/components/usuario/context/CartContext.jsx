@@ -56,12 +56,12 @@ export const CartProvider = ({children}) => {
         // })
 
 
-        const inCart = cartItems.find((productInCart) => productInCart.id === product.id)
+        const inCart = cartItems.find((productInCart) => productInCart.denominacion === product.denominacion)
             
             if (inCart) {
                 setCartItems(
                     cartItems.map((productInCart)=>{
-                        if (productInCart.id === product.id) {
+                        if (productInCart.denominacion === product.denominacion) {
                                 return {...inCart, amount: inCart.amount + 1}
                         } else return productInCart
                     })
@@ -74,16 +74,16 @@ export const CartProvider = ({children}) => {
 
         const deleteItemToCart = (product) =>{
             const inCart = cartItems.find(
-                (productInCart) => productInCart.id === product.id
+                (productInCart) => productInCart.denominacion === product.denominacion
             )
             if(inCart.amount === 1){
                 setCartItems(
-                    cartItems.filter(productInCart=>productInCart.id !== product.id)
+                    cartItems.filter(productInCart=>productInCart.denominacion !== product.denominacion)
                 )
             }else{
                 setCartItems(
                     cartItems.map((productInCart)=>{
-                    if(productInCart.id === product.id){
+                    if(productInCart.denominacion === product.denominacion){
                         return {...inCart, amount: inCart.amount -1}
                     }else return productInCart;
                 }))
