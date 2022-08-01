@@ -44,19 +44,19 @@ export const NavbarUsuario = () => {
               <MDBNavbarItem className='active'>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href='/login' onClick={logout} >Logout</MDBNavbarLink>
+                <MDBNavbarLink href='/login' onClick={logout}>Logout <MDBIcon fas icon="door-open" /></MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href='/pedir'>Hacer mi pedido</MDBNavbarLink>
+                <MDBNavbarLink href='/pedir'>Hacer mi pedido <MDBIcon fas icon="utensils" /></MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href='/domicilio'>Agregar domicilio</MDBNavbarLink>
+                <MDBNavbarLink href='/domicilio'>Agregar domicilio <MDBIcon fas icon="home" /></MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                  <MDBNavbarLink onClick={() => navigate(`/mis-pedidos/${usuario.id}`, { replace: true })}>Mis pedidos</MDBNavbarLink>
+                  <MDBNavbarLink onClick={() => navigate(`/mis-pedidos/${usuario.id}`, { replace: true })}>Mis pedidos <MDBIcon fas icon="file" /></MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href='/carritos'>Carrito</MDBNavbarLink>
+                <MDBNavbarLink href='/carritos'>Carrito <MDBIcon fas icon="shopping-cart" /></MDBNavbarLink>
               </MDBNavbarItem>
             </MDBNavbarNav>
             

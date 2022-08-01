@@ -8,7 +8,12 @@ import {
   MDBNavbarLink,
   MDBNavbarToggler,
   MDBNavbarBrand,
-  MDBCollapse
+  MDBCollapse,
+  MDBDropdownLink,
+  MDBDropdownItem,
+  MDBDropdownMenu,
+  MDBDropdown,
+  MDBDropdownToggle
 } from 'mdb-react-ui-kit';
 
 export const NavbarAdministrador = () => {
@@ -30,26 +35,68 @@ export const NavbarAdministrador = () => {
         </MDBNavbarToggler>
         <MDBCollapse show={showNavColor} navbar>
           <MDBNavbarNav className='me-auto mb-2 mb-lg-0'>
-            <MDBNavbarItem className='active'>
-            </MDBNavbarItem>
+            <MDBNavbarItem className='active'> </MDBNavbarItem>
+
             <MDBNavbarItem>
-              <MDBNavbarLink href='/agregar-insumo'>Agregar Insumos</MDBNavbarLink>
+              <MDBDropdown>               
+                <MDBDropdownToggle tag='a' className='nav-link'>
+                  Grillas <MDBIcon fas icon="file-excel" />
+                </MDBDropdownToggle>
+                <MDBDropdownMenu>
+                  <MDBDropdownItem>
+                    <MDBDropdownLink href='/grilla-articulo'>Grilla Articulos</MDBDropdownLink>
+                  </MDBDropdownItem>
+                  <MDBDropdownItem>
+                    <MDBDropdownLink href='/grilla-insumo'>Grilla Insumos</MDBDropdownLink>
+                  </MDBDropdownItem>
+                  <MDBDropdownItem>
+                    <MDBDropdownLink href='/grilla-usuario'>Grilla Usuarios</MDBDropdownLink>
+                  </MDBDropdownItem>
+                </MDBDropdownMenu>
+              </MDBDropdown>
             </MDBNavbarItem>
+
             <MDBNavbarItem>
-              <MDBNavbarLink href='/agregar-articulo-manufacturado'>Agregar Articulo Manufacturado</MDBNavbarLink>
+              <MDBDropdown>
+                <MDBDropdownToggle tag='a' className='nav-link'>
+                  Agregar <MDBIcon fas icon="plus" />
+                </MDBDropdownToggle>
+                <MDBDropdownMenu>
+                  <MDBDropdownItem>
+                    <MDBDropdownLink href='/agregar-articulo-manufacturado'>Agregar Insumos</MDBDropdownLink>
+                  </MDBDropdownItem>
+                  <MDBDropdownItem>
+                    <MDBDropdownLink href='/agregar-articulo-manufacturado'>Agregar Articulo Manufacturado</MDBDropdownLink>
+                  </MDBDropdownItem>
+                  <MDBDropdownItem>
+                    <MDBDropdownLink href='/agregar-detalle-articulo'>Agregar Detalles del Articulo</MDBDropdownLink>
+                  </MDBDropdownItem>
+                </MDBDropdownMenu>
+              </MDBDropdown>
             </MDBNavbarItem>
+
             <MDBNavbarItem>
-              <MDBNavbarLink href='/agregar-detalle-articulo'>Agregar Detalles del Articulo</MDBNavbarLink>
+              <MDBDropdown>
+                <MDBDropdownToggle tag='a' className='nav-link'>
+                  Ver metricas <MDBIcon fas icon="chart-area" />
+                </MDBDropdownToggle>
+                <MDBDropdownMenu>
+                  <MDBDropdownItem>
+                    <MDBDropdownLink href='/metricas-pedidos'>Pedidos</MDBDropdownLink>
+                  </MDBDropdownItem>
+                  <MDBDropdownItem>
+                    <MDBDropdownLink href='/metricas-ranking'>Ranking</MDBDropdownLink>
+                  </MDBDropdownItem>
+                  <MDBDropdownItem>
+                    <MDBDropdownLink href='/metricas-ganancias'>Ganancias</MDBDropdownLink>
+                  </MDBDropdownItem>
+                  <MDBDropdownItem>
+                    <MDBDropdownLink href='/metricas-recaudaciones'>Recaudaciones</MDBDropdownLink>
+                  </MDBDropdownItem>
+                </MDBDropdownMenu>
+              </MDBDropdown>
             </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href='/grilla-articulo'>Grilla Articulos</MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href='/grilla-insumo'>Grilla Insumos</MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href='/grilla-usuario'>Grilla Usuarios</MDBNavbarLink>
-            </MDBNavbarItem>
+
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBContainer>
