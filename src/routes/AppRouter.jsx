@@ -63,6 +63,9 @@ export const AppRouter = ({user}) => {
           <Route path="/redirect" element={<Redireccion/>}/>
           <Route path="/agregar-categoria" element={<Categorias/>}/>
           <Route path="/metricas-ganancias" element={<Ganancias/>}/>
+          <Route path="/metricas-pedidos" element={<PedidosPorCliente/>}/>
+          <Route path="/metricas-ranking" element={<RankingComidasMasVendidas/>}/>
+          <Route path="/metricas-recaudaciones" element={<Recaudaciones/>}/>
       </Routes>  
     </BrowserRouter>
   )
