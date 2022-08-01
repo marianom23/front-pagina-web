@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-// import * as XLSX from 'xlsx'
+import * as XLSX from 'xlsx'
 
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -12,35 +12,26 @@ export const Ganancias = () => {
     const [fechaInicial, setFechaInicial] = useState(null)
     const [fechaFinal, setFechaFinal] = useState(null)
 
-
-
     const getData = async (desde, hasta) => {
         if (desde !== null && hasta !== null) {
-            //const url = `http://localhost:8080/ganancias?desde=${desde}&hasta=${hasta}`
-            const url = `https://el-buen-sabor.herokuapp.com/ganancias?desde=${desde}&hasta=${hasta}`
-            console.log("URL:", url)
-            const resp = await axios.get(url)
-            const data = await resp.data;
-            console.log("data:", data)
+            const resp = await axios.get(`https://el-buen-sabor.herokuapp.com/ganancias?desde=${desde}&hasta=${hasta}`)
+            const data = resp.data;
             setGananciaPeriodica(data)
-            return data
         }
     }
 
     // Recaudacion por periodo de tiempo
-    const buscarRecuadacionPorPeriodoDeTiempo = async () => {
+    const buscarRecuadacionPorPeriodoDeTiempo = () => {
         const desde = setGananciaDesde()
         const hasta = setGananciaHasta()
-        console.log("fechaInicial", desde)
-        console.log("fechaFinal", hasta)
-        await getData(desde, hasta);
+        getData(desde, hasta);
     }
-    // const handleOnExportGanancias = () => {
-    //     console.log("handleOnExportDiario", gananciaPeriodica)
-    //     const ws = XLSX.utils.json_to_sheet(gananciaPeriodica);
-    //     const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
-    //     XLSX.writeFile(wb, 'recaudaciones.xlsx')
-    // }
+    const handleOnExportGanancias = () => {
+        // console.log("handleOnExportDiario", gananciaPeriodica)
+        const ws = XLSX.utils.json_to_sheet(gananciaPeriodica);
+        const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
+        XLSX.writeFile(wb, 'recaudaciones.xlsx')
+    }
 
     const setGananciaDesde = () => {
         const month = fechaInicial.getUTCMonth() + 1; //months from 1-12
@@ -96,7 +87,7 @@ export const Ganancias = () => {
             {/* <div className='container'> */}
             <div className="mb-3">
                 <button onClick={buscarRecuadacionPorPeriodoDeTiempo} className="btn btn-primary"><b>Buscar</b></button>
-                {/* <button onClick={handleOnExportGanancias} className="btn btn-success"><b>Exportar en Excel</b></button> */}
+                <button onClick={handleOnExportGanancias} className="btn btn-success"><b>Exportar en Excel</b></button>
             </div>
             {/* </div> */}
             {
