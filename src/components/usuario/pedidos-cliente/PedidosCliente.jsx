@@ -87,16 +87,12 @@ export const PedidosCliente = () => {
                                  :
                                  ""    
                                 }
-                                {info.estado === 2 ?
-                                    <td>{info.hora_estimada_fin}</td>
-                                 : info.estado === 3 ?
-                                    <td>{info.hora_estimada_fin}</td> 
-                                 : info.estado === 4 ?
-                                    <td>{info.hora_estimada_fin}</td>   
-                                 : info.estado === 5 ?
+                                {info.estado === 5 ?
                                     <td>-----------------</td>
-                                 :  
-                                    <td>-----------------</td>   
+                                 : info.estado === 6 ?
+                                    <td>-----------------</td>
+                                 : 
+                                    <td>{info.hora_estimada_fin}</td>                                  
                                 }
                                 <td>{info.imagen}</td>
                                 <td>

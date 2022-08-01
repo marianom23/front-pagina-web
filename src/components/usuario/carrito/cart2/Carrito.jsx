@@ -129,11 +129,11 @@ export const Carrito = () => {
             },
             detalle_pedido
         }
-        const res = await axios.put('https://el-buen-sabor.herokuapp.com/generar-pedido', pedidos)
-        if (res.status === 200) {
+        try {
+            const res = await axios.put('https://el-buen-sabor.herokuapp.com/generar-pedido', pedidos)
             alert('Articulo pedido con exito')
-        } else {
-            alert('Error al intentar editar un articulo manufacturado')
+        } catch (error) {
+            alert('Lo siento, nuestro horario de atencion es de 20:00 a 00:00 horas')
         }
     }
 

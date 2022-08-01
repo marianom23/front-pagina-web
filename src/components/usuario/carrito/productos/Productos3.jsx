@@ -14,10 +14,11 @@ export const Productos3 = () => {
     const {deleteItemToCart} = useContext(CartContext) 
     const [data, setData] = useState([])
     const [categorias, setCategorias] = useState([])
-    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState({id:"", nombre:""})
-   
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("all")
+    
     const setearCategoria = (obj) => {
         setCategoriaSeleccionada(obj)
+        console.log(obj)
     }
 
     const [productsLength, setProductsLength] = useState(0)
@@ -28,8 +29,8 @@ export const Productos3 = () => {
     }, [cartItems])
 
     const getData = async () => {
-    const response = await axios.get('https://el-buen-sabor.herokuapp.com/carrito-completo-getAll')
-    return response
+        const response = await axios.get('https://el-buen-sabor.herokuapp.com/carrito-completo-getAll')
+        return response
     }   
      
     const getCategorias = async () => {
@@ -70,7 +71,7 @@ export const Productos3 = () => {
                         {
                             categorias.map(
                                 (info) => (
-                                    <div onClick={() => setearCategoria(info.id)} key={info.id} className="category-title" id = "all">
+                                    <div onClick={() => setearCategoria(info)} key={info.id} className="category-title" id = "all">
                                         <li>{info.nombre}</li>
                                         <span><i className = "fas fa-border-all"></i></span>
                                     </div>
@@ -102,9 +103,10 @@ export const Productos3 = () => {
                 
                 <div className = "posts-collect">
                     <div className = "posts-main-container">
-                        {data.map(
+                        { data.map(
                             (info) => (
-                                ( info.id === categoriaSeleccionada.id ?
+                                ( 
+                                    info.id_categoria === categoriaSeleccionada.id ?                                
                                     <div className = "all business">
                                     <div className = "post-img">
                                         <img src = {info.imagen} alt = {info.denominacion}/>
@@ -123,7 +125,7 @@ export const Productos3 = () => {
                                     </div>
                                     <button type = "button" className = "read-btn" onClick={() => addItemToCart(info)}>Añadir al carro</button>
                                     </div>   
-                                :
+                                : categoriaSeleccionada === "all" ?
                                     <div className = "all business">
                                     <div className = "post-img">
                                         <img src = {info.imagen} alt = {info.denominacion}/>
@@ -141,9 +143,16 @@ export const Productos3 = () => {
                                         {/* <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus recusandae aspernatur possimus illum, repellat ad quasi earum, illo voluptatibus minima fugiat saepe magni corporis vero eius accusantium quidem, consectetur nesciunt!</p> */}
                                     </div>
                                     <button type = "button" className = "read-btn" onClick={() => addItemToCart(info)}>Añadir al carro</button>
-                                    </div>                               )
+                                    </div> 
+                                  :
+                                  ""
+                                )
                             )
-                        )}  
+                        )
+                        
+                        
+                        
+                        }  
                      </div>    
                 </div>
 
