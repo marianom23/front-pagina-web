@@ -26,10 +26,6 @@ import { DetallePedidoCliente } from '../components/usuario/detalle-pedido-clien
 import { GrillaUsuarios } from '../components/administrador/empleados/GrillaUsuarios'
 import { DetallePedidoClientePago } from '../components/usuario/detalle-pedido-cliente/DetallePedidoClientePago'
 import { Categorias } from '../components/administrador/categorias/Categorias'
-import { Ganancias } from '../components/administrador/metricas/Ganancias'
-import { PedidosPorCliente } from '../components/administrador/metricas/PedidosPorCliente'
-import { RankingComidasMasVendidas } from '../components/administrador/metricas/RankingComidasMasVendidas'
-import { Recaudaciones } from '../components/administrador/metricas/Recaudaciones'
 
 
 
@@ -65,10 +61,6 @@ export const AppRouter = ({user}) => {
           <Route path="/mis-pedidos/:idCliente" element={<PedidosCliente/>}/>
           <Route path="/redirect" element={<Redireccion/>}/>
           <Route path="/agregar-categoria" element={<Categorias/>}/>
-          <Route path="/metricas-ganancias" element={<Ganancias/>}/>
-          <Route path="/metricas-pedidos" element={<PedidosPorCliente/>}/>
-          <Route path="/metricas-ranking" element={<RankingComidasMasVendidas/>}/>
-          <Route path="/metricas-recaudaciones" element={<Recaudaciones/>}/>
       </Routes>  
     </BrowserRouter>
   )
