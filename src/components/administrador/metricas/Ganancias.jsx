@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import * as XLSX from 'xlsx'
+// import * as XLSX from 'xlsx'
 
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -35,12 +35,12 @@ export const Ganancias = () => {
         console.log("fechaFinal", hasta)
         await getData(desde, hasta);
     }
-    const handleOnExportGanancias = () => {
-        console.log("handleOnExportDiario", gananciaPeriodica)
-        const ws = XLSX.utils.json_to_sheet(gananciaPeriodica);
-        const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
-        XLSX.writeFile(wb, 'recaudaciones.xlsx')
-    }
+    // const handleOnExportGanancias = () => {
+    //     console.log("handleOnExportDiario", gananciaPeriodica)
+    //     const ws = XLSX.utils.json_to_sheet(gananciaPeriodica);
+    //     const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
+    //     XLSX.writeFile(wb, 'recaudaciones.xlsx')
+    // }
 
     const setGananciaDesde = () => {
         const month = fechaInicial.getUTCMonth() + 1; //months from 1-12
@@ -96,7 +96,7 @@ export const Ganancias = () => {
             {/* <div className='container'> */}
             <div className="mb-3">
                 <button onClick={buscarRecuadacionPorPeriodoDeTiempo} className="btn btn-primary"><b>Buscar</b></button>
-                <button onClick={handleOnExportGanancias} className="btn btn-success"><b>Exportar en Excel</b></button>
+                {/* <button onClick={handleOnExportGanancias} className="btn btn-success"><b>Exportar en Excel</b></button> */}
             </div>
             {/* </div> */}
             {
