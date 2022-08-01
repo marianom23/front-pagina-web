@@ -62,8 +62,8 @@ export const AppRouter = ({user}) => {
           <Route path="/mis-pedidos/:idCliente" element={<PedidosCliente/>}/>
           <Route path="/redirect" element={<Redireccion/>}/>
           {/* <Route path="/metricas-pedidos" element={<PedidosPorCliente/>}/>
-          <Route path="/metricas-ranking" element={<RankingComidasMasVendidas/>}/>
-          <Route path="/metricas-ganancias" element={<Ganancias/>}/> */}
+          <Route path="/metricas-ranking" element={<RankingComidasMasVendidas/>}/> */}
+          <Route path="/metricas-ganancias" element={<Ganancias/>}/>
           {/* <Route path="/metricas-recaudaciones" element={<Recaudaciones/>}/> */}
       </Routes>  
     </BrowserRouter>
