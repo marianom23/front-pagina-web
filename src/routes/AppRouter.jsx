@@ -26,6 +26,7 @@ import { DetallePedidoCliente } from '../components/usuario/detalle-pedido-clien
 import { GrillaUsuarios } from '../components/administrador/empleados/GrillaUsuarios'
 import { DetallePedidoClientePago } from '../components/usuario/detalle-pedido-cliente/DetallePedidoClientePago'
 import { Categorias } from '../components/administrador/categorias/Categorias'
+import { Ganancias } from '../components/administrador/metricas/Ganancias'
 
 
 
@@ -61,6 +62,7 @@ export const AppRouter = ({user}) => {
           <Route path="/mis-pedidos/:idCliente" element={<PedidosCliente/>}/>
           <Route path="/redirect" element={<Redireccion/>}/>
           <Route path="/agregar-categoria" element={<Categorias/>}/>
+          <Route path="/metricas-ganancias" element={<Ganancias/>}/>
       </Routes>  
     </BrowserRouter>
   )
