@@ -30,6 +30,15 @@ export const DetallePedidoClientePago = () => {
         total += info.subtotal * info.cantidad
     });
 
+    const cambiarEstado =  async () => {
+        const pedido = {
+            "id_pedido":Number(pedidoID),
+            "estado":2
+        }   
+        const response = await axios.put('https://el-buen-sabor.herokuapp.com/pedido/update-estado',pedido)   
+        mercadopago()
+    }   
+
 
 
     const mercadopago = async () => {
@@ -71,31 +80,16 @@ export const DetallePedidoClientePago = () => {
             }
             const preference = await resp.json();
 
-            // Esto es lo que necesitamos hacer :: Llamar a la api de mercadopago
-            // npm install mercadopago
-            // luego importarla para poder utilizarla y enviar una preference.
-
-            // const responseMP = await mercadopago.preferences.create(preference)
-            // console.log("responseMP", responseMP)
-            // const respMP = await mercadopago.preferences
-
             var script = document.createElement("script");
             console.log("preference:", preference)
             console.log("script", script)
             console.log("script.dataset", script.dataset)
 
-            // The source domain must be completed according to the site for which you are integrating.
-            // For example: for Argentina ".com.ar" or for Brazil ".com.br".
             script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
             script.type = "text/javascript";
 
             console.log(" :::::_____::::::",preference.id)
             script.dataset.preferenceId = preference.id;
-            // console.log("preference.init_point", preference.init_point)
-            // script.src = preference.init_point;
-            // script.type = "text/html";
-            // document.getElementById("cartContainer").innerHTML = `<button onclick="location.href='${script.src}'" type="button">
-            // Pagar MercadoPago</button>`;
 
             document.getElementById("checkout").innerHTML = "";
             document.querySelector("#checkout").appendChild(script);
@@ -128,8 +122,8 @@ export const DetallePedidoClientePago = () => {
                     )
                 }
             </div>
-            <h1>El total del pedido es de: {total}</h1>
-            <button id="checkout" className='checkout' name="checkout" onClick={mercadopago}>Pagar</button>
+            <h1>El total del pedido {pedidoID} es de: {total}</h1>
+            <button id="checkout" className='checkout' name="checkout" onClick={cambiarEstado}>Pagar</button>
             <button onClick={handleReturn} className="btn btn-success">Regresar</button>
         </>
     )
