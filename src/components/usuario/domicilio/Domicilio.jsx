@@ -11,6 +11,21 @@ import useUser from '../../hooks/useUser';
 
 export const Domicilio = () => {
 
+    
+    useEffect(() => {
+        if (usuario !== null) {
+            if (usuario.rol === 100 || usuario.rol === 500) {
+                }else{
+                alert('Tienes que logearte como usuario para acceder')
+                navigate("/login", { replace: true });
+                }   
+        }else{
+            alert('Tienes que logearte como usuario para acceder')
+            navigate("/login", { replace: true });
+        }
+    }, [])    
+
+
     let navigate = useNavigate();
     const {usuario} = useUser()
     console.log(usuario)

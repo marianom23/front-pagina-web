@@ -26,10 +26,15 @@ export const Register = () => {
               alert('Todos los campos son obligatorios')
               return
         }    
-        e.preventDefault()
-        await axios.post('https://el-buen-sabor.herokuapp.com/register', data)
+        try {
+          await axios.post('https://el-buen-sabor.herokuapp.com/register', data)
           alert('Usuario creado exitosamente')
           navigate("/login", { replace: true });
+        } catch (error) {
+          alert("Error al crear la cuenta. (Mail ya registrado)")
+        }
+        e.preventDefault()
+
     }
   
     const handleReturn = () => {

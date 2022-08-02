@@ -5,6 +5,8 @@ import useUser from '../../hooks/useUser';
 import { NavbarUsuario } from '../nav/NavbarUsuario'
 export const DetallePedidoCliente = () => {
 
+    
+
 const {pedidoID} = useParams();
 const {usuario} = useUser();
 const navigate = useNavigate()
@@ -13,6 +15,20 @@ const [data, setData] = useState([])
 const handleReturn = () => {
     navigate(-1)
 }
+
+useEffect(() => {
+    if (usuario !== null) {
+        if (usuario.rol === 100 || usuario.rol === 500) {
+            }else{
+            alert('Tienes que logearte como usuario para acceder')
+            navigate("/login", { replace: true });
+            }   
+    }else{
+        alert('Tienes que logearte como usuario para acceder')
+        navigate("/login", { replace: true });
+    }
+}, [])    
+
 
 const getData = async () => {
 const response = await axios.get(`https://el-buen-sabor.herokuapp.com/detalle-pedido/${pedidoID}`)

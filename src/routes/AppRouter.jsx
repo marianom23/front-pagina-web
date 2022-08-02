@@ -30,6 +30,8 @@ import { Recaudaciones } from '../components/administrador/metricas/Recaudacione
 import { RankingComidasMasVendidas } from '../components/administrador/metricas/RankingComidasMasVendidas'
 import { PedidosPorCliente } from '../components/administrador/metricas/PedidosPorCliente'
 import { Factura } from '../components/usuario/factura/Factura'
+import { FacturaCajero } from '../components/cajero/FacturaCajero'
+import { DetalleArticuloCodinero } from '../components/cocinero/DetalleArticuloCodinero'
 
 
 
@@ -69,6 +71,8 @@ export const AppRouter = ({user}) => {
           <Route path="/metricas-ranking" element={<RankingComidasMasVendidas/>}/>
           <Route path="/metricas-recaudaciones" element={<Recaudaciones/>}/>
           <Route path="/factura/:idPedido" element={<Factura/>}/>
+          <Route path="/factura-cajero/:idPedido" element={<FacturaCajero/>}/>
+          <Route path="/detalle-articulo-cocinero" element={<DetalleArticuloCodinero/>}/>
       </Routes>  
     </BrowserRouter>
   )

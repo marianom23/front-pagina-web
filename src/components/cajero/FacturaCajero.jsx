@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { NavbarUsuario } from '../nav/NavbarUsuario'
 import './factura.css'
 import jsPDF from 'jspdf'
-import useUser from '../../hooks/useUser'
 import axios from 'axios'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { NavbarCajero } from './NavbarCajero'
+import useUser from '../hooks/useUser'
 
-export const Factura = () => {
+export const FacturaCajero = () => {
 let navigate = useNavigate();
 const {usuario} = useUser(); 
 const {idPedido} = useParams();
@@ -19,21 +19,6 @@ const getData = async () => {
     return response.data
 }   
 
-
-
-useEffect(() => {
-  if (usuario !== null) {
-      if (usuario.rol === 100 || usuario.rol === 500) {
-        }else{
-          alert('Tienes que logearte como usuario para acceder')
-          navigate("/login", { replace: true });
-        }   
-  }else{
-      alert('Tienes que logearte como usuario para acceder')
-      navigate("/login", { replace: true });
-  }
-}, [])
-
 useEffect(() => {
     getData().then((response) => {
         setProductos(response.productos)
@@ -41,6 +26,20 @@ useEffect(() => {
     })
 },[])
     
+useEffect(() => {
+    if (usuario !== null) {
+        if (usuario.rol === 200 || usuario.rol === 500) {
+          }else{
+            alert('Tienes que logearte como cajero para acceder')
+            navigate("/login", { replace: true });
+          }   
+    }else{
+        alert('Tienes que logearte como cajero para acceder')
+        navigate("/login", { replace: true });
+    }
+  }, [])
+
+
 const generarPdf = () => {
     let doc = new jsPDF("p","pt","a1")
     doc.html(document.querySelector("#factura"), {
@@ -82,7 +81,7 @@ console.log(productos)
   return (
         <>
         
-        <NavbarUsuario/>
+        <NavbarCajero/>
 
         <div className='container'>
         <div id="factura" className="invoice_container">

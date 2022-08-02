@@ -3,6 +3,7 @@ import axios from 'axios'
 import './productos.css'
 import { Link, useNavigate } from 'react-router-dom'
 import useUser from '../hooks/useUser'
+import { NavbarCajero } from './NavbarCajero'
 
 
 export const PedidosPendientes = () => {
@@ -13,7 +14,6 @@ export const PedidosPendientes = () => {
     useEffect(() => {
         if (usuario !== null) {
             if (usuario.rol === 200 || usuario.rol === 500) {
-                alert('Bienvenido')
               }else{
                 alert('Tienes que logearte como cajero para acceder')
                 navigate("/login", { replace: true });
@@ -58,6 +58,8 @@ export const PedidosPendientes = () => {
 
     return (
         <>
+        <NavbarCajero/>
+
         <h1>Pedidos pendiente de aprobacion</h1>
             <div className='wrapper'>
             {         
@@ -220,8 +222,8 @@ export const PedidosPendientes = () => {
                                 <h2 className="card__title">Pedido {info.id}</h2>
                                 <p className="card__description">{info.tiempo_estimado_cocina} minutos</p>
                                 <h3 className="card__price">{info.precio_venta}</h3>
-                                <Link className="card__btn" to={`/detalle-pedido/${info.id}`}>
-                                    Ver detalle    
+                                <Link className="card__btn" to={`/factura-cajero/${info.id}`}>
+                                    Ver factura    
                                 </Link> 
                                 </div>
                             </div>      

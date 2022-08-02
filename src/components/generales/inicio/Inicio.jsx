@@ -55,8 +55,8 @@ export const Inicio = () => {
         </section>
         <section class="msg-area">
           <div class="msg-content">
-            <h2>Quote of the day</h2>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam excepturi, similique aut nesciunt, illo tenetur deleniti ab soluta"</p>
+            <h2>Amor por la gastronomía</h2>
+            <p>El descubrimiento de un nuevo plato es de más provecho para la humanidad que el descubrimiento de una estrella.</p>
           </div>
         </section>
         <section class="services-area" id="services">
@@ -78,10 +78,10 @@ export const Inicio = () => {
         <section class="contact-area" id="contact">
           <h3 class="section-title">Our <span>Contact</span></h3>
           <ul class="contact-content">
-            <li>
+          <li>
               <i class="fa fa-map-marker"></i>
-              <p>129, New York<br/>
-              United States</p>
+              <p>129, Mendoza<br/>
+              Argentina</p>
             </li>
             <li>
               <i class="fa fa-phone"></i>
@@ -91,7 +91,7 @@ export const Inicio = () => {
             <li>
               <i class="fa fa-envelope"></i>
               <p>info@bishop.com<br/>
-              yourdomain@website.com</p>
+              elbuensabor@administracion.com</p>
             </li>
           </ul>
         </section>

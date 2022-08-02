@@ -13,7 +13,6 @@ export const CarritoContainer = () => {
   useEffect(() => {
     if (usuario !== null) {
         if (usuario.rol === 100 || usuario.rol === 500) {
-            alert('Bienvenido')
           }else{
             alert('Tienes que logearte como usuario para acceder')
             navigate("/login", { replace: true });

@@ -3,8 +3,26 @@ import axios from 'axios'
 import { Container, Form, Modal } from 'react-bootstrap'
 import { NavbarAdministrador } from '../NavbarAdministrador'
 import "./grilla.css"
+import { useNavigate } from 'react-router-dom'
+import useUser from '../../hooks/useUser'
 
 export const GrillaInsumo = () => {
+
+    let navigate = useNavigate();
+    const {usuario} = useUser();
+  
+    useEffect(() => {
+        if (usuario !== null) {
+            if (usuario.rol === 100 || usuario.rol === 500) {
+              }else{
+                alert('Tienes que logearte como administrador para acceder')
+                navigate("/login", { replace: true });
+              }   
+        }else{
+            alert('Tienes que logearte como administrador para acceder')
+            navigate("/login", { replace: true });
+        }
+    }, [])
 
     const getData = async () => {
         const response = axios.get('https://el-buen-sabor.herokuapp.com/articulo-insumo/getAll')

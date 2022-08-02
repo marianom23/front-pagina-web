@@ -44,7 +44,7 @@ export const NavbarUsuario = () => {
               <MDBNavbarItem className='active'>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href='/login' onClick={logout}>Logout <MDBIcon fas icon="door-open" /></MDBNavbarLink>
+                <MDBNavbarLink href='/' onClick={logout}>Logout <MDBIcon fas icon="door-open" /></MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
                 <MDBNavbarLink href='/pedir'>Hacer mi pedido <MDBIcon fas icon="utensils" /></MDBNavbarLink>
@@ -58,6 +58,13 @@ export const NavbarUsuario = () => {
               <MDBNavbarItem>
                 <MDBNavbarLink href='/carritos'>Carrito <MDBIcon fas icon="shopping-cart" /></MDBNavbarLink>
               </MDBNavbarItem>
+              {(usuario.rol === 500 ?
+                <MDBNavbarItem>
+                  <MDBNavbarLink href='/admin-inicio'>Volver a administracion</MDBNavbarLink>
+                </MDBNavbarItem>
+                : ""
+              )
+              }
             </MDBNavbarNav>
             
           </MDBCollapse>

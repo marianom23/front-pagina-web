@@ -3,6 +3,7 @@ import axios from 'axios'
 import './productos.css'
 import { Link, useNavigate } from 'react-router-dom'
 import useUser from '../hooks/useUser'
+import { NavbarCocinero } from './NavbarCocinero'
 
 
 export const PedidosCocina = () => {
@@ -13,7 +14,6 @@ export const PedidosCocina = () => {
     useEffect(() => {
         if (usuario !== null) {
             if (usuario.rol === 300 || usuario.rol === 500) {
-                alert('Bienvenido')
               }else{
                 alert('Tienes que logearte como cocinero para acceder')
                 navigate("/login", { replace: true });
@@ -52,6 +52,8 @@ export const PedidosCocina = () => {
     }
 
   return (
+    <>
+    <NavbarCocinero/>
     <div className='wrapper'>
         {         
             data.map(      
@@ -77,5 +79,6 @@ export const PedidosCocina = () => {
             )
         }
     </div>
+    </>
   )
 }

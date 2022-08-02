@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { NavbarAdministrador } from '../NavbarAdministrador';
@@ -8,8 +8,26 @@ import {
     MDBCheckbox,
     MDBBtn,
 } from 'mdb-react-ui-kit';
+import useUser from '../../hooks/useUser';
 
 export const Categorias = () => {
+
+    const {usuario} = useUser()
+    console.log(usuario)
+  
+  
+    useEffect(() => {
+      if (usuario !== null) {
+          if (usuario.rol === 500) {
+            }else{
+              alert('Tienes que logearte como administrador para acceder')
+              navigate("/login", { replace: true });
+            }   
+      }else{
+          alert('Tienes que logearte como administrador para acceder')
+          navigate("/login", { replace: true });
+      }
+    }, [])
 
     const [data, setData] = useState({nombre: "", es_insumo:""})
     let navigate = useNavigate();
@@ -33,6 +51,8 @@ export const Categorias = () => {
             nombre: data.nombre,
             es_insumo: Boolean(data.es_insumo),
         }
+
+        
 
 
         const res = await axios.post('https://el-buen-sabor.herokuapp.com/categoria', categoria)

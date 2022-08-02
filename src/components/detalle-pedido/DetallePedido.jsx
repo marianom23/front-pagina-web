@@ -1,8 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios'
+import useUser from '../hooks/useUser';
 
 export const DetallePedido = () => {
+
+const {usuario} = useUser();
+
+useEffect(() => {
+    if (usuario !== null) {
+        if (usuario.rol === 200 || usuario.rol === 500 || usuario.rol === 300 || usuario.rol === 400) {
+            }else{
+            alert('Tienes que logearte como empleado para acceder')
+            navigate("/login", { replace: true });
+            }   
+    }else{
+        alert('Tienes que logearte como empleado para acceder')
+        navigate("/login", { replace: true });
+    }
+}, [])    
 
 const {pedidoID} = useParams();
 const navigate = useNavigate()

@@ -20,6 +20,21 @@ export const DetallePedidoClientePago = () => {
         return response
     }
 
+    
+    useEffect(() => {
+        if (usuario !== null) {
+            if (usuario.rol === 100 || usuario.rol === 500) {
+                }else{
+                alert('Tienes que logearte como usuario para acceder')
+                navigate("/login", { replace: true });
+                }   
+        }else{
+            alert('Tienes que logearte como usuario para acceder')
+            navigate("/login", { replace: true });
+        }
+    }, [])    
+
+
     useEffect(() => {
         getData().then((response) => {
             setData(response.data)

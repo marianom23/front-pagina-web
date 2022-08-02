@@ -4,6 +4,8 @@ import * as XLSX from 'xlsx'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { NavbarAdministrador } from '../NavbarAdministrador'
+import useUser from '../../hooks/useUser'
+import { useNavigate } from 'react-router-dom'
 
 export const RankingComidasMasVendidas = () => {
 
@@ -11,6 +13,24 @@ export const RankingComidasMasVendidas = () => {
 
   const [fechaInicial, setFechaInicial] = useState(null)
   const [fechaFinal, setFechaFinal] = useState(null)
+
+  let navigate = useNavigate();
+  const {usuario} = useUser()
+  console.log(usuario)
+
+
+  useEffect(() => {
+    if (usuario !== null) {
+        if (usuario.rol === 500) {
+          }else{
+            alert('Tienes que logearte como administrador para acceder')
+            navigate("/login", { replace: true });
+          }   
+    }else{
+        alert('Tienes que logearte como administrador para acceder')
+        navigate("/login", { replace: true });
+    }
+  }, [])
 
   console.log("F:", fechaInicial)
   console.log("f final:", fechaFinal)

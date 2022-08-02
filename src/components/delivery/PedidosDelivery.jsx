@@ -11,8 +11,7 @@ export const PedidosDelivery = () => {
   
     useEffect(() => {
         if (usuario !== null) {
-            if (usuario.rol === 300 || usuario.rol === 500) {
-                alert('Bienvenido')
+            if (usuario.rol === 400 || usuario.rol === 500) {
               }else{
                 alert('Tienes que logearte como delivery para acceder')
                 navigate("/login", { replace: true });

@@ -9,8 +9,28 @@ import {
     MDBBtn,
 } from 'mdb-react-ui-kit';
 import './select.css'
+import useUser from '../../hooks/useUser';
 
 export const AgregarArticulo = () => {
+
+    const {usuario} = useUser();
+  
+    useEffect(() => {
+        if (usuario !== null) {
+            if ( usuario.rol === 500) {
+              }else{
+                alert('Tienes que logearte como administrador para acceder')
+                navigate("/login", { replace: true });
+              }   
+        }else{
+            alert('Tienes que logearte como administrador para acceder')
+            navigate("/login", { replace: true });
+        }
+    }, [])
+    
+
+
+
     const [categorias, setCategorias] = useState([])
     const [data, setData] = useState({ id_categoria: "", tiempo_estimado_cocina: "", denominacion: "", precio_venta: "", imagen: "" })
     const [archivo, setArchivo] = useState(null)

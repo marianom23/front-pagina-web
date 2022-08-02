@@ -4,6 +4,8 @@ import * as XLSX from 'xlsx'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { NavbarAdministrador } from '../NavbarAdministrador'
+import useUser from '../../hooks/useUser'
+import { useNavigate } from 'react-router-dom'
 
 export const PedidosPorCliente = () => {
 
@@ -26,6 +28,24 @@ export const PedidosPorCliente = () => {
             return
         }
     }
+
+    let navigate = useNavigate();
+    const {usuario} = useUser()
+    console.log(usuario)
+  
+  
+    useEffect(() => {
+      if (usuario !== null) {
+          if (usuario.rol === 500) {
+            }else{
+              alert('Tienes que logearte como administrador para acceder')
+              navigate("/login", { replace: true });
+            }   
+      }else{
+          alert('Tienes que logearte como administrador para acceder')
+          navigate("/login", { replace: true });
+      }
+    }, [])
 
     const buscarRankingEntreDosFechas = async () => {
         const desde = setFechaInicialString()

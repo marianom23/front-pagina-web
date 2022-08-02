@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { NavbarAdministrador } from '../NavbarAdministrador';
@@ -11,8 +11,26 @@ import {
     MDBInput,
     MDBBtn,
 } from 'mdb-react-ui-kit';
+import useUser from '../../hooks/useUser';
 
 export const AgregarDetalles = () => {
+
+
+    const {usuario} = useUser();
+  
+    useEffect(() => {
+        if (usuario !== null) {
+            if (usuario.rol === 500) {
+              }else{
+                alert('Tienes que logearte como administrador para acceder')
+                navigate("/login", { replace: true });
+              }   
+        }else{
+            alert('Tienes que logearte como administrador para acceder')
+            navigate("/login", { replace: true });
+        }
+    }, [])
+    
 
     const [isActive, setIsActive] = useState(false)
     const [articulos, setArticulos] = useState([])

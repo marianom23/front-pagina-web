@@ -15,14 +15,16 @@ import {
   MDBDropdown,
   MDBDropdownToggle
 } from 'mdb-react-ui-kit';
+import useUser from '../hooks/useUser';
 
 export const NavbarAdministrador = () => {
   const [showNavColor, setShowNavColor] = useState(false);
+  const {usuario, logout} = useUser()
 
   return (   
     <MDBNavbar expand='lg' dark bgColor='primary'>
       <MDBContainer fluid>
-        <MDBNavbarBrand href='/'>El Buen Sabor</MDBNavbarBrand>
+        <MDBNavbarBrand href='/'>Bienvenido {usuario.nombre}</MDBNavbarBrand>
         <MDBNavbarToggler
           type='button'
           data-target='#navbarColor02'
@@ -98,6 +100,18 @@ export const NavbarAdministrador = () => {
                   </MDBDropdownItem>
                 </MDBDropdownMenu>
               </MDBDropdown>
+            </MDBNavbarItem>
+            <MDBNavbarItem>
+                <MDBNavbarLink href='/' onClick={logout}>Logout <MDBIcon fas icon="door-open" /></MDBNavbarLink>
+            </MDBNavbarItem>
+            <MDBNavbarItem>
+                <MDBNavbarLink href='/pedidos-pendientes'>Ir a caja</MDBNavbarLink>
+            </MDBNavbarItem>
+            <MDBNavbarItem>
+                <MDBNavbarLink href='/pedidos-cajero'>Ir a cocina</MDBNavbarLink>
+            </MDBNavbarItem>
+            <MDBNavbarItem>
+                <MDBNavbarLink href='/inicio'>Ir a inicio </MDBNavbarLink>
             </MDBNavbarItem>
 
           </MDBNavbarNav>

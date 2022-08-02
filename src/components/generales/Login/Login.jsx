@@ -41,13 +41,15 @@ export const Login = () => {
       return
     }
     e.preventDefault()
-    const res = await axios.post('https://el-buen-sabor.herokuapp.com/login', data)
-    if (res.status === 200) {
-    console.log(res.data)
-    window.localStorage.setItem('user',JSON.stringify(res.data))
-    alert('Has entrado exitosamente')
-    login()
+    try {
+      const res = await axios.post('https://el-buen-sabor.herokuapp.com/login', data)
+      window.localStorage.setItem('user',JSON.stringify(res.data))
+      alert('Has entrado exitosamente')
+      login()
+    } catch (error) {
+      alert("Las credenciales son incorrectas")
     }
+
   }
 
   return (
