@@ -31,6 +31,7 @@ export const Productos3 = () => {
 
     const getData = async () => {
         const response = await axios.get('https://el-buen-sabor.herokuapp.com/carrito-completo-getAll')
+        console.log(response.data)
         return response
     }   
      
@@ -61,38 +62,36 @@ export const Productos3 = () => {
   
         <div className = "main-container">
 
-            <h2>Categorías comida</h2> 
-
-            
-            <button onClick={() => setCambio(!cambio)} className='btn btn-success'>Cambiar a bebidas/comidas</button>
+            <h2>Arma tu pedido</h2> 
+            {/* <button onClick={() => setCambio(!cambio)} className='btn btn-success'>Cambiar a bebidas/comidas</button> */}
 
             {/* <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut, velit.</p> */}
             <div className = "filter-container">
-                <div className = "category-head">
+                {/* <div className = "category-head">
                     <ul>
                         {
                             categorias.map(
                                 (info) => (
-                                    (info.es_insumo === cambio ?         
+                                    // (info.es_insumo === cambio ?         
                                     <div onClick={() => setearCategoria(info)} key={info.id} className="category-title" id = "all">
                                         <li>{info.nombre}</li>
                                         <span><i className = "fas fa-border-all"></i></span>
                                     </div>
-                                    : ""
-                                    )
+                                    // : ""
+                                    // )
                                 )
                             )
                         }
 
                     </ul>
-                </div>
+                </div> */}
                 
                 <div className = "posts-collect">
                     <div className = "posts-main-container">
                         { data.map(
                             (info) => (
                                 ( 
-                                    info.id_categoria === categoriaSeleccionada.id ?                                
+                                    // info.id_categoria === categoriaSeleccionada.id ?                                
                                     <div className = "all business" key={info.denominacion}>
                                         <div className = "post-img">
                                             <img src = {info.imagen} alt = {info.denominacion}/>
@@ -111,8 +110,8 @@ export const Productos3 = () => {
                                         </div>
                                         <button type = "button" className = "read-btn" onClick={() => addItemToCart(info)}>Añadir al carro</button>
                                     </div>   
-                                : 
-                                  ""
+                                // : 
+                                //   ""
                                 )
                             )
                         )
