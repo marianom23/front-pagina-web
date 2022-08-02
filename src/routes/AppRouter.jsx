@@ -30,6 +30,7 @@ import { Ganancias } from '../components/administrador/metricas/Ganancias'
 import { Recaudaciones } from '../components/administrador/metricas/Recaudaciones'
 import { RankingComidasMasVendidas } from '../components/administrador/metricas/RankingComidasMasVendidas'
 import { PedidosPorCliente } from '../components/administrador/metricas/PedidosPorCliente'
+import { Factura } from '../components/usuario/factura/Factura'
 
 
 
@@ -69,6 +70,7 @@ export const AppRouter = ({user}) => {
           <Route path="/metricas-pedidos" element={<PedidosPorCliente/>}/>
           <Route path="/metricas-ranking" element={<RankingComidasMasVendidas/>}/>
           <Route path="/metricas-recaudaciones" element={<Recaudaciones/>}/>
+          <Route path="/factura/:idPedido" element={<Factura/>}/>
       </Routes>  
     </BrowserRouter>
   )

@@ -52,7 +52,8 @@ export const PedidosCliente = () => {
 
             <br />
 
-            <h1>Grilla de Articulos</h1>
+            <h1>Grilla de Pedidos</h1>
+
             <table id="rwd-table-large">
             <thead>
                 <tr>
@@ -107,7 +108,7 @@ export const PedidosCliente = () => {
                                     </div>
                                     : info.estado === 5 ?
                                     <div className="mb-3">
-                                    <button onClick={()=>navigate(`/detalle-pedido-cliente/${info.id}`)} className="btn btn-success">Ver detalle</button>
+                                    <button onClick={()=>navigate(`/factura/${info.id}`)} className="btn btn-success">Ver factura</button>
                                     </div>
                                     :
                                     <div className="mb-3">

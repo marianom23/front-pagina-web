@@ -63,7 +63,7 @@ export const NavbarAdministrador = () => {
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
                   <MDBDropdownItem>
-                    <MDBDropdownLink href='/agregar-articulo-manufacturado'>Agregar Insumos</MDBDropdownLink>
+                    <MDBDropdownLink href='/agregar-insumo'>Agregar Insumos</MDBDropdownLink>
                   </MDBDropdownItem>
                   <MDBDropdownItem>
                     <MDBDropdownLink href='/agregar-articulo-manufacturado'>Agregar Articulo Manufacturado</MDBDropdownLink>
