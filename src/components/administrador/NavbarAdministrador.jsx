@@ -108,7 +108,7 @@ export const NavbarAdministrador = () => {
                 <MDBNavbarLink href='/pedidos-pendientes'>Ir a caja</MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-                <MDBNavbarLink href='/pedidos-cajero'>Ir a cocina</MDBNavbarLink>
+                <MDBNavbarLink href='/pedidos-cocina'>Ir a cocina</MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
                 <MDBNavbarLink href='/inicio'>Ir a inicio </MDBNavbarLink>

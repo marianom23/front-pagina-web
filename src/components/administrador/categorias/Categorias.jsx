@@ -29,7 +29,7 @@ export const Categorias = () => {
       }
     }, [])
 
-    const [data, setData] = useState({nombre: "", es_insumo:""})
+    const [data, setData] = useState({nombre: "", es_insumo:false})
     let navigate = useNavigate();
 
     const handleChange = ({ target }) => {
