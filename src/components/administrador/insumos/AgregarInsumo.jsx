@@ -16,43 +16,43 @@ import useUser from '../../hooks/useUser';
 export const AgregarInsumo = () => {
 
 
-  const {usuario} = useUser();
+  const { usuario } = useUser();
 
   useEffect(() => {
-      if (usuario !== null) {
-          if (usuario.rol === 500) {
-            }else{
-              alert('Tienes que logearte como administrador para acceder')
-              navigate("/login", { replace: true });
-            }   
-      }else{
-          alert('Tienes que logearte como administrador para acceder')
-          navigate("/login", { replace: true });
+    if (usuario !== null) {
+      if (usuario.rol === 500) {
+      } else {
+        alert('Tienes que logearte como administrador para acceder')
+        navigate("/login", { replace: true });
       }
+    } else {
+      alert('Tienes que logearte como administrador para acceder')
+      navigate("/login", { replace: true });
+    }
   }, [])
-  
+
 
   const [categorias, setCategorias] = useState([])
   const options = [
     {
       id: 1,
-      label: "Litros",
-      value: "litros",
+      label: "miliitros",
+      value: "mililitros",
     },
     {
       id: 2,
-      label: "Gramos",
-      value: "gramos",
+      label: "miligramos",
+      value: "miligramos",
     },
     {
       id: 3,
-      label: "Kilogramos",
-      value: "kilogramos",
+      label: "unidades",
+      value: "unidades",
     },
   ];
 
 
-  const [data, setData] = useState({ id_categoria: "",denominacion: "", precio_compra: "", precio_venta: "", stock_actual: "", stock_minimo: "", unidad_medida: "", es_insumo: false })
+  const [data, setData] = useState({ id_categoria: "", denominacion: "", precio_compra: "", precio_venta: "", stock_actual: "", stock_minimo: "", unidad_medida: "", es_insumo: false })
   const [archivo, setArchivo] = useState(null)
   let navigate = useNavigate();
 
@@ -84,8 +84,8 @@ export const AgregarInsumo = () => {
       imagenUpload = response.data.secure_url
       return imagenUpload
     } else {
-      console.log("error al cargar la imagen",response)
-      alert("error al cargar la imagen",response)
+      console.log("error al cargar la imagen", response)
+      alert("error al cargar la imagen", response)
     }
     return archivo
   }
@@ -131,14 +131,14 @@ export const AgregarInsumo = () => {
   }
 
   const getCategorias = async () => {
-  const response = await axios.get('https://el-buen-sabor.herokuapp.com/categoria/getAll')
-  return response
+    const response = await axios.get('https://el-buen-sabor.herokuapp.com/categoria/getAll')
+    return response
   }
 
   useEffect(() => {
-  getCategorias().then((response) => {
+    getCategorias().then((response) => {
       setCategorias(response.data)
-  })
+    })
   }, [])
 
   return (
@@ -149,19 +149,20 @@ export const AgregarInsumo = () => {
         <form onSubmit={handleSubmit}>
 
           <div className="select">
-              <select onChange={handleChange} name="id_categoria">
-                  <option selected disabled>Selecciona una categoria</option>
-                  {categorias.map(obj =>
-                      (obj.es_insumo ?
-                      ""
-                      :<option key={obj.id} value={obj.id}>{obj.nombre}</option>
-                      )
-                  )}
-              </select>
+            <select onChange={handleChange} name="id_categoria">
+              <option selected disabled>Selecciona una categoria</option>
+              {categorias.map(obj =>
+              (obj.es_insumo ?
+                <option key={obj.id} value={obj.id}>{obj.nombre}</option>
+                :
+                ""
+              )
+              )}
+            </select>
           </div>
 
           <br />
-          
+
 
           <MDBInput value={data.denominacion} onChange={handleChange} type='text' className='mb-4' name="denominacion" id='denominacion' label='denominacion' />
           <MDBInput value={data.precio_compra} onChange={handleChange} type='number' className='mb-4' name="precio_compra" id='precio_compra' label='precio_compra' />

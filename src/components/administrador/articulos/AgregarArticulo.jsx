@@ -13,21 +13,21 @@ import useUser from '../../hooks/useUser';
 
 export const AgregarArticulo = () => {
 
-    const {usuario} = useUser();
-  
+    const { usuario } = useUser();
+
     useEffect(() => {
         if (usuario !== null) {
-            if ( usuario.rol === 500) {
-              }else{
+            if (usuario.rol === 500) {
+            } else {
                 alert('Tienes que logearte como administrador para acceder')
                 navigate("/login", { replace: true });
-              }   
-        }else{
+            }
+        } else {
             alert('Tienes que logearte como administrador para acceder')
             navigate("/login", { replace: true });
         }
     }, [])
-    
+
 
 
 
@@ -39,7 +39,7 @@ export const AgregarArticulo = () => {
         if (target.files) {
             console.log("...cargando imagen", target.files)
             setArchivo(target.files)
-          }
+        }
         setData({
             ...data,
             [target.name]: target.value
@@ -60,7 +60,7 @@ export const AgregarArticulo = () => {
     let imagenUpload = ""
     const cargarImagen = async (e) => {
         const formData = new FormData()
-        console.log("Archivooo:",archivo[0])
+        console.log("Archivooo:", archivo[0])
         formData.append("file", archivo[0])
         formData.append("upload_preset", "sw2cxppo")
         const response = await axios.post("https://api.cloudinary.com/v1_1/dggpzhjo3/image/upload", formData)
@@ -93,7 +93,7 @@ export const AgregarArticulo = () => {
 
         const res = await axios.post('https://el-buen-sabor.herokuapp.com/articulo-manufacturado', articuloManufacturado)
         if (res.status === 200) {
-            alert('Articulo mufacturado creado con éxito')      
+            alert('Articulo mufacturado creado con éxito')
             navigate("/agregar-articulo-manufacturado", { replace: true });
         } else {
             alert('Error al intentar crear un articulo manufacturado')
@@ -117,12 +117,12 @@ export const AgregarArticulo = () => {
                         <select onChange={handleChange} name="id_categoria">
                             <option selected disabled>Selecciona una categoria</option>
                             {categorias.map(obj =>
-                                (
-                                 obj.es_insumo ? 
-                                 <option key={obj.id} value={obj.id}>{obj.nombre}</option>
-                                 :   
-                                ""
-                                )
+                            (
+                                obj.es_insumo ?
+                                    ""
+                                    :
+                                    <option key={obj.id} value={obj.id}>{obj.nombre}</option>
+                            )
                             )}
                         </select>
                     </div>
