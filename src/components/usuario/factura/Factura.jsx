@@ -37,13 +37,25 @@ const generarPdf = () => {
 
 const displayData = productos.map(
     (info) => (
+        info.forma_pago === "efectivo" ?  
         <tbody>
             <tr>
             <td>1</td>
             <td>{info.denominacion}</td>
             <td>{info.precio}</td>
             <td>{info.cantidad}</td>
-            <td>2000</td>
+            <td>-</td>
+            <td>{info.cantidad * info.precio}</td>
+            </tr>
+        </tbody>
+        :
+        <tbody>
+            <tr>
+            <td>1</td>
+            <td>{info.denominacion}</td>
+            <td>{info.precio}</td>
+            <td>{info.cantidad}</td>
+            <td>-</td>
             <td>{info.cantidad * info.precio}</td>
             </tr>
         </tbody>
@@ -91,7 +103,7 @@ console.log(productos)
                             <tr>
                             <td>Factura N°</td>
                             <td>:</td>
-                            <td><b>{data.id}</b></td>
+                            <td><b>{data.id_factura}</b></td>
                             </tr>
                         </thead>
                         <thead>
@@ -125,14 +137,53 @@ console.log(productos)
                     </thead>
           
                     {
-                        displayData
+                        productos.map(
+                            (info) => (
+                                (data.forma_pago === "efectivo" ?  
+                                <tbody>
+                                    <tr>
+                                    <td>Efectivo</td>
+                                    <td>{info.denominacion}</td>
+                                    <td>{info.precio + info.precio * 10 / 90}</td>
+                                    <td>{info.cantidad}</td>
+                                    <td>{info.precio * 10 / 90}</td>
+                                    <td>{info.cantidad * info.precio + info.precio * 10 / 90}</td>
+                                    </tr>
+                                </tbody>
+                                :
+                                <tbody>
+                                    <tr>
+                                    <td>Mercado Pago</td>
+                                    <td>{info.denominacion}</td>
+                                    <td>{info.precio}</td>
+                                    <td>{info.cantidad}</td>
+                                    <td>-</td>
+                                    <td>{info.cantidad * info.precio}</td>
+                                    </tr>
+                                </tbody>)
+                                )
+                            )
                     }
           
                     <tbody>
                         <tr>
                         <th colSpan="4">Total</th>
-                        <th>8000</th>
-                        <th>{data.total_venta}</th>
+                        {   
+                        (
+                            data.forma_pago === "efectivo" ?
+                            <th>{data.monto_descuento}</th>
+                            :
+                            <th>-</th>
+                        )                      
+                        }
+                        {   
+                        (
+                            data.forma_pago === "efectivo" ?
+                            <th>{data.total_venta + data.monto_descuento}</th>
+                            :
+                            <th>{data.total_venta}</th>
+                        )                      
+                        }
                         </tr>
                     </tbody>
                 </table>
@@ -146,24 +197,46 @@ console.log(productos)
                 </div>
                 <div className="invoice_footer_amount">
                     <table className="amount_table"   cellSpacing="0">
+                        { (data.forma_pago === "efectivo" ?
                         <thead>
                         <tr>
+                            <td>Subtotal</td>
+                            <td>: <b>{data.total_venta + data.monto_descuento}</b></td>
+                        </tr>
+                        <tr>
                             <td>Descuento</td>
-                            <td>: <b>0</b></td>
+                            <td>: <b>{data.monto_descuento}</b></td>
                         </tr>
                         <tr>
                             <td>Total</td>
                             <td>: <b>{data.total_venta}</b></td>
                         </tr>
                         <tr>
-                            <td>Monto pagado</td>
+                            <td>Pagado</td>
+                            <td>: <b>{data.total_venta}</b></td>
+                        </tr>
+                        </thead>
+                        :
+                        <thead>
+                        <tr>
+                            <td>Subtotal</td>
+                            <td>: <b>{data.total_venta}</b></td>
+                        </tr>
+                        <tr>
+                            <td>Descuento</td>
+                            <td>: <b>{data.monto_descuento}</b></td>
+                        </tr>
+                        <tr>
+                            <td>Total</td>
                             <td>: <b>{data.total_venta}</b></td>
                         </tr>
                         <tr>
                             <td>Saldo restante</td>
                             <td>: <b>0</b></td>
                         </tr>
-                        </thead>
+                        </thead>                       
+                        )
+                        }
                     </table>
                 </div>
             </div>
