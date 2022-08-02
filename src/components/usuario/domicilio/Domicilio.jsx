@@ -41,8 +41,11 @@ export const Domicilio = () => {
     }
 
     const handleSubmit = async (e) => {
+        if (data.calle === "" || Number(data.numero) < 0 || data.localidad === "") {
+            alert('Todos los campos son obligatorios y no pueden ser negativos')
+            return
+        }
 
-        // Completar los condicionales para no ingresar campos vacíos (a elección)
         e.preventDefault()
         console.log(data)
         const domicilio = {
@@ -51,8 +54,6 @@ export const Domicilio = () => {
             localidad: data.localidad,
             id_usuario: Number(usuario.id)
         }
-
-
         const res = await axios.post('https://el-buen-sabor.herokuapp.com/domicilio', domicilio)
         if (res.status === 200) {
             alert('Domicilio agregado con exito')

@@ -44,7 +44,6 @@ export const Carrito = () => {
             setShowDomicilio(true)
         }
 
-
         SetDataPedido({
             ...dataPedido,
             [target.name]: target.value,
@@ -84,15 +83,8 @@ export const Carrito = () => {
         navigate(-1)
     }
 
-
     const detallesPruebas = JSON.parse(localStorage.getItem("cartProducts"));
 
-    // let cantidadMinutos = 0;
-    // detallesPruebas.map(
-    //     (info) => (
-    //             cantidadMinutos += info.tiempo_estimado_cocina 
-    //     )
-    // )
 
     const detalle_pedido = detallesPruebas.map(
         (info) => (
@@ -106,25 +98,17 @@ export const Carrito = () => {
         )
     )
 
-
-    let metodoPago=null;
-    const modoPago = (valor) => {
-        metodoPago = valor;
-    } 
-
     const handleSubmit = async (e) => {
+
         handleCloseModal()
         e.preventDefault()
-        //mercadopago()
-
-    
         const pedidos = {
             pedido: {
                 estado: 1,
                 hora_estimada_fin: "2021-02-18T21:54:42.123Z",
                 detalle_envio: dataPedido.detalle_envio,
                 tipo_envio: Number(dataPedido.tipo_envio),
-                id_domicilio: 1,
+                id_domicilio: Number(dataPedido.id_domicilio),
                 id_cliente: id
             },
             detalle_pedido
@@ -137,44 +121,6 @@ export const Carrito = () => {
         }
     }
 
-
-    const pago = () =>{
-        // Swal.fire({
-        //     title: "10% de descuento pagando en efectivo",
-        //     text: `¿Como deseas obtener tu pedido?`,
-        //     icon: "warning",
-        //     showDenyButton: true,
-        //     denyButtonText: 'Retiro en el local (Efectivo o Mercado Pago)',
-        //     confirmButtonText: 'Envio a domicilio (Solo Mercado Pago)',
-        // }).then(result => {
-        //     if (result.isConfirmed) {
-        //         Swal.fire('Proceda a rellenar sus datos').then(
-        //             handleOpenModal(),
-        //             handleSubmit()
-        //         )
-        //     } else if(result.isDenied){
-        //         Swal.fire({
-        //             title: "10% de descuento pagando en efectivo",
-        //             text: `¿Como deseas pagar tu pedido?`,
-        //             icon: "warning",
-        //             showDenyButton: true,
-        //             denyButtonText: 'Mercado Pago',
-        //             confirmButtonText: 'Efectivo',
-        //         }).then(result => {
-        //             if (result.isConfirmed){
-        //                 Swal.fire('Lo esperamos').then(
-        //                     handleSubmit(false)
-        //                 )
-        //             } else if (result.isDenied){
-        //                 Swal.fire('Proceda a pagar').then(
-        //                     handleSubmit()
-        //                 )
-        //             }
-        //         })
-        //     }
-        // })
-        handleOpenModal()
-    }
     
     return (
         <>
@@ -198,28 +144,20 @@ export const Carrito = () => {
         {cartItems.map((item, i) => (
             <ItemCart key={i} item={item} />
             ))}
-
-            
+      
         <div className="totals">
-            {/* <div className="totals-item">
-            <label>Subtotal</label>
-            <div className="totals-value" id="cart-subtotal">71.97</div>
-            </div>
-            <div className="totals-item">
-            <label>Descuento (10%)</label>
-            <div className="totals-value" id="cart-tax">3.60</div>
-            </div> */}
-            {/* <div className="totals-item">
-            <label>Shipping</label>
-            <div className="totals-value" id="cart-shipping">15.00</div>
-            </div> */}
             <div className="totals-item totals-item-total">
             <label>Total</label>
             <div className="totals-value" id="cart-total">{total}</div>
             </div>
         </div>
-            
-            <button onClick={pago} id="checkout" className="checkout">Checkout</button>
+            {
+                (cartItems.length > 0 ? 
+                    <button onClick={() => handleOpenModal()} id="checkout" className="checkout">Checkout</button> 
+                    :
+                    ""      
+                )
+            }
         </div>
 
             <button onClick={handleReturn} className="btn btn-success">Regresar</button>
@@ -292,17 +230,13 @@ export const Carrito = () => {
                             ""
                             )
                         }
-                        
-
-
-
                     </Modal.Body>
                     <Modal.Footer>
-                        <button className="btn btn-secondary" onClick={handleCloseModal}>
+                        <button className="btn btn-danger" onClick={handleCloseModal}>
                             Cancelar
                         </button>
-                        <button className="btn btn-succes" type="submit" onClick={handleSubmit}>
-                            Guardar 
+                        <button className="btn btn-success" type="submit" onClick={handleSubmit}>
+                            Pedir 
                         </button>
                     </Modal.Footer>
                 </Form>

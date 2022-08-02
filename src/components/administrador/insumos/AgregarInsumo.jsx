@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { NavbarAdministrador } from '../NavbarAdministrador';
@@ -13,7 +13,7 @@ import {
 } from 'mdb-react-ui-kit';
 
 export const AgregarInsumo = () => {
-
+  const [categorias, setCategorias] = useState([])
   const options = [
     {
       id: 1,
@@ -33,7 +33,7 @@ export const AgregarInsumo = () => {
   ];
 
 
-  const [data, setData] = useState({ denominacion: "", precio_compra: "", precio_venta: "", stock_actual: "", stock_minimo: "", unidad_medida: "", es_insumo: false })
+  const [data, setData] = useState({ id_categoria: "",denominacion: "", precio_compra: "", precio_venta: "", stock_actual: "", stock_minimo: "", unidad_medida: "", es_insumo: false })
   const [archivo, setArchivo] = useState(null)
   let navigate = useNavigate();
 
@@ -83,6 +83,7 @@ export const AgregarInsumo = () => {
 
     console.log(data)
     const articuloInsumo = {
+      id_categoria: Number(data.id_categoria),
       denominacion: data.denominacion,
       precio_compra: Number(data.precio_compra),
       precio_venta: Number(data.precio_venta),
@@ -110,12 +111,39 @@ export const AgregarInsumo = () => {
     navigate("/login", { replace: true })
   }
 
+  const getCategorias = async () => {
+  const response = await axios.get('https://el-buen-sabor.herokuapp.com/categoria/getAll')
+  return response
+  }
+
+  useEffect(() => {
+  getCategorias().then((response) => {
+      setCategorias(response.data)
+  })
+  }, [])
+
   return (
     <><NavbarAdministrador />
       <div className="container">
         <h2>Añadir insumo</h2>
         <br />
         <form onSubmit={handleSubmit}>
+
+          <div className="select">
+              <select onChange={handleChange} name="id_categoria">
+                  <option selected disabled>Selecciona una categoria</option>
+                  {categorias.map(obj =>
+                      (obj.es_insumo ?
+                      ""
+                      :<option key={obj.id} value={obj.id}>{obj.nombre}</option>
+                      )
+                  )}
+              </select>
+          </div>
+
+          <br />
+          
+
           <MDBInput value={data.denominacion} onChange={handleChange} type='text' className='mb-4' name="denominacion" id='denominacion' label='denominacion' />
           <MDBInput value={data.precio_compra} onChange={handleChange} type='number' className='mb-4' name="precio_compra" id='precio_compra' label='precio_compra' />
           <MDBInput value={data.precio_venta} onChange={handleChange} name="precio_venta" className='mb-4' type='number' id='precio_venta' label='precio_venta' />

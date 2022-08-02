@@ -1,5 +1,4 @@
 import React from 'react'
-import { Productos } from '../carrito/productos/Productos'
 import { NavbarUsuario } from '../nav/NavbarUsuario'
 import { Carousel } from 'react-bootstrap';
 import { Carrito } from '../carrito/cart2/Carrito';

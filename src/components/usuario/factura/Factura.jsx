@@ -7,16 +7,17 @@ import axios from 'axios'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
 export const Factura = () => {
+let navigate = useNavigate();
 const {usuario} = useUser(); 
 const {idPedido} = useParams();
 const [data, setData] = useState({})
 const [productos, setProductos] = useState([])
+
 const getData = async () => {
     const response = await axios.get(`https://el-buen-sabor.herokuapp.com/factura/getByPedido/${idPedido}`)
     console.log(response.data)
     return response.data
 }   
-
 
 useEffect(() => {
     getData().then((response) => {
@@ -43,7 +44,7 @@ const displayData = productos.map(
             <td>{info.precio}</td>
             <td>{info.cantidad}</td>
             <td>2000</td>
-            <td>{info.precio}</td>
+            <td>{info.cantidad * info.precio}</td>
             </tr>
         </tbody>
     )
@@ -54,6 +55,7 @@ console.log(productos)
   return (
         <>
         
+        <NavbarUsuario/>
 
         <div className='container'>
         <div id="factura" className="invoice_container">
@@ -168,7 +170,10 @@ console.log(productos)
         </div>
         </div>
         <br />
-        <button onClick={() => generarPdf()} className='btn btn-primary'>Descargar PDF</button>
+        <button onClick={() => generarPdf()} className='btn btn-primary'>Descargar factura</button>
+        <br />
+        <br />
+        <button onClick={() => navigate(-1)} className='btn btn-success'>Volver</button>
     </>
   )
 }

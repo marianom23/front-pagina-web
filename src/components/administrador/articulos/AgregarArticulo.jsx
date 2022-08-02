@@ -97,7 +97,12 @@ export const AgregarArticulo = () => {
                         <select onChange={handleChange} name="id_categoria">
                             <option selected disabled>Selecciona una categoria</option>
                             {categorias.map(obj =>
-                                <option key={obj.id} value={obj.id}>{obj.nombre}</option>
+                                (
+                                 obj.es_insumo ? 
+                                 <option key={obj.id} value={obj.id}>{obj.nombre}</option>
+                                 :   
+                                ""
+                                )
                             )}
                         </select>
                     </div>

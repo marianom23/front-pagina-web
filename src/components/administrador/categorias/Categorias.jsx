@@ -11,7 +11,7 @@ import {
 
 export const Categorias = () => {
 
-    const [data, setData] = useState({nombre: ""})
+    const [data, setData] = useState({nombre: "", es_insumo:""})
     let navigate = useNavigate();
 
     const handleChange = ({ target }) => {
@@ -22,19 +22,22 @@ export const Categorias = () => {
     }
 
     const handleSubmit = async (e) => {
-
+        if (data.nombre === "") {
+            alert('El campo nombre es obligatorio')
+            return
+        }
         // Completar los condicionales para no ingresar campos vacíos (a elección)
         e.preventDefault()
         console.log(data)
-        const articuloManufacturado = {
+        const categoria = {
             nombre: data.nombre,
+            es_insumo: Boolean(data.es_insumo),
         }
 
 
-        const res = await axios.post('https://el-buen-sabor.herokuapp.com/categoria', articuloManufacturado)
+        const res = await axios.post('https://el-buen-sabor.herokuapp.com/categoria', categoria)
         if (res.status === 200) {
             alert('Categoria creada con éxito')
-
         } else {
             alert('Error al intentar crear una categoria')
             navigate("/agregarcategoria", { replace: true });
@@ -49,11 +52,20 @@ export const Categorias = () => {
     return (
         <>
             <NavbarAdministrador />
+
+            <br />
+            <br />
+            
             <div className="container">
-                <h2>Añadir articulo manufacturado</h2>
+                <h2>Añadir categoría</h2>
                 <br />
                 <form onSubmit={handleSubmit}>
+
                     <MDBInput value={data.nombre} onChange={handleChange} type='text' className='mb-4' name="nombre" id='nombre' label='nombre' />
+                    <MDBCheckbox value={data.es_insumo} onChange={handleChange} name='es_insumo' id='es_insumo' type='checkbox' label='Insumo' />
+
+                <br />
+
                     <MDBBtn type='submit' className='mb-4' block>
                         Agregar categoria
                     </MDBBtn>
@@ -62,6 +74,19 @@ export const Categorias = () => {
                     </MDBBtn>
                 </form>
             </div>
+
+
+          
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <Footer />
         </>
     )
