@@ -90,10 +90,10 @@ export const GrillaArticulos = () => {
         (info)=>{
             return(
                 <tr key={info.id}>
-                    <td>{info.tiempo_estimado_cocina}</td>
-                    <td>{info.denominacion}</td>
-                    <td>{info.precio_venta}</td>
-                    <td>{info.imagen}</td>
+                    <td data-label="tiempo">{info.tiempo_estimado_cocina}</td>
+                    <td data-label="nombre">{info.denominacion}</td>
+                    <td data-label="precio">{info.precio_venta}</td>
+                    <td data-label="imagen">{info.imagen}</td>
                     <td>
                         <div className="mb-3">
                             <button onClick={()=>handleDelete(info.id)} className="btn btn-danger">Delete</button>

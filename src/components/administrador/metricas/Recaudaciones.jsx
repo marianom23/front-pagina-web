@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { NavbarAdministrador } from '../NavbarAdministrador'
 import { useNavigate } from 'react-router-dom'
 import useUser from '../../hooks/useUser'
-
+import './grilla.css'
 export const Recaudaciones = () => {
 
     const [recaudacionDiaria, setRecaudacionDiaria] = useState([])
@@ -94,8 +94,8 @@ export const Recaudaciones = () => {
         (info) => {
             return (
                 <tr key={info.fecha}>
-                    <td><b>$</b> {info.recaudaciones}</td>
-                    <td>{info.fecha}</td>
+                    <td data-label="recaudaciones"><b>$</b> {info.recaudaciones}</td>
+                    <td data-label="fechas">{info.fecha}</td>
                 </tr>
             )
         }
@@ -159,11 +159,11 @@ export const Recaudaciones = () => {
         (info) => {
             return (
                 <tr key={info.id_pedido}>
-                    <td><b>$</b> {info.recaudaciones}</td>
-                    <td> {info.fecha}</td>
-                    <td>{info.forma_pago}</td>
-                    <td>{info.numero_factura}</td>
-                    <td>{info.id_pedido}</td>
+                    <td data-label="recaudaciones"><b>$</b> {info.recaudaciones}</td>
+                    <td data-label="fecha"> {info.fecha}</td>
+                    <td data-label="forma pago">{info.forma_pago}</td>
+                    <td data-label="numero factura">{info.numero_factura}</td>
+                    <td data-label="id pedido">{info.id_pedido}</td>
                 </tr>
             )
         }

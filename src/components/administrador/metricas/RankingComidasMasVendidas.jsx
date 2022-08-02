@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { NavbarAdministrador } from '../NavbarAdministrador'
 import useUser from '../../hooks/useUser'
 import { useNavigate } from 'react-router-dom'
-
+import './grilla.css'
 export const RankingComidasMasVendidas = () => {
 
   const [rankingComidasMasVendidas, setRankingComidasMasVendidas] = useState([])
@@ -94,9 +94,9 @@ export const RankingComidasMasVendidas = () => {
     (info) => {
       return (
         <tr key={info.denominacion}>
-          <td>{info.veces_pedida}</td>
-          <td>{info.denominacion}</td>
-          <td>{info.id_articulo_manufacturado}</td>
+          <td data-label="veces pedida">{info.veces_pedida}</td>
+          <td data-label="nombre">{info.denominacion}</td>
+          <td data-label="id">{info.id_articulo_manufacturado}</td>
         </tr>
       )
     }

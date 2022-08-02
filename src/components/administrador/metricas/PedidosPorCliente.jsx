@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import './grilla.css'
 import * as XLSX from 'xlsx'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -83,9 +84,9 @@ export const PedidosPorCliente = () => {
         (info) => {
             return (
                 <tr key={info.id_cliente}>
-                    <td>{info.cantidad_pedidos}</td>
-                    <td>{info.id_cliente}</td>
-                    <td>${info.total}</td>
+                    <td data-label="cantidad">{info.cantidad_pedidos}</td>
+                    <td data-label="id cliente">{info.id_cliente}</td>
+                    <td data-label="total">${info.total}</td>
                 </tr>
             )
         }

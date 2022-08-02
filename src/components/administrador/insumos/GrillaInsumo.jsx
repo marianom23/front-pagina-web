@@ -122,18 +122,27 @@ export const GrillaInsumo = () => {
     }
 
 
+
+
     const DisplayData=data.map(
         
         (info)=>{
             return(
                 <tr key={info.id}>
-                    <td>{info.denominacion}</td>
-                    <td>{info.precio_compra}</td>
-                    <td>{info.precio_venta}</td>
-                    <td>{info.stock_actual}</td>
-                    <td>{info.stock_minimo}</td>
-                    <td>{info.unidad_medida}</td>
-                    <td>{info.es_insumo ? "si" : "no"} </td>
+                    <td data-label="nombre">{info.denominacion}</td>
+                    <td data-label="precio compra">{info.precio_compra}</td>
+                    <td data-label="precio venta">{info.precio_venta}</td>
+                    <td data-label="stock actual">{info.stock_actual}</td>
+                    {
+                    
+                        (   info.stock_actual < info.stock_minimo ?
+                            <td className='rojo' data-label="stock minimo">{info.stock_minimo}</td>
+                            :
+                            <td className='verde' data-label="stock minimo">{info.stock_minimo}</td>
+                        )
+                    }
+                    <td data-label="unidad medida">{info.unidad_medida}</td>
+                    <td data-label="es insumo">{info.es_insumo ? "si" : "no"} </td>
                     <td>
                         <div className="mb-3">
                             <button onClick={()=>handleDelete(info.id)} className="btn btn-danger">Delete</button>

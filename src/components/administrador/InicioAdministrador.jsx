@@ -26,7 +26,8 @@ export const InicioAdministrador = () => {
   return (
     <>
         <NavbarAdministrador/>
-        <div>AdministradorInicio</div>
+        <br />
+        <h1>Bienvenido, usa la barra para desplazarte por administracion</h1>
     </>
   )
 }

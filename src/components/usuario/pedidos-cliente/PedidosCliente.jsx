@@ -56,10 +56,9 @@ export const PedidosCliente = () => {
             <table id="rwd-table-large">
             <thead>
                 <tr>
-                    <th>Pedido numero:</th>
-                    <th>Estado</th>
-                    <th>Hora estimada fin</th>
-                    <th>Fecha del pedido</th>
+                    <th scope="col">Pedido numero:</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Hora estimada fin</th>
                 </tr>
             </thead>
             <tbody>
@@ -69,32 +68,32 @@ export const PedidosCliente = () => {
                     (info)=>{
                         return(
                             <tr key={info.id}>
-                                <td>{info.id}</td>
+                                <td data-label="id">{info.id}</td>
                                 {info.estado === 1 ? 
-                                    <td >En espera de aprobacion</td>
+                                    <td data-label="Estado" >En espera de aprobacion</td>
                                  : info.estado === 7 ?
-                                    <td tyle={{ color: "rgb(158, 244, 5)"}}>Aprobado en falta de pago</td>
+                                    <td data-label="Estado" tyle={{ color: "rgb(158, 244, 5)"}}>Aprobado en falta de pago</td>
                                  : info.estado === 2 ?
-                                    <td>Aprobado</td> 
+                                    <td data-label="Estado">Aprobado</td> 
                                  : info.estado === 3 ?
-                                    <td>En cocina</td> 
+                                    <td data-label="Estado">En cocina</td> 
                                  : info.estado === 4 ?
-                                    <td>El delivery esta en camino</td>   
+                                    <td data-label="Estado">El delivery esta en camino</td>   
                                  : info.estado === 5 ?
-                                    <td>El pedido esta terminado</td>
+                                    <td data-label="Estado" >El pedido esta terminado</td>
                                  :  info.estado === 6 ?
-                                    <td>El pedido fue rechazado</td>  
+                                    <td data-label="Estado">El pedido fue rechazado</td>  
                                  :
                                  ""    
                                 }
                                 {info.estado === 5 ?
-                                    <td>-----------------</td>
+                                    <td >-----------------</td>
                                  : info.estado === 6 ?
                                     <td>-----------------</td>
                                  : 
-                                    <td>{info.hora_estimada_fin}</td>                                  
+                                    <td data-label="hora fin">{info.hora_estimada_fin}</td>                                  
                                 }
-                                <td>{info.imagen}</td>
+                                
                                 <td>
                                 {
                                     info.estado === 7 ?

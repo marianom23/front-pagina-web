@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import * as XLSX from 'xlsx'
-
+import './grilla.css'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { NavbarAdministrador } from '../NavbarAdministrador'
@@ -73,9 +73,9 @@ export const Ganancias = () => {
         (info) => {
             return (
                 <tr>
-                    <td><b>$</b> {info.ganancias}</td>
-                    <td> {info.desde}</td>
-                    <td>{info.hasta}</td>
+                    <td data-label="ganancias"><b>$</b> {info.ganancias}</td>
+                    <td data-label="desde"> {info.desde}</td>
+                    <td data-label="hasta">{info.hasta}</td>
                 </tr>
             )
         }

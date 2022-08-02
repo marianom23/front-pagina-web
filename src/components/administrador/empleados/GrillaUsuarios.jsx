@@ -111,10 +111,10 @@ export const GrillaUsuarios = () => {
         (info)=>{
             return(
                 <tr key={info.id}>
-                    <td>{info.nombre}</td>
-                    <td>{info.apellido}</td>
-                    <td>{info.usuario}</td>
-                    <td>{info.rol}</td>
+                    <td data-label="nombre" >{info.nombre}</td>
+                    <td data-label="apellid">{info.apellido}</td>
+                    <td data-label="mail">{info.usuario}</td>
+                    <td data-label="rol">{info.rol}</td>
                     <td>
                         {/* <div className="mb-3">
                             <button onClick={()=>handleDelete(info.id)} className="btn btn-danger">Delete</button>

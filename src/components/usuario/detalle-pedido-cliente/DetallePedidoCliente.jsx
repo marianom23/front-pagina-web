@@ -142,7 +142,7 @@ data.forEach(info => {
         </div>
         <h1>El total del pedido es de: {total}</h1>
         {/* <button id="checkout" className='checkout' name="checkout" onClick={mercadopago()}>Pagar</button> */}
-        <button onClick={handleReturn}>Regresar</button>
+        <button onClick={handleReturn} className="btn btn-success">Regresar</button>
     </>
   )
 }
