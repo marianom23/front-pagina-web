@@ -20,7 +20,7 @@ export const Recaudaciones = () => {
     const getDataByDay = async (fecha) => {
         if (fecha !== null) {
             // const url = `http://localhost:8080/recaudaciones-diarias?fecha=${fecha}`
-            const url = `http://el-buen-sabor.herokuapp.com/recaudaciones-diarias?fecha=${fecha}`
+            const url = `https://el-buen-sabor.herokuapp.com/recaudaciones-diarias?fecha=${fecha}`
             console.log("URL:", url)
             const resp = await axios.get(url)
             console.log("resp:", resp)
@@ -86,8 +86,8 @@ export const Recaudaciones = () => {
 
     const getDataByTwoDates = async (desde, hasta) => {
         if (desde !== null && hasta !== null) {
-            const url = `http://localhost:8080/recaudaciones-periodo-tiempo?desde=${desde}&hasta=${hasta}`
-            //const url = `http://el-buen-sabor.herokuapp.com/recaudaciones-periodo-tiempo?desde=${desde}&hasta=${hasta}`
+            //const url = `http://localhost:8080/recaudaciones-periodo-tiempo?desde=${desde}&hasta=${hasta}`
+            const url = `https://el-buen-sabor.herokuapp.com/recaudaciones-periodo-tiempo?desde=${desde}&hasta=${hasta}`
             console.log("URL:", url)
             const resp = await axios.get(url)
             console.log("resp:", resp)
